@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="960" height="640"></canvas>
+
+<script>
+    window.onload = function(){
+
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var sprite = new Image();
+        var cx = 0;
+        var cy = 0;
+        var sx = 0;
+        var sy = 0;
+        var swidth = 100;
+        var sheight = 100;
+        sprite.onload = function(){
+            // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+            context.drawImage(sprite, 15, 15, 250, 300, 0, 550, 75, 100);
+        }
+    sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg"
+    }
+</script>
+
+</body>
+</html>
