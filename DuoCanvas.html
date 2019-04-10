@@ -19,6 +19,7 @@
         var ctx = canvas.getContext('2d');
         var sprite = new Image();
             sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
+        // var sx = 15;
         var sx = 15;
         var sy = 15;
         var sWidth = 250;
@@ -31,29 +32,38 @@
         var leftPressed = false;
         var upPressed = false;
         var downPressed = false;
-
+        var ticker = 0;
+        
+        
         sprite.onload = function(){
             // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
             ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
         }
-
+    function spriteify() {
+        if (sx === 15 ) {
+            sx = 340;
+        } else if (sx === 340 ) {
+            sx = 15;
+        } 
+    }
     function draw() {
             ctx.clearRect(dx, dy, dWidth, dHeight);
 
-            if (rightPressed) {
-                dx += 7;
+            if (rightPressed && ( dx + dWidth< 960) ) {
+                dx += 5;
             }
-            if (leftPressed) {
-                dx -= 7
+            if (leftPressed && dx > 0) {
+                dx -= 5;
             }
-            if (upPressed) {
-                dy -= 7;
+            if (upPressed && dy > 0) {
+                dy -= 5;
             }
-            if (downPressed) {
-                dy += 7;
+            if (downPressed && (dy + dHeight < canvas.height) ) {
+                dy += 5;
             }
             ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+            // ticker += 1;
     }
 
     document.addEventListener("keydown", keyDownHandler, false);
@@ -91,6 +101,7 @@
     }
     
     setInterval(draw, 10)
+    setInterval(spriteify, 750)
 }
     
 
