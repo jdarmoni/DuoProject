@@ -16,21 +16,84 @@
     window.onload = function(){
 
         var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext('2d');
+        var ctx = canvas.getContext('2d');
         var sprite = new Image();
-        var cx = 0;
-        var cy = 0;
-        var sx = 0;
-        var sy = 0;
-        var swidth = 100;
-        var sheight = 100;
+            sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
+        var sx = 15;
+        var sy = 15;
+        var sWidth = 250;
+        var sHeight = 300;
+        var dx = 0;
+        var dy = 550;
+        var dWidth = 75;
+        var dHeight = 100;
+        var rightPressed = false;
+        var leftPressed = false;
+        var upPressed = false;
+        var downPressed = false;
+
         sprite.onload = function(){
             // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
-            context.drawImage(sprite, 15, 15, 250, 300, 0, 550, 75, 100);
+            ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
         }
-    sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg"
+
+    function draw() {
+            ctx.clearRect(dx, dy, dWidth, dHeight);
+            ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+            if (rightPressed) {
+                dx += 7;
+            }
+            if (leftPressed) {
+                dx -= 7
+            }
+            if (upPressed) {
+                dy -= 7;
+            }
+            if (downPressed) {
+                dy += 7;
+            }
     }
+
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+
+    function keyDownHandler(e) {
+        if (e.key == "Right" || e.key == "ArrowRight") {
+            rightPressed = true;
+        }
+        else if (e.key == "Left" || e.key == "ArrowLeft") {
+            leftPressed = true;
+        } 
+        else if (e.key == "Up" || e.key == "ArrowUp") {
+            upPressed = true;
+        }
+        else if (e.key == "Down" || e.key == "ArrowDown") {
+            downPressed = true;
+        }
+    }
+
+    function keyUpHandler(e) {
+        if (e.key == "Right" || e.key == "ArrowRight") {
+            rightPressed = false;
+        }
+        else if (e.key == "Left" || e.key == "ArrowLeft") {
+            leftPressed = false;
+        }
+        else if (e.key == "Up" || e.key =="ArrowUp") {
+            upPressed = false;
+        }
+        else if (e.key == "Down" || e.key == "ArrowDown") {
+            downPressed = false;
+        }
+
+    }
+    
+    setInterval(draw, 10)
+}
+    
+
 </script>
 
 </body>
