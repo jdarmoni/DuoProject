@@ -40,7 +40,6 @@
 
     function draw() {
             ctx.clearRect(dx, dy, dWidth, dHeight);
-            ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
             if (rightPressed) {
                 dx += 7;
@@ -54,6 +53,7 @@
             if (downPressed) {
                 dy += 7;
             }
+            ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     }
 
     document.addEventListener("keydown", keyDownHandler, false);
