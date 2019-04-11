@@ -66,40 +66,63 @@
         ctx.closePath();
     }
 
+    // need two collision detections - they both need to know this range, though.
     function collisionDetection(object){
-        // var platform = { x: 450, y: canvas.height - 200, height: 200, width: 200 }
-          
-        if ( duo.dx + speed > object.x-duo.dWidth && (duo.dx + speed < object.x + object.width)) {
-                    // if duo's y is greater than the start of the object's y, and
-                    // duo's y is LESS than the object's y + height
-                    
-                if ( ( (duo.dy + duo.dHeight)+ jump >= object.y) && (duo.dy + jump <= object.y + object.height) ) {
+        //   if duo's x position + speed goes into the object
+        if ( duo.dx + speed > object.x - duo.dWidth && (duo.dx + speed < object.x + object.width)) {
+                if ( ( (duo.dy + duo.dHeight) + jump >= object.y) && (duo.dy + jump <= object.y + object.height) ) {
                     return true
                 }
-
-            // console.log(object.x)
-            // console.log(duo.dx)
-            // return true;
         }
     }
-    function draw() {
+    
+    
+    function YcollisionDetection(object) {
+            // if he's colliding horizontally, he should still be able to jump and move the opposite way
+
+            if (duo.dx + speed > object.x - duo.dWidth && (duo.dx + speed < object.x + object.width)) {
+                if (((duo.dy + duo.dHeight) + jump >= object.y) && (duo.dy + jump <= object.y + object.height)) {
+                    return true
+                }
+            }
+        }
+
+    function XcollisionDetection(object) {
+            
+            // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
+            if ( (duo.dx + speed > object.x - duo.dWidth && (duo.dx + speed < object.x + object.width))  && ( ((duo.dy + duo.dHeight) >= object.y) && (duo.dy <= object.y + object.height)) ) {
+                // AND
+                                                                                                                  // if it would enter him into between y (start) AND y + height (end) range of the object
+                
+                    return true // it's true that he would be colliding
+                
+            }
+            //QUESTION: how to express, if moving left would collide with platform the X Y of platform
+        }
+   
+        function draw() {
             ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
             drawPlatform();
             drawTerrace();
-            collisionDetection(platform);
+            XcollisionDetection(platform);
+            // XcollisionDetection(platform);
+            // YcollisionDetection(platform);
         
+            // keypress
+            // calculate new position
+            // is that position valid
 
             // ctx.drawImage(sprite, dDsx, dDsy, sWidth, sHeight, Ddx, Ddy, dWidth, dHeight)
 
             if (rightPressed && ( duo.dx + duo.dWidth< canvas.width) ) {
-                if (collisionDetection(platform) === true ){
+                if (XcollisionDetection(platform) === true ){
                     duo.dx += 0
                 } else {
                     duo.dx += speed;
                 }
             }
             if (leftPressed && duo.dx > 0) {
-                if (collisionDetection(platform)===true){
+                if (XcollisionDetection(platform)===true){
                     duo.dx += 0
                 } else {
                     duo.dx -= speed;
