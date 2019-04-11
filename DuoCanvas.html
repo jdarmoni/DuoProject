@@ -25,7 +25,7 @@
         var speed = 5;
         var jump = 5
         var duo = {sx: 15, sy: 15, sWidth: 250, sHeight: 300, dx: 0, dy: canvas.height - 90, dWidth: 75, dHeight: 100 }
-     
+        var hit = false
         var rightPressed = false;
         var leftPressed = false;
         var upPressed = false;
@@ -40,8 +40,14 @@
         var quadrant1= {x: canvas.width / 2, y: 0, height: canvas.height, width: 2 }
         var quadrant2 = { x: 0, y: canvas.height/2, height: 2, width: canvas.width }
 
-        var platform = {x: 490, y: canvas.height-200, height: 200, width: 200}
-        var terrace = {x: 0, y: 100, height: 50, width: 200 }
+
+        // var platform = { x: 490, y: canvas.height - 200, height: 200, width: 200 }
+        // var terrace = { x: 0, y: 100, height: 50, width: 200 }
+        
+        var DuoObjects =[
+                       {x: 490, y: canvas.height-200, height: 200, width: 200},
+                      {x: 0, y: 200, height: 50, width: 200 }
+        ]
                     
         // ******* Dark Duos ******/
         // var DarkDuo = {sx: 610, sy: 300, dx: canvas.width, dy: canvas.height}
@@ -76,7 +82,7 @@
         }
     function drawPlatform() {
             ctx.beginPath();
-            ctx.rect(platform.x, platform.y, platform.width, platform.height);
+            ctx.rect(DuoObjects[0].x, DuoObjects[0].y, DuoObjects[0].width, DuoObjects[0].height);
             ctx.fillStyle = "black";
             ctx.fill();
             ctx.closePath();
@@ -84,7 +90,7 @@
 
     function drawTerrace(){
         ctx.beginPath();
-        ctx.rect(terrace.x, terrace.y, terrace.width, terrace.height)
+        ctx.rect(DuoObjects[1].x, DuoObjects[1].y, DuoObjects[1].width, DuoObjects[1].height)
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.closePath();
@@ -123,43 +129,59 @@
             ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
             drawPlatform();
             drawTerrace();
-            XcollisionDetection(platform, speed);
-            YcollisionDetection(platform, jump);
+
+            // XcollisionDetection(platform, speed);    
+            // YcollisionDetection(platform, jump);    I don't need to 'draw' these two???
             drawQuadrant1();
             drawQuadrant2();
 
-            // ctx.drawImage(sprite, dDsx, dDsy, sWidth, sHeight, Ddx, Ddy, dWidth, dHeight)
-
-            if (rightPressed && ( duo.dx + duo.dWidth< canvas.width) ) {
-                if (XcollisionDetection(platform, speed) === true ){
-                    console.log('right button problem')
-                    duo.dx += 0
-                } else {
-                    duo.dx += speed;
+            
+            // if (rightPressed && ( duo.dx + duo.dWidth< canvas.width) ) {
+            //     if (XcollisionDetection(platform, speed) === true ){
+            //         console.log('right button problem')
+            //         duo.dx += 0
+            //     } else {
+            //         duo.dx += speed;
+            //     }
+            // }
+            if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
+                for (var i = 0; i < DuoObjects.length; i++) {
+                    if (XcollisionDetection(DuoObjects[i], speed) === true) {
+                        console.log('right button problem')
+                        duo.dx += 0
+                        hit = true;
+                    } 
+                    // for every button press, for each object duo doesn't collide with, dou.dx += speed
                 }
+                if (hit === false) {duo.dx += speed}
             }
             if (leftPressed && duo.dx > 0) {
-                if (XcollisionDetection(platform, -speed)===true){
-                    console.log('left button problem')
-                    duo.dx +=0;
-                } else {
-                    duo.dx -= speed;
+                for (var i = 0; i < DuoObjects.length; i++) {
+                    if (XcollisionDetection(DuoObjects[i], -speed) === true){
+                        console.log('left button problem')
+                        duo.dx +=0;
+                        hit = true;
+                    } 
                 }
+                if (hit === false) { duo.dx -= speed}
             }
+
             if (upPressed && duo.dy > 0) {
                 
                 duo.dy -= jump;
             }
             if ( (upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height) ) {
-                // falling = true;
-                if (YcollisionDetection(platform, jump)===true) {
-                    duo.dy += 0;
-                } else {
-                    duo.dy += jump;
+                for (var i = 0; i < DuoObjects.length; i++) {
+                    if (YcollisionDetection(DuoObjects[i], jump)===true) {
+                        duo.dy += 0;
+                        hit = true;
+                    } 
                 } 
+                if (hit === false) { duo.dy += jump;}
             }
             // if (upPressed === false && duo.dy < canvas.height) {falling = false}
             ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+            hit = false;
 
     }
 
