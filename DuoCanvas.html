@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="Duo.css">
     <title>Gamedev Canvas Workshop</title>
     <style>
     	* { padding: 0; margin: 0; }
@@ -9,6 +10,7 @@
     </style>
 </head>
 <body>
+    <div class="header"> Duolingo! Translate <span class="word">"Oeuf"</span> </div>
 
 <canvas id="myCanvas" width="960" height="640"></canvas>
 
@@ -19,13 +21,13 @@
         var ctx = canvas.getContext('2d');
         var sprite = new Image();
             sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
-        // var sx = 15;
+        
         var sx = 15;
         var sy = 15;
         var sWidth = 250;
         var sHeight = 300;
         var dx = 0;
-        var dy = 550;
+        var dy = canvas.height - 90;
         var dWidth = 75;
         var dHeight = 100;
         var rightPressed = false;
@@ -33,13 +35,21 @@
         var upPressed = false;
         var downPressed = false;
         var ticker = 0;
-        
-        
-        sprite.onload = function(){
-            // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
+        // PLATFORMS
+        var platform = {x: 450, y: canvas.height-200, height: 200, width: 200}
+    
+        var terrace = {x: 0, y: 100, height: 50, width: 200 }
+                    
+        // ******* Dark Duos ******/
+        var DarkDuo = {sx: 610, sy: 300, dx: canvas.width, dy: canvas.height}
+        
+        // ******* Dark Duos *****/
+        
+        sprite.onload = function(){            
             ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
         }
+
     function spriteify() {
         if (sx === 15 ) {
             sx = 340;
@@ -47,10 +57,38 @@
             sx = 15;
         } 
     }
+    function drawPlatform() {
+            ctx.beginPath();
+            ctx.rect(platform.x, platform.y, platform.width, platform.height);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+    function drawTerrace(){
+        ctx.beginPath();
+        ctx.rect(terrace.x, terrace.y, terrace.width, terrace.height)
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    // function collisionDetection(object){
+    //     if (){
+
+    //     }
+    // }
+
     function draw() {
             ctx.clearRect(dx, dy, dWidth, dHeight);
+            drawPlatform();
+            drawTerrace();
+            // collisionDetection();
+        
 
-            if (rightPressed && ( dx + dWidth< 960) ) {
+            // ctx.drawImage(sprite, dDsx, dDsy, sWidth, sHeight, Ddx, Ddy, dWidth, dHeight)
+
+            if (rightPressed && ( dx + dWidth< canvas.width) ) {
                 dx += 5;
             }
             if (leftPressed && dx > 0) {
@@ -59,11 +97,11 @@
             if (upPressed && dy > 0) {
                 dy -= 5;
             }
-            if (downPressed && (dy + dHeight < canvas.height) ) {
+            if ( (upPressed === false && dy < canvas.height) && (dy + dHeight < canvas.height) ) {
                 dy += 5;
             }
             ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-            // ticker += 1;
+
     }
 
     document.addEventListener("keydown", keyDownHandler, false);
@@ -97,13 +135,22 @@
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = false;
         }
-
     }
+
+    // function collisionDetection() {
+    //         for (var c = 0; c < brickColumnCount; c++) {
+    //             for (var r = 0; r < brickRowCount; r++) {
+    //                 var b = bricks[c][r];
+    //                 if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+    //                     dy = -dy;
+    //                 }
+    //             }
+    //         }
+    //     }
     
-    setInterval(draw, 10)
+    setInterval(draw, 15)
     setInterval(spriteify, 750)
 }
-    
 
 </script>
 
