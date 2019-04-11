@@ -22,14 +22,10 @@
         var sprite = new Image();
             sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
         
-        var sx = 15;
-        var sy = 15;
-        var sWidth = 250;
-        var sHeight = 300;
-        var dx = 0;
-        var dy = canvas.height - 90;
-        var dWidth = 75;
-        var dHeight = 100;
+        var speed = 5;
+        var jump = 5
+        var duo = {sx: 15, sy: 15, sWidth: 250, sHeight: 300, dx: 0, dy: canvas.height - 90, dWidth: 75, dHeight: 100 }
+     
         var rightPressed = false;
         var leftPressed = false;
         var upPressed = false;
@@ -38,23 +34,20 @@
 
         // PLATFORMS
         var platform = {x: 450, y: canvas.height-200, height: 200, width: 200}
-    
         var terrace = {x: 0, y: 100, height: 50, width: 200 }
                     
         // ******* Dark Duos ******/
-        var DarkDuo = {sx: 610, sy: 300, dx: canvas.width, dy: canvas.height}
-        
-        // ******* Dark Duos *****/
-        
+        // var DarkDuo = {sx: 610, sy: 300, dx: canvas.width, dy: canvas.height}
+                
         sprite.onload = function(){            
-            ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+            ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         }
 
     function spriteify() {
-        if (sx === 15 ) {
-            sx = 340;
-        } else if (sx === 340 ) {
-            sx = 15;
+        if (duo.sx === 15 ) {
+            duo.sx = 340;
+        } else if (duo.sx === 340 ) {
+            duo.sx = 15;
         } 
     }
     function drawPlatform() {
@@ -73,34 +66,57 @@
         ctx.closePath();
     }
 
-    // function collisionDetection(object){
-    //     if (){
+    function collisionDetection(object){
+        // var platform = { x: 450, y: canvas.height - 200, height: 200, width: 200 }
+          
+        if ( duo.dx + speed > object.x-duo.dWidth && (duo.dx + speed < object.x + object.width)) {
+                    // if duo's y is greater than the start of the object's y, and
+                    // duo's y is LESS than the object's y + height
+                    
+                if ( ( (duo.dy + duo.dHeight)+ jump >= object.y) && (duo.dy + jump <= object.y + object.height) ) {
+                    return true
+                }
 
-    //     }
-    // }
-
+            // console.log(object.x)
+            // console.log(duo.dx)
+            // return true;
+        }
+    }
     function draw() {
-            ctx.clearRect(dx, dy, dWidth, dHeight);
+            ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
             drawPlatform();
             drawTerrace();
-            // collisionDetection();
+            collisionDetection(platform);
         
 
             // ctx.drawImage(sprite, dDsx, dDsy, sWidth, sHeight, Ddx, Ddy, dWidth, dHeight)
 
-            if (rightPressed && ( dx + dWidth< canvas.width) ) {
-                dx += 5;
+            if (rightPressed && ( duo.dx + duo.dWidth< canvas.width) ) {
+                if (collisionDetection(platform) === true ){
+                    duo.dx += 0
+                } else {
+                    duo.dx += speed;
+                }
             }
-            if (leftPressed && dx > 0) {
-                dx -= 5;
+            if (leftPressed && duo.dx > 0) {
+                if (collisionDetection(platform)===true){
+                    duo.dx += 0
+                } else {
+                    duo.dx -= speed;
+                }
             }
-            if (upPressed && dy > 0) {
-                dy -= 5;
+            if (upPressed && duo.dy > 0) {
+                duo.dy -= jump;
             }
-            if ( (upPressed === false && dy < canvas.height) && (dy + dHeight < canvas.height) ) {
-                dy += 5;
+            if ( (upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height) ) {
+                if (collisionDetection(platform)===true) {
+                    duo.dy += 0;
+                } else {
+                    duo.dy += jump;
+
+                }
             }
-            ctx.drawImage(sprite, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+            ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
 
     }
 
