@@ -16,12 +16,12 @@
 
 <script>
     window.onload = function(){
-
+        
         var canvas = document.getElementById('myCanvas');
         var ctx = canvas.getContext('2d');
         var sprite = new Image();
             sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
-        
+        var falling = false;
         var speed = 5;
         var jump = 5
         var duo = {sx: 15, sy: 15, sWidth: 250, sHeight: 300, dx: 0, dy: canvas.height - 90, dWidth: 75, dHeight: 100 }
@@ -44,11 +44,14 @@
         }
 
     function spriteify() {
-        if (duo.sx === 15 ) {
-            duo.sx = 340;
-        } else if (duo.sx === 340 ) {
-            duo.sx = 15;
-        } 
+        if (falling === false) {
+
+            if (duo.sx === 15 ) {
+                duo.sx = 340;
+            } else if (duo.sx === 340 ) {
+                duo.sx = 15;
+            } 
+        }
     }
     function drawPlatform() {
             ctx.beginPath();
@@ -71,6 +74,7 @@
         //   if duo's x position + speed goes into the object
         if ( duo.dx + speed > object.x - duo.dWidth && (duo.dx + speed < object.x + object.width)) {
                 if ( ( (duo.dy + duo.dHeight) + jump >= object.y) && (duo.dy + jump <= object.y + object.height) ) {
+                    console.log('X PROBLEM')
                     return true
                 }
         }
@@ -80,11 +84,13 @@
     function YcollisionDetection(object) {
             // if he's colliding horizontally, he should still be able to jump and move the opposite way
 
-            if (duo.dx + speed > object.x - duo.dWidth && (duo.dx + speed < object.x + object.width)) {
-                if (((duo.dy + duo.dHeight) + jump >= object.y) && (duo.dy + jump <= object.y + object.height)) {
+            if  ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width) )  && ( ( (duo.dy + duo.dHeight) + jump >= object.y) && (duo.dy + jump <= object.y + object.height)) ) {
+                    console.log("Duo's Y:")
+                    console.log(duo.dy)
+                    console.log(object.y)    
                     return true
                 }
-            }
+            
         }
 
     function XcollisionDetection(object) {
@@ -93,7 +99,9 @@
             if ( (duo.dx + speed > object.x - duo.dWidth && (duo.dx + speed < object.x + object.width))  && ( ((duo.dy + duo.dHeight) >= object.y) && (duo.dy <= object.y + object.height)) ) {
                 // AND
                                                                                                                   // if it would enter him into between y (start) AND y + height (end) range of the object
-                
+                  console.log("Duo's X:")
+                // console.log(duo.yx)
+                // console.log(object.y)    
                     return true // it's true that he would be colliding
                 
             }
@@ -105,6 +113,7 @@
             drawPlatform();
             drawTerrace();
             XcollisionDetection(platform);
+            YcollisionDetection(platform)
             // XcollisionDetection(platform);
             // YcollisionDetection(platform);
         
@@ -116,14 +125,16 @@
 
             if (rightPressed && ( duo.dx + duo.dWidth< canvas.width) ) {
                 if (XcollisionDetection(platform) === true ){
-                    duo.dx += 0
+                    console.log('right button problem')
+                    duo.dx -= 10
                 } else {
                     duo.dx += speed;
                 }
             }
             if (leftPressed && duo.dx > 0) {
                 if (XcollisionDetection(platform)===true){
-                    duo.dx += 0
+                    console.log('left button problem')
+                    duo.dx += 10
                 } else {
                     duo.dx -= speed;
                 }
@@ -132,13 +143,14 @@
                 duo.dy -= jump;
             }
             if ( (upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height) ) {
-                if (collisionDetection(platform)===true) {
+                // falling = true;
+                if (YcollisionDetection(platform)===true) {
                     duo.dy += 0;
                 } else {
                     duo.dy += jump;
-
-                }
+                } 
             }
+            // if (upPressed === false && duo.dy < canvas.height) {falling = false}
             ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
 
     }
