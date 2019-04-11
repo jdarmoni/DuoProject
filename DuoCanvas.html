@@ -32,8 +32,15 @@
         var downPressed = false;
         var ticker = 0;
 
+        var quadrants = {
+
+        }
+
         // PLATFORMS
-        var platform = {x: 450, y: canvas.height-200, height: 200, width: 200}
+        var quadrant1= {x: canvas.width / 2, y: 0, height: canvas.height, width: 2 }
+        var quadrant2 = { x: 0, y: canvas.height/2, height: 2, width: canvas.width }
+
+        var platform = {x: 490, y: canvas.height-200, height: 200, width: 200}
         var terrace = {x: 0, y: 100, height: 50, width: 200 }
                     
         // ******* Dark Duos ******/
@@ -53,6 +60,20 @@
             } 
         }
     }
+    function drawQuadrant1(){
+        ctx.beginPath();
+        ctx.rect(quadrant1.x, quadrant1.y, quadrant1.width, quadrant1.height)
+        ctx.fillStyle ="black"
+        ctx.fill();
+        ctx.closePath();
+    }
+    function drawQuadrant2() {
+            ctx.beginPath();
+            ctx.rect(quadrant2.x, quadrant2.y, quadrant2.width, quadrant2.height)
+            ctx.fillStyle = "black"
+            ctx.fill();
+            ctx.closePath();
+        }
     function drawPlatform() {
             ctx.beginPath();
             ctx.rect(platform.x, platform.y, platform.width, platform.height);
@@ -79,9 +100,7 @@
     //     }
     // }
     
-    // YOU NEED TO PASS COLLISION DETECTION A POSITION, TOO! 
     function YcollisionDetection(object, pos) {
-            // if he's colliding horizontally, he should still be able to jump and move the opposite way
             if  ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width) )  && ( ( (duo.dy + duo.dHeight) + pos >= object.y) && (duo.dy + pos <= object.y + object.height)) ) {
                     console.log("Duo's Y:")
                     console.log(duo.dy)
@@ -91,16 +110,12 @@
         }
 
     function XcollisionDetection(object, pos) {
-            
             // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
             if ( (duo.dx + pos > object.x - duo.dWidth && (duo.dx + pos < object.x + object.width))  && ( ((duo.dy + duo.dHeight) >= object.y) && (duo.dy <= object.y + object.height)) ) {
                                                                                                                   // if it would enter him into between y (start) AND y + height (end) range of the object
 
                 console.log("Duo's X:")
-                // console.log(duo.yx)
-                // console.log(object.y)    
-                    return true // it's true that he would be colliding
-                
+                    return true 
             }
         }
    
@@ -110,12 +125,8 @@
             drawTerrace();
             XcollisionDetection(platform, speed);
             YcollisionDetection(platform, jump);
-            // XcollisionDetection(platform);
-            // YcollisionDetection(platform);
-        
-            // keypress
-            // calculate new position
-            // is that position valid
+            drawQuadrant1();
+            drawQuadrant2();
 
             // ctx.drawImage(sprite, dDsx, dDsy, sWidth, sHeight, Ddx, Ddy, dWidth, dHeight)
 
@@ -136,6 +147,7 @@
                 }
             }
             if (upPressed && duo.dy > 0) {
+                
                 duo.dy -= jump;
             }
             if ( (upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height) ) {
