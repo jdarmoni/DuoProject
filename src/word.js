@@ -13,26 +13,25 @@ export default class Word {
 // Word('Weebu', canvas.width - 100, canvas.height-75, 150, 75)
 
 Word.prototype.draw = function draw(ctx) {
-    ctx.beginPath();
-    ctx.font = '14px serif'
+    // ctx.clearRect(this.x, this.y, this.width, this.height);
 
+    ctx.beginPath();
+    // changed
+    ctx.rect(this.x, this.y, this.width, this.height)
+    ctx.font = '14px serif'
     if (this.toggle) {
-        ctx.fillText(this.word1, this.x, this.y, this.width )
+        ctx.fillText(this.word1, this.x + this.width/8, this.y + this.height / 2 )
     } else {
-        ctx.fillText(this.word2, this.x, this.y, this.width)
+        ctx.fillText(this.word2, this.x + this.width/8, this.y + this.height / 2)
 
     }
-    ctx.fill();
-    
-    ctx.moveTo(this.x-10, this.y-30);
-    ctx.lineTo(this.x-10, this.y+20);
-    ctx.lineTo(this.x+60, this.y+20);
-    ctx.lineTo(this.x+60, this.y-30);
-    ctx.lineTo(this.x-10, this.y-30);
-
-    ctx.strokeStyle = this.color;
+    ctx.strokeStyle =this.color;
     ctx.stroke();
+    
 
     ctx.closePath();
+}
 
+Word.prototype.clear = function clear(ctx) {
+    ctx.clearRect(this.x, this.y, this.width,this.height)
 }
