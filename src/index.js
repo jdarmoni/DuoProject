@@ -1,20 +1,49 @@
-console.log('webpack is working!')
+// console.log('webpack is working!')
+
 import Duo from './Duo.js'
-import Obstacles from './platforms'
+import Obstacles from './Obstacles'
+import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
+import Sentence from './sentence.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
     var sprite = new Image();
     sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
-    let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100)
-    let platform = new Obstacles(490, canvas.height - 200, 200, 200, "black" )
-    let terrace = new Obstacles(0, 200, 50, 200, "color")
+    
+                                /* objects!*/ 
+    //     constructor(x, y, height, width, color){
+
+    let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
+    let platform = new Obstacles(490, canvas.height - 200, 200, 200, "black" );
+    let terrace = new Obstacles(0, 200, 50, 200, "color");
+
+    // constructor(word1, word2, x, y, width, height, color, toggle){
+    // let dog = new Word('le chien', 'the dog', canvas.width - 100, canvas.height-75, 200, 150, 'red', true);
+    // let cat = new Word('el gato', 'the cat' ,0, 150, 200, 150, 'red', true);
+    
+    let am = new Word('です', 'am', 0, 150, 200, 150, 'red', true);
+    let iWord = new Word('私は', 'I', canvas.width - 100, canvas.height - 75, 200, 150, 'red', true);
+    let boy = new Word('男の子', 'boy', 550, 400, 200, 150, 'red', true );
+    //     constructor(sentence, x, y, height, width, color)
+    let sentence = new Sentence("Translate this sentence!", canvas.width-250, 25, 100, 200, 'yellow')
+    let IamABoy = new Sentence('私は男の子です', canvas.width-200, 75, 200, 200, 'green'  );
+                                /*objects*/ 
+    
+    //function game(){ this.rightPressed = false} etc.
+
     let rightPressed = false
     let leftPressed = false;
     let upPressed = false;
-    let downPressed = false;
+    // let downPressed = false;
+    let enterPressed = false;
+
+    var DuoWords =[
+        am,
+        iWord,
+        boy
+    ]
     var DuoObjects = [
         platform,
         terrace
@@ -23,10 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
     var jump = 5;
     var hit = false;
 
+
     sprite.onload = function () {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     }
 
+    function wordCollisionDetection(object){
+        
+        if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
+            if (enterPressed && object.toggle) {
+                object.color='blue';
+                object.toggle = false
+            } else {
+                console.log(`revealing!`)
+                object.color = 'red';
+                object.toggle=true;
+            }
+        }
+    }
+    
 
     function YcollisionDetection(object, pos) {
         if (((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && (((duo.dy + duo.dHeight) + pos >= object.y) && (duo.dy + pos <= object.y + object.height))) {
@@ -52,6 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         platform.draw(ctx);
         terrace.draw(ctx);
+        iWord.draw(ctx);
+        am.draw(ctx);
+        boy.draw(ctx);
+        IamABoy.draw(ctx)
+        sentence.draw(ctx)
 
         if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
             for (var i = 0; i < DuoObjects.length; i++) {
@@ -88,25 +137,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (hit === false) { duo.dy += jump; }
         }
+        
+        if (enterPressed){
+            for (var i = 0; i < DuoWords.length; i++) {
+                if (wordCollisionDetection(DuoWords[i])===true) {
+                    console.log('word alert!')
+                }
+            }
+        }
 
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         hit = false;
     }
 
     
-    function spriteify() {
-        // own class?
-            if (duo.sx === 15) {
-                duo.sx = 340;
-            } else if (duo.sx === 340) {
-                duo.sx = 15;
-            }
-        }
-
+    // QUESTION: need to put these in separate files
+    // keyDownHandler(e);
+    // keyUpHandler(e);
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
-
-    // QUESTION: need to put these in separate files
+    
     function keyDownHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
             rightPressed = true;
@@ -119,7 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = true;
+        } 
+        else if (e.key == "Enter") {
+            enterPressed = true;
         }
+
     }
     function keyUpHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
@@ -134,7 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = false;
         }
+        // QUESTION: why doesn't it return to false
+        else if (e.key == "Enter") {
+            enterPressed = false;
+            debugger
+        }
     }
+
+    function spriteify() {
+        if (duo.sx === 15) {
+            duo.sx = 340;
+        } else if (duo.sx === 340) {
+            duo.sx = 15;
+        }
+    }
+
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
 
