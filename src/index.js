@@ -6,29 +6,22 @@ import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 import Sentence from './sentence.js';
 import {allLevels, DuoWords} from './wordCollections'
+import Clock from './clock.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
     var sprite = new Image();
     sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
-    let backgroundSprite = new Image();
-    backgroundSprite.src ="https://thumbs.dreamstime.com/z/vector-pixel-art-illustration-sprite-stone-dirt-grass-texture-night-time-stars-black-background-77243911.jpg"
-                                /* objects!*/ 
+    // let treeSprite = new Image();
+    // treeSprite.src ="http://clipart-library.com/images/8TznoXBXc.png"
+    //                             /* objects!*/ 
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
     let platform = new Obstacles(490, canvas.height - 200, 200, 200, "black" );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
-
-    // **       WORDS
-    // let am = new Word('です', 'am', 0, 150, 200, 150, 'red', true);
-    // let iWord = new Word('私は', 'I', canvas.width - 100, canvas.height - 75, 200, 150, 'red', true);
-    // let boy = new Word('男の子', 'boy', 550, 400, 200, 150, 'red', true );
-    // let sentence = new Sentence("Translate this sentence!", canvas.width-250, 25, 100, 200, 'yellow')
-    // let IamABoy = new Sentence('私は 男の子 です', canvas.width-200, 75, 200, 200, 'green'  );
-
     
-    var level = 2;
+    var level = 3;
     var time = 30;
     let rightPressed = false
     let leftPressed = false;
@@ -45,9 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
     var hit = false;
 
 
+    function timer(ctx) {
+        ctx.beginPath();
+        ctx.rect(canvas.width - 100, 100, 50, 50);
+        ctx.font = '14px serif'
+        ctx.fillText(time.toString(), 50, 50)
+        ctx.closePath();
+
+
+    }        
+
     sprite.onload = function () {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     }
+    
 
     function wordCollisionDetection(object){
         
@@ -84,8 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function draw() {
         ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+        ctx.clearRect(canvas.width - 100, 100, 50, 50); //CLOCK CLEAR
+        // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+        // ctx.drawImage(treeSprite, 0, 0, 1200, 2400, 0, 175, 200, 470);
         platform.draw(ctx);
         terrace.draw(ctx); 
+        timer(ctx);
+    
 
 
         for(var i = 0; i < allLevels[level].length; i++){
@@ -93,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let word= allLevels[level][i];
             ctx.clearRect(word.x, word.y, word.width, word.height)
             word.draw(ctx);
-            debugger
+            
             // allLevels[level][i].clear(ctx); //<-- if I debug, 'allLevels' is not defined; but if I remove this line, everything works wonderfully
         } 
     
@@ -103,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('right button problem')
                     duo.dx += 0
                     hit = true;
-                }
+                } 
                 // for every button press, for each object duo doesn't collide with, dou.dx += speed
             }
             if (hit === false) { duo.dx += speed }
@@ -132,21 +141,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (hit === false) { duo.dy += jump; }
         }
-        
-        if (enterPressed){
+        ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+        hit = false;
+
+        if (enterPressed) {
             for (var i = 0; i < DuoWords.length; i++) {
-                if (wordCollisionDetection(DuoWords[i])===true) {
+                if (wordCollisionDetection(DuoWords[i]) === true) {
+                    // store 'has toggled started' in word
+                    // if false, start the timer; set to true
+                    // if true, do nothing
                     console.log('word alert!')
                 }
             }
         }
-       
-
-        ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
-        hit = false;
 
     }
-
     
     // QUESTION: need to put these in separate files
     // keyDownHandler(e);
@@ -199,20 +208,35 @@ document.addEventListener('DOMContentLoaded', () => {
             duo.sx = 15;
         }
     }
-    // QUESTION: Why doesn't this add to level and reset time
-    // function timer (){
-    //     time -= 1;
-    //     // debugger
-    //     console.log(time)
-    //     // debugger
-    //     if (time <= 0) {
-    //         debugger
-    //         level += 1; 
-    //         time += 60;
-    //     }
-    // }
+    // function clockSprite(){
 
+    // }
+    // QUESTION: Why doesn't this add to level and reset time
+    function stopWatch (){
+        time -= 1;
+        if (time <= 0 && level >= 3 === false) {
+            
+            level += 1; 
+            time += 60;
+        }
+    }
+    function nextLevel (){ //if all hints are toggled, next level
+        for (var i = 0; i < allLevels[level].length; i++) {
+            // debugger
+            let word = allLevels[level][i];
+            if (word.toggle === true ) {
+                return false
+            } else if (i < allLevels[level].length){
+                continue
+            } else {
+                debugger
+                level += 1
+                console.log('congrats!')
+            }
+        } 
+    }
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
-    // setInterval(timer, 500)
+    setInterval(stopWatch, 500)
+    setInterval(nextLevel, 1000)
 });
