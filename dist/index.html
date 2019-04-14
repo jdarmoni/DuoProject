@@ -17,14 +17,20 @@
             margin: 0 auto;
         }
     </style>
-    <script type="application/javascript" src="./main.js"></script>
+    <!-- <script type="application/javascript" src="../src/index.js"></script> -->
+    <script type="application/javascript" src="../main.js"></script>
+    <script type="application/javascript" src="../src/word_guess.js"></script>
 </head>
 
 <body>
 
     <div style="position:relative;width:960;height:640px">
-    <canvas id="myCanvas" width="960" height="640"></canvas>
-        <input type="text" placeholder="Translate the phrase!" class="wordGuess" />
+        <canvas id="myCanvas" width="960" height="640"></canvas>
+        
+        <form name="myform" onsubmit="handleSubmit()">
+            <input name= "wordGuess" type="text" placeholder="Translate the phrase!" class="wordGuess" />
+            <input type="submit" style="display:none">
+        </form>
     </div>
 
 </body>

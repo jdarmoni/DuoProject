@@ -4,8 +4,9 @@ import Duo from './Duo.js'
 import Obstacles from './Obstacles'
 import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
-import Sentence from './sentence.js';
+// import Sentence from './sentence.js';
 import {allLevels, DuoWords} from './wordCollections'
+import handleSubmit from '../src/word_guess'
 import Clock from './clock.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
     let platform = new Obstacles(490, canvas.height - 200, 200, 200, "black" );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
-    
-    var level = 3;
+    var currentLanguage = null;
+    var language = 'demo';
+    var level = 1;
     var time = 30;
     let rightPressed = false
     let leftPressed = false;
@@ -36,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     var speed = 5;
     var jump = 5;
     var hit = false;
-
+    if (handleSubmit === true){
+        level += 1;
+    }
 
     function timer(ctx) {
         ctx.beginPath();
@@ -75,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return true
         }
     }
+    
 
     function XcollisionDetection(object, pos) {
         // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
@@ -95,15 +100,40 @@ document.addEventListener('DOMContentLoaded', () => {
         terrace.draw(ctx); 
         timer(ctx);
     
-
-
-        for(var i = 0; i < allLevels[level].length; i++){
-            // debugger
-            let word= allLevels[level][i];
+        
+        // remove [language]
+        for(var i = 0; i < allLevels[language][level].length; i++){
+            
+            let word = allLevels[language][level][i];
+            debugger
+            if (word.toggle === false){
+                word.y -= 2;
+                ctx.clearRect(word.x, word.y +10, word.width + 10, word.height)
+                if (language === 'demo') {
+                    
+                    currentLanguage = word
+                    if (currentLanguage.y < 0) {
+                        debugger
+                        language = word.word2
+                    }
+                }
+            }
             ctx.clearRect(word.x, word.y, word.width, word.height)
             word.draw(ctx);
-            
-            // allLevels[level][i].clear(ctx); //<-- if I debug, 'allLevels' is not defined; but if I remove this line, everything works wonderfully
+
+            // maybe do this in the word draw?
+            // ctx.beginPath();
+            // ctx.rect(760, 75, 50, 50)
+            // if (word.toggle) {
+            //     ctx.fillText(word.word1, word.x + word.width / 8, word.y + word.height / 2)
+            // } else {
+            //     ctx.fillText(word.word2, word.x + word.width / 8, word.y + word.height / 2)
+
+            // }
+            // ctx.closePath();
+            // I think this is where I render the word's word1/word2 as part of the sentence 
+            // let PretSentence = new Sentence('Pret A Manger', 760, 75, 100, 200, 'green');
+
         } 
     
         if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
@@ -145,8 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
         hit = false;
 
         if (enterPressed) {
+            
             for (var i = 0; i < DuoWords.length; i++) {
+                
                 if (wordCollisionDetection(DuoWords[i]) === true) {
+                    debugger
                     // store 'has toggled started' in word
                     // if false, start the timer; set to true
                     // if true, do nothing
@@ -214,29 +247,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // QUESTION: Why doesn't this add to level and reset time
     function stopWatch (){
         time -= 1;
+        console.log(time)
         if (time <= 0 && level >= 3 === false) {
             
             level += 1; 
             time += 60;
         }
     }
-    function nextLevel (){ //if all hints are toggled, next level
-        for (var i = 0; i < allLevels[level].length; i++) {
-            // debugger
-            let word = allLevels[level][i];
-            if (word.toggle === true ) {
-                return false
-            } else if (i < allLevels[level].length){
-                continue
-            } else {
-                debugger
-                level += 1
-                console.log('congrats!')
-            }
+
+    
+
+
+    
+    // function nextLevel (){ //if all hints are toggled, next level
+    //     for (var i = 0; i < allLevels[language][level][i].length; i++) {
+    //         // debugger
+    //         let word = allLevels[language][level][i];
+    //         if (word.toggle === true ) {
+    //             return false
+    //         } else if (i < allLevels[language][level].length){
+    //             continue
+    //         } else {
+    //             debugger
+    //             level += 1
+    //             console.log('congrats!')
+    //         }
+    //     } 
+    // }
+    function wordCheck() {
+        if (handleSubmit === true) {
+            console.log('gj!')
         } 
     }
+    setInterval(wordCheck, 1000)
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
-    setInterval(stopWatch, 500)
-    setInterval(nextLevel, 1000)
+    // setInterval(stopWatch, 2000)
+    // setInterval(nextLevel, 1000)
 });
