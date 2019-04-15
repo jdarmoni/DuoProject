@@ -7,7 +7,7 @@ import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 // import Sentence from './sentence.js';
 import {allLevels, DuoWords} from './wordCollections'
 import handleSubmit from '../src/word_guess'
-import Clock from './clock.js';
+// import Clock from './clock.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // let downPressed = false;
     let enterPressed = false;
     DuoWords;
+    allLevels;
     var DuoObjects = [
         platform,
         terrace
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var speed = 5;
     var jump = 5;
     var hit = false;
+
     if (handleSubmit === true){
         level += 1;
     }
@@ -60,11 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function wordCollisionDetection(object){
         
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
-            if (enterPressed && object.toggle) {
+            if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
                 object.color='blue';
                 object.toggle = false
+                enterPressed = false;
+                
             } else {
-                console.log(`revealing!`)
                 object.color = 'red';
                 object.toggle=true;
             }
@@ -73,9 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function YcollisionDetection(object, pos) {
         if (((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && (((duo.dy + duo.dHeight) + pos >= object.y) && (duo.dy + pos <= object.y + object.height))) {
-            console.log("Duo's Y:")
-            console.log(duo.dy)
-            console.log(object.y)
             return true
         }
     }
@@ -85,15 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
         if ((duo.dx + pos > object.x - duo.dWidth && (duo.dx + pos < object.x + object.width)) && (((duo.dy + duo.dHeight) >= object.y) && (duo.dy <= object.y + object.height))) {
             // if it would enter him into between y (start) AND y + height (end) range of the object
-
-            console.log("Duo's X:")
             return true
         }
     }
 
     function draw() {
-        ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
-        ctx.clearRect(canvas.width - 100, 100, 50, 50); //CLOCK CLEAR
+        // ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
         // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
         // ctx.drawImage(treeSprite, 0, 0, 1200, 2400, 0, 175, 200, 470);
         platform.draw(ctx);
@@ -105,15 +103,16 @@ document.addEventListener('DOMContentLoaded', () => {
         for(var i = 0; i < allLevels[language][level].length; i++){
             
             let word = allLevels[language][level][i];
-            debugger
+            
             if (word.toggle === false){
+                
                 word.y -= 2;
                 ctx.clearRect(word.x, word.y +10, word.width + 10, word.height)
                 if (language === 'demo') {
                     
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
-                        debugger
+                        
                         language = word.word2
                     }
                 }
@@ -139,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], speed) === true) {
-                    console.log('right button problem')
                     duo.dx += 0
                     hit = true;
                 } 
@@ -150,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (leftPressed && duo.dx > 0) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], -speed) === true) {
-                    console.log('left button problem')
                     duo.dx += 0;
                     hit = true;
                 }
@@ -179,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             for (var i = 0; i < DuoWords.length; i++) {
                 
                 if (wordCollisionDetection(DuoWords[i]) === true) {
-                    debugger
                     // store 'has toggled started' in word
                     // if false, start the timer; set to true
                     // if true, do nothing
@@ -241,6 +237,23 @@ document.addEventListener('DOMContentLoaded', () => {
             duo.sx = 15;
         }
     }
+    function handleSubmit() {
+        debugger
+        const guess = document.myform.wordGuess.value;
+        event.preventDefault();
+        switch (level) {
+            case level === 2:
+                if (guess === "I am a boy") {
+                    return true
+                }
+            case level === 3:
+                if (guess === "Ready to eat") {
+                    return true
+                }
+            default:
+                return false;
+        }
+    }
     // function clockSprite(){
 
     // }
@@ -250,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(time)
         if (time <= 0 && level >= 3 === false) {
             
-            level += 1; 
+            // level += 1; 
             time += 60;
         }
     }
@@ -261,14 +274,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function nextLevel (){ //if all hints are toggled, next level
         for (var i = 0; i < allLevels[language][level].length; i++) {
-            debugger
+             
             let word = allLevels[language][level][i];
             if (word.toggle === true ) {
                 return false
-            } else if (i < allLevels[language][level].length){
+            } else if (i < allLevels[language][level].length-1){
+                 
                 continue
             } else {
-                debugger
+                //  if there are no words with y > 0 (loop through all the words)
                 level += 1
                 console.log('congrats!')
             }
@@ -283,5 +297,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
-    setInterval(nextLevel, 1000)
+    // setInterval(nextLevel, 1000)
 });
