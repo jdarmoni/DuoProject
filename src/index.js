@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 enterPressed = false;
                 
             } else {
+                debugger
                 object.color = 'red';
                 object.toggle=true;
             }
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (word.toggle === false){
                 
                 word.y -= 2;
-                ctx.clearRect(word.x, word.y +10, word.width + 10, word.height)
+                // ctx.clearRect(word.x, word.y +10, word.width + 10, word.height)
                 if (language === 'demo') {
                     
                     currentLanguage = word
@@ -176,9 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             for (var i = 0; i < DuoWords.length; i++) {
                 
                 if (wordCollisionDetection(DuoWords[i]) === true) {
-                    // store 'has toggled started' in word
-                    // if false, start the timer; set to true
-                    // if true, do nothing
                     console.log('word alert!')
                 }
             }
