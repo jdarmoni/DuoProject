@@ -15,9 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     var sprite = new Image();
     sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
-    // let treeSprite = new Image();
-    // treeSprite.src ="http://clipart-library.com/images/8TznoXBXc.png"
-    //                             /* objects!*/ 
+    
+    // BACKGROUNDS
+    let japanBackground = new Image();
+    japanBackground.src ="https://i.kinja-img.com/gawker-media/image/upload/s--Pc8LKGVT--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/yksf7nnxgxwtxyyc5dzn.png"
+    let franceBackground = new Image();
+    franceBackground.src ="https://s3.amazonaws.com/tinycards/image/aa761c41c8668ad735c1e3b134956771";
+    let spainBackground = new Image();
+    spainBackground.src ="https://s3.amazonaws.com/tinycards/image/8aaa075410df4c562bdd6c42659f02e2";
+    let defaultBackground = new Image();
+    defaultBackground.src ="https://resize.indiatvnews.com/en/centered/newbucket/715_431/2018/07/unnamed-1-1532053666.jpg";
+    // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
     let platform = new Obstacles(490, canvas.height - 200, 200, 200, "black" );
@@ -115,10 +123,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function draw() {
-        // ctx.clearRect(duo.dx, duo.dy, duo.dWidth, duo.dHeight);
-        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
-        // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-        // ctx.drawImage(treeSprite, 0, 0, 1200, 2400, 0, 175, 200, 470);
+        // 
+            ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
+        if(language ===  'Japanese'){
+            ctx.drawImage(japanBackground, 400, 0, 1000, 900, 0, 0, canvas.width, canvas.height)
+        } else if (language === 'French') {
+            ctx.drawImage(franceBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
+        }
+        else if (language ==="Spanish") {
+            ctx.drawImage(spainBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
+        } else {
+            ctx.drawImage(defaultBackground, 0, 0, 700, 400, 0, 0, canvas.width, canvas.height)
+        }
+        // ctx.drawImage(spainBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
+
+        // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
         platform.draw(ctx);
         terrace.draw(ctx); 
         timer(ctx);
