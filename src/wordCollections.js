@@ -5,18 +5,18 @@ import Sentence from './sentence';
 /* group 1 */
 
  let French = new Word('Francais', 'French', 860, 565, 70, 50, 'red', true);
-let Spanish = new Word('Español', 'Spanish', 15, 150, 70, 50, 'red', true);
-let Japanese = new Word('日本語', 'Japanese', 550, 370, 70, 50, 'red', true);
-let dog = new Word('le chien', 'dog', 860, 565, 70, 50, 'red', true);
-let cat = new Word('el gato', 'cat', 15, 150, 70, 50, 'red', true);
+let Spanish = new Word('Español', 'Spanish', 15, 150, 70, 50, 'orange', true);
+let Japanese = new Word('日本語', 'Japanese', 550, 370, 70, 50, 'green', true);
+let dog = new Word('el dog', 'dog', 860, 565, 70, 50, 'orange', true);
+let cat = new Word('el gato', 'cat', 15, 150, 70, 50, 'orange', true);
 
 //  let sentence = new Sentence("Translate this sentence!", 710, 25, 50, 230, 'yellow')
  let Demo = new Sentence('Examine the words', 760, 75, 100, 200, 'green');
 
 /* group 2*/
- let iWord = new Word('私は', 'I', 860, 565, 70, 50, 'red', true);
- let am = new Word('です', 'am', 15, 150, 70, 50, 'red', true);
- let boy = new Word('男の子', 'boy', 550, 370, 70, 50, 'red', true);
+ let iWord = new Word('私は', 'I', 860, 565, 70, 50, 'green', true);
+ let am = new Word('です', 'am', 15, 150, 70, 50, 'green', true);
+ let boy = new Word('男の子', 'boy', 550, 370, 70, 50, 'green', true);
  let IamABoy = new Sentence('私は男の子です', 760, 75, 100, 200, 'green');
 
 /* group 3*/

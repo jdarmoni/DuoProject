@@ -259,21 +259,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     
-    // function nextLevel (){ //if all hints are toggled, next level
-    //     for (var i = 0; i < allLevels[language][level][i].length; i++) {
-    //         // debugger
-    //         let word = allLevels[language][level][i];
-    //         if (word.toggle === true ) {
-    //             return false
-    //         } else if (i < allLevels[language][level].length){
-    //             continue
-    //         } else {
-    //             debugger
-    //             level += 1
-    //             console.log('congrats!')
-    //         }
-    //     } 
-    // }
+    function nextLevel (){ //if all hints are toggled, next level
+        for (var i = 0; i < allLevels[language][level].length; i++) {
+            debugger
+            let word = allLevels[language][level][i];
+            if (word.toggle === true ) {
+                return false
+            } else if (i < allLevels[language][level].length){
+                continue
+            } else {
+                debugger
+                level += 1
+                console.log('congrats!')
+            }
+        } 
+    }
     function wordCheck() {
         if (handleSubmit === true) {
             console.log('gj!')
@@ -282,6 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(wordCheck, 1000)
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
-    // setInterval(stopWatch, 2000)
-    // setInterval(nextLevel, 1000)
+    setInterval(stopWatch, 1000)
+    setInterval(nextLevel, 1000)
 });
