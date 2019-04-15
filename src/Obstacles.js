@@ -4,7 +4,7 @@ export default class Obstacles {
         this.y = y;
         this.height = height;
         this.width = width;
-        this.color = color
+        this.color = color;
     }
 }
 Obstacles.prototype.draw = function draw(ctx) {

@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let spainBackground = new Image();
     spainBackground.src ="https://s3.amazonaws.com/tinycards/image/8aaa075410df4c562bdd6c42659f02e2";
     let defaultBackground = new Image();
-    defaultBackground.src ="https://resize.indiatvnews.com/en/centered/newbucket/715_431/2018/07/unnamed-1-1532053666.jpg";
+    defaultBackground.src ="https://www.desktopbackground.org/p/2015/07/14/979104_iphone-wallpapers-duolingo-globe-download_1080x1920_h.png";
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
-    let platform = new Obstacles(490, canvas.height - 200, 200, 200, "black" );
+    let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
     var currentLanguage = null;
     var language = 'demo';
@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var hit = false;
 
     window.handleSubmit = handleSubmit;
+    
     function handleSubmit() {
         event.preventDefault();
         const guess = document.myform.wordGuess.value;
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.closePath();
 
 
-    }        
+    }   
 
     sprite.onload = function () {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
@@ -126,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function draw() {
         // 
+        // mainConsole
         ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
         
         if(language ===  'Japanese'){
@@ -136,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (language ==="Spanish") {
             ctx.drawImage(spainBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         } else {
-            ctx.drawImage(defaultBackground, 0, 0, 700, 400, 0, 0, canvas.width, canvas.height)
+            ctx.drawImage(defaultBackground, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
 
         platform.draw(ctx);
