@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit() {
         event.preventDefault();
         const guess = document.myform.wordGuess.value;
+        debugger
         
         switch (language) {
             case language === "French":
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return true
                     }
             case language === "Japanese":
+                debugger
                 case level === 1:
                     if (guess === "I am a boy" || guess=== "i am a boy") {
                         return true
@@ -124,7 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function draw() {
         // 
-            ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
+        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
+        
         if(language ===  'Japanese'){
             ctx.drawImage(japanBackground, 400, 0, 1000, 900, 0, 0, canvas.width, canvas.height)
         } else if (language === 'French') {
@@ -135,9 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             ctx.drawImage(defaultBackground, 0, 0, 700, 400, 0, 0, canvas.width, canvas.height)
         }
-        // ctx.drawImage(spainBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
-
-        // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
         platform.draw(ctx);
         terrace.draw(ctx); 
@@ -278,23 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             duo.sx = 15;
         }
     }
-    function handleSubmit() {
-        debugger
-        const guess = document.myform.wordGuess.value;
-        event.preventDefault();
-        switch (level) {
-            case level === 2:
-                if (guess === "I am a boy") {
-                    return true
-                }
-            case level === 3:
-                if (guess === "Ready to eat") {
-                    return true
-                }
-            default:
-                return false;
-        }
-    }
+    
     // function clockSprite(){
 
     // }
@@ -338,5 +322,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
-    // setInterval(nextLevel, 1000)
+    setInterval(nextLevel, 1000)
 });
