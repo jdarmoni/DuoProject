@@ -6,7 +6,8 @@ import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 // import Sentence from './sentence.js';
 import {allLevels, DuoWords} from './wordCollections'
-import handleSubmit from '../src/word_guess'
+import handleSubmit from './handle_submit'
+// import {level} from './word_guess';
 // import Clock from './clock.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,15 +33,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let enterPressed = false;
     DuoWords;
     allLevels;
-    var DuoObjects = [
-        platform,
-        terrace
-    ]
+    var DuoObjects = [ platform, terrace ]
     var speed = 5;
     var jump = 5;
     var hit = false;
 
-    if (handleSubmit === true){
+    window.handleSubmit = handleSubmit;
+    function handleSubmit() {
+        event.preventDefault();
+        const guess = document.myform.wordGuess.value;
+        
+        switch (language) {
+            case language === "French":
+                case level === 1:
+                    if (guess === "Ready to eat" || guess === "ready to eat") {
+                        return true
+                    }
+            case language === "Japanese":
+                case level === 1:
+                    if (guess === "I am a boy" || guess=== "i am a boy") {
+                        return true
+                    }
+            case language === "Spanish":
+                case level === 1:
+                    if (guess === "the dog, the cat" || guess === "the cat, the dog") {
+                        return true
+                    }
+            default:
+                return false;
+        }
+    }
+
+    if (handleSubmit === true) {
         level += 1;
     }
 
@@ -100,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         timer(ctx);
     
         
-        // remove [language]
         for(var i = 0; i < allLevels[language][level].length; i++){
             
             let word = allLevels[language][level][i];
