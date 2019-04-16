@@ -13,9 +13,13 @@ import handleSubmit from './handle_submit'
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
+    // DUOS
     var sprite = new Image();
     sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
-    
+    var correctSprite = new Image();
+    correctSprite.src = sprite.src
+    var incorrectSprite = new Image();
+    incorrectSprite.src = sprite.src;
     // BACKGROUNDS
     let japanBackground = new Image();
     japanBackground.src ="https://i.kinja-img.com/gawker-media/image/upload/s--Pc8LKGVT--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/yksf7nnxgxwtxyyc5dzn.png"
@@ -28,12 +32,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
+    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 150, 75, 100 )
+    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 150, 75, 100)
+    // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
+
+    //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+    
+    // handleSubmit success Animation 
+    let delay = undefined
+    let goodAnswer;
+    let badAnswer;
+    // 
+
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
     var currentLanguage = null;
     var language = 'demo';
     var level = 1;
     var time = 30;
+    var animationTime = 0;
     let rightPressed = false
     let leftPressed = false;
     let upPressed = false;
@@ -51,32 +68,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit() {
         event.preventDefault();
         const guess = document.myform.wordGuess.value;
-        debugger
         
-        switch (language) {
-            case language === "French":
-                case level === 1:
-                    if (guess === "Ready to eat" || guess === "ready to eat") {
+        if (language !== 'demo') {
+            if (language === "French"){
+            } if(level === 1) {
+                if (guess === "Ready to eat" || guess === "ready to eat") {
+                    delay = 3;
+                    goodAnswer = setInterval(goodJob, 15);              
+                } else {
+                    delay = 3;
+                    badAnswer = setInterval(badJob, 15);
+                }
+
+            } else if( language === "Japanese") {
+                if (level === 1) {
+                    if (guess === "I am a boy" || guess === "i am a boy") {
                         return true
                     }
-            case language === "Japanese":
-                debugger
-                case level === 1:
-                    if (guess === "I am a boy" || guess=== "i am a boy") {
-                        return true
-                    }
-            case language === "Spanish":
-                case level === 1:
+                }
+            } else if (language === "Spanish"){
+                if (level === 1) {
                     if (guess === "the dog, the cat" || guess === "the cat, the dog") {
                         return true
                     }
-            default:
+                }
+            } else {
                 return false;
-        }
-    }
 
-    if (handleSubmit === true) {
-        level += 1;
+            }                    
+        }
     }
 
     function timer(ctx) {
@@ -93,6 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     }
     
+    function goodJob(){
+        ctx.drawImage(correctSprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
+        correct.dx -= 1;
+
+    }
+    function badJob(){
+        ctx.drawImage(incorrectSprite, incorrect.sx, incorrect.sy, incorrect.sWidth, incorrect.sHeight, incorrect.dx, incorrect.dy, incorrect.dWidth, incorrect.dHeight);
+        incorrect.dx -=1;
+
+    }
 
     function wordCollisionDetection(object){
         
@@ -103,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 enterPressed = false;
                 
             } else {
-                debugger
+                
                 object.color = 'red';
                 object.toggle=true;
             }
@@ -217,12 +247,24 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         hit = false;
 
-        if (enterPressed) {
-            
-            for (var i = 0; i < DuoWords.length; i++) {
-                
+        // part of handle submit success animation
+        if (delay <= 0) {
+            debugger
+            clearInterval(goodAnswer)
+            clearInterval(badAnswer)
+            delay = undefined;
+            if (correct.dx < canvas.width - 100) {
+                // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
+                level += 1;
+            }
+            correct.dx = canvas.width - 100;
+            incorrect.dx = canvas.width - 100;
+        }
+        // part of handle submit success animation
+
+        if (enterPressed) { 
+            for (var i = 0; i < DuoWords.length; i++) {        
                 if (wordCollisionDetection(DuoWords[i]) === true) {
-                    console.log('word alert!')
                 }
             }
         }
@@ -281,22 +323,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // function clockSprite(){
-
-    // }
-    // QUESTION: Why doesn't this add to level and reset time
     function stopWatch (){
         time -= 1;
-        console.log(time)
-        if (time <= 0 && level >= 3 === false) {
-            
+        if (time <= 0 && level >= 3 === false) {    
             // level += 1; 
             time += 60;
         }
+        if (delay !== undefined) {
+            debugger
+            delay -= 1;
+        }
     }
-
-    
-
 
     
     function nextLevel (){ //if all hints are toggled, next level
@@ -315,12 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
     }
-    function wordCheck() {
-        if (handleSubmit === true) {
-            console.log('gj!')
-        } 
-    }
-    setInterval(wordCheck, 1000)
+    
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
