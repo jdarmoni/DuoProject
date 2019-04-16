@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     var incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
     // DUOS
+    
+    var duoBlock = new Image();
+    duoBlock.src = "https://www.zco.com/blog/images/duolingo-language-learning-app-1.jpg"
 
     // BACKGROUNDS
     let japanBackground = new Image();
@@ -156,6 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         platform.draw(ctx);
+        // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+        ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
         terrace.draw(ctx); 
         timer(ctx);
     
