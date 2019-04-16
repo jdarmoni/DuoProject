@@ -5,7 +5,7 @@ import Obstacles from './Obstacles'
 import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 // import Sentence from './sentence.js';
-import {allLevels, DuoWords} from './wordCollections'
+import {allLevels} from './wordCollections'
 import handleSubmit from './handle_submit'
 // import {level} from './word_guess';
 // import Clock from './clock.js';
@@ -56,8 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let upPressed = false;
     // let downPressed = false;
     let enterPressed = false;
-    DuoWords;
     allLevels;
+    let DuoWords = [
+        allLevels[language][level]
+    ];
+    console.log(DuoWords)
+    console.log(DuoWords[0])
     var DuoObjects = [ platform, terrace ]
     var speed = 5;
     var jump = 5;
@@ -72,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (language !== 'demo') {
             if (language === "French"){
             } if(level === 1) {
-                if (guess === "Ready to eat" || guess === "ready to eat") {
+                if (guess === "Her father is gone" || guess === "her father is gone") {
                     delay = 3;
                     goodAnswer = setInterval(goodJob, 15);              
                 } else {
@@ -83,17 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if( language === "Japanese") {
                 if (level === 1) {
                     if (guess === "I am a boy" || guess === "i am a boy") {
-                        return true
-                    }
+                        delay = 3;
+                        goodAnswer = setInterval(goodJob, 15);                    }
                 }
             } else if (language === "Spanish"){
                 if (level === 1) {
-                    if (guess === "the dog, the cat" || guess === "the cat, the dog") {
-                        return true
-                    }
+                    if (guess === "the dog needs food" || guess === "The dog needs food") {
+                        delay = 3;
+                        goodAnswer = setInterval(goodJob, 15);                    }
                 }
             } else {
-                return false;
+                delay = 3;
+                badAnswer = setInterval(badJob, 15);
 
             }                    
         }
@@ -125,15 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function wordCollisionDetection(object){
-        
+        console.log(object)
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
             if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
                 object.color='blue';
                 object.toggle = false
                 enterPressed = false;
-                
+                debugger
             } else {
-                
+                debugger
                 object.color = 'red';
                 object.toggle=true;
             }
@@ -175,40 +180,26 @@ document.addEventListener('DOMContentLoaded', () => {
         terrace.draw(ctx); 
         timer(ctx);
     
-        
+        // for languages
         for(var i = 0; i < allLevels[language][level].length; i++){
-            
+            // console.log(allLevels[language][level][i])
+            // console.log(allLevels[language][level].length)
             let word = allLevels[language][level][i];
             
+            
             if (word.toggle === false){
-                
+                console.log(word)
                 word.y -= 2;
-                // ctx.clearRect(word.x, word.y +10, word.width + 10, word.height)
                 if (language === 'demo') {
-                    
+                    debugger
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
-                        
                         language = word.word2
                     }
                 }
             }
             ctx.clearRect(word.x, word.y, word.width, word.height)
             word.draw(ctx);
-
-            // maybe do this in the word draw?
-            // ctx.beginPath();
-            // ctx.rect(760, 75, 50, 50)
-            // if (word.toggle) {
-            //     ctx.fillText(word.word1, word.x + word.width / 8, word.y + word.height / 2)
-            // } else {
-            //     ctx.fillText(word.word2, word.x + word.width / 8, word.y + word.height / 2)
-
-            // }
-            // ctx.closePath();
-            // I think this is where I render the word's word1/word2 as part of the sentence 
-            // let PretSentence = new Sentence('Pret A Manger', 760, 75, 100, 200, 'green');
-
         } 
     
         if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
@@ -247,6 +238,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         hit = false;
 
+
+        // COLLISION
+        if (enterPressed) {
+            console.log(allLevels[language][level])
+            debugger
+            for (var i = 0; i < DuoWords.length; i++) {
+                if (wordCollisionDetection(DuoWords[i]) === true) {
+                    
+                }
+            }
+            DuoWords = allLevels[language][level]
+            console.log(DuoWords)
+            debugger
+        }
         // part of handle submit success animation
         if (delay <= 0) {
             debugger
@@ -262,12 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // part of handle submit success animation
 
-        if (enterPressed) { 
-            for (var i = 0; i < DuoWords.length; i++) {        
-                if (wordCollisionDetection(DuoWords[i]) === true) {
-                }
-            }
-        }
+        
 
     }
     
