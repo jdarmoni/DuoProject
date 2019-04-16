@@ -18,7 +18,10 @@ Word.prototype.draw = function draw(ctx) {
     ctx.beginPath();
     // changed
     ctx.rect(this.x, this.y, this.width, this.height)
-    ctx.font = '14px serif'
+    // ctx.arc(this.x, this.y, 40, 0, 3 * Math.PI)
+    ctx.font = '17px serif'
+    ctx.textBaseline ="middle"
+    // ctx.lineWidth = this.width
     if (this.toggle) {
         ctx.fillText(this.word1, this.x + this.width/8, this.y + this.height / 2 )
     } else {

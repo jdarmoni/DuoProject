@@ -1,12 +1,13 @@
 
 export default class Sentence {
-    constructor(sentence, x, y, height, width, color){
+    constructor(sentence, translation, x, y, height, width, color){
         this.x = x;
         this.y = y;
         this.height = height;
         this.width = width;
         this.color = color;
         this.sentence = sentence;
+        this.translation = translation;
     }
 }
 Sentence.prototype.draw = function draw(ctx){

@@ -1,4 +1,3 @@
-// console.log('webpack is working!')
 
 import Duo from './Duo.js'
 import Obstacles from './Obstacles'
@@ -20,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     correctSprite.src = sprite.src
     var incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
+    // DUOS
+
     // BACKGROUNDS
     let japanBackground = new Image();
     japanBackground.src ="https://i.kinja-img.com/gawker-media/image/upload/s--Pc8LKGVT--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/yksf7nnxgxwtxyyc5dzn.png"
@@ -35,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 150, 75, 100 )
     let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 150, 75, 100)
     // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
-
     //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     
     // handleSubmit success Animation 
     let delay = undefined
     let goodAnswer;
     let badAnswer;
-    // 
+    // handleSubmit success Animation 
+
 
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
@@ -60,8 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let DuoWords = [
         allLevels[language][level]
     ];
-    console.log(DuoWords)
-    console.log(DuoWords[0])
     var DuoObjects = [ platform, terrace ]
     var speed = 5;
     var jump = 5;
@@ -72,35 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit() {
         event.preventDefault();
         const guess = document.myform.wordGuess.value;
-        
-        if (language !== 'demo') {
-            if (language === "French"){
-            } if(level === 1) {
-                if (guess === "Her father is gone" || guess === "her father is gone") {
-                    delay = 3;
-                    goodAnswer = setInterval(goodJob, 15);              
-                } else {
-                    delay = 3;
-                    badAnswer = setInterval(badJob, 15);
-                }
 
-            } else if( language === "Japanese") {
-                if (level === 1) {
-                    if (guess === "I am a boy" || guess === "i am a boy") {
-                        delay = 3;
-                        goodAnswer = setInterval(goodJob, 15);                    }
-                }
-            } else if (language === "Spanish"){
-                if (level === 1) {
-                    if (guess === "the dog needs food" || guess === "The dog needs food") {
-                        delay = 3;
-                        goodAnswer = setInterval(goodJob, 15);                    }
-                }
+        if (language !== 'demo') {
+            DuoWords = allLevels[language][level]
+            if (guess === DuoWords[DuoWords.length-1].translation) {
+                delay = 3;
+                goodAnswer = setInterval(goodJob, 15);              
             } else {
                 delay = 3;
                 badAnswer = setInterval(badJob, 15);
-
-            }                    
+            }
         }
     }
 
@@ -130,15 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function wordCollisionDetection(object){
-        console.log(object)
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
             if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
                 object.color='blue';
                 object.toggle = false
                 enterPressed = false;
-                debugger
+                
             } else {
-                debugger
+                
                 object.color = 'red';
                 object.toggle=true;
             }
@@ -182,13 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // for languages
         for(var i = 0; i < allLevels[language][level].length; i++){
-            // console.log(allLevels[language][level][i])
-            // console.log(allLevels[language][level].length)
             let word = allLevels[language][level][i];
             
-            
             if (word.toggle === false){
-                console.log(word)
                 word.y -= 2;
                 if (language === 'demo') {
                     debugger
@@ -238,23 +213,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         hit = false;
 
-
         // COLLISION
         if (enterPressed) {
-            console.log(allLevels[language][level])
-            debugger
             for (var i = 0; i < DuoWords.length; i++) {
                 if (wordCollisionDetection(DuoWords[i]) === true) {
                     
                 }
             }
-            DuoWords = allLevels[language][level]
-            console.log(DuoWords)
-            debugger
+            DuoWords = allLevels[language][level]            
         }
         // part of handle submit success animation
         if (delay <= 0) {
-            debugger
+            
             clearInterval(goodAnswer)
             clearInterval(badAnswer)
             delay = undefined;
@@ -265,9 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
             correct.dx = canvas.width - 100;
             incorrect.dx = canvas.width - 100;
         }
-        // part of handle submit success animation
-
-        
+        // part of handle submit success animation      
 
     }
     
@@ -347,8 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 continue
             } else {
                 //  if there are no words with y > 0 (loop through all the words)
-                level += 1
-                console.log('congrats!')
+                console.log('this is NORMALLY where I would level += 1!')
             }
         } 
     }

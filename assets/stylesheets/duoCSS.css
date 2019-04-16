@@ -33,3 +33,18 @@
     /* font-weight: heavy; */
 }
 
+.instructions {
+    position: absolute;
+    top: 45%;
+    left: 1.7%;
+    width: 10%;
+}
+.translate {
+    position: absolute;
+    top: 8.5%;
+    right: 1.7%;
+    width: 10%;
+    background-color: #1cb0f6;
+    border-radius: 40px;
+    text-align: center;
+}
