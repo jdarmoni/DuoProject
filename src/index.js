@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
     var currentLanguage = null;
-    var language = 'demo';
-    var level = 1;
+    var language = 'Spanish';
+    var level = 2;
     var time = 30;
     var animationTime = 0;
     let rightPressed = false
@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit() {
         event.preventDefault();
         const guess = document.myform.wordGuess.value;
-
+        
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
-            if (guess === DuoWords[DuoWords.length-1].translation) {
+            if (guess.toLowerCase() === DuoWords[DuoWords.length - 1].translation.toLowerCase()) {
                 delay = 3;
                 goodAnswer = setInterval(goodJob, 15);              
             } else {
@@ -87,15 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function timer(ctx) {
-        ctx.beginPath();
-        ctx.rect(canvas.width - 100, 100, 50, 50);
-        ctx.font = '14px serif'
-        ctx.fillText(time.toString(), 50, 50)
-        ctx.closePath();
-
-
-    }   
+      
 
     sprite.onload = function () {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
@@ -113,14 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function wordCollisionDetection(object){
+        console.log(object)
+        
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
             if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
-                object.color='blue';
-                object.toggle = false
-                enterPressed = false;
-                
+                if (object.sentence === undefined) {
+                    object.color='blue'; 
+                    object.toggle = false
+                    enterPressed = false;
+                }
             } else {
-                
                 object.color = 'red';
                 object.toggle=true;
             }
@@ -172,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (word.toggle === false){
                 word.y -= 2;
                 if (language === 'demo') {
-                    debugger
+                    
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
                         language = word.word2
@@ -264,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = true;
         } 
-        else if (e.key == "Enter") {
+        else if (e.keyCode == 32) {
             enterPressed = true;
         }
 
@@ -283,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             downPressed = false;
         }
         // QUESTION: why doesn't it return to false
-        else if (e.key == "Enter") {
+        else if (e.keyCode === 32) {
             enterPressed = false;
             
         }
@@ -301,14 +295,21 @@ document.addEventListener('DOMContentLoaded', () => {
         time -= 1;
         if (time <= 0 && level >= 3 === false) {    
             // level += 1; 
-            time += 60;
+            time += 120;
         }
         if (delay !== undefined) {
-            debugger
+            
             delay -= 1;
         }
     }
 
+    function timer(ctx) {
+        ctx.beginPath();
+        ctx.rect(canvas.width - 100, 100, 50, 50);
+        ctx.font = '14px serif'
+        ctx.fillText(time.toString(), 50, 50)
+        ctx.closePath();
+    } 
     
     function nextLevel (){ //if all hints are toggled, next level
         for (var i = 0; i < allLevels[language][level].length; i++) {
@@ -321,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 continue
             } else {
                 //  if there are no words with y > 0 (loop through all the words)
-                console.log('this is NORMALLY where I would level += 1!')
+                level += 1
             }
         } 
     }

@@ -11,9 +11,11 @@ export default class Sentence {
     }
 }
 Sentence.prototype.draw = function draw(ctx){
+    // if (this.color = nil) {this.color = white}
     ctx.beginPath();
     ctx.rect(this.x, this.y, this.width, this.height)
     ctx.font = "20px serif";
+    // ctx.fillStyle=this.color
     ctx.fillText(this.sentence, this.x + this.width/8, this.y + this.height / 2)
     
     ctx.closePath();

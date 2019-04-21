@@ -11,7 +11,7 @@ import Sentence from './sentence';
     // let sentence = new Sentence("Translate this sentence!", 710, 25, 50, 230, 'yellow')
      let Demo = new Sentence('Choose a language!', 760, 75, 100, 200, 'green');
     
-/* spanish level 1 */
+/* spanish level 4 */
 let dog = new Word('el perro', 'the dog', 860, 565, 70, 50, 'orange', true);
 let hungry = new Word('necesita', 'needs', 15, 150, 70, 50, 'orange', true);
 let food = new Word('comida', 'food', 550, 370, 70, 50, 'green', true);
@@ -25,11 +25,13 @@ let dieSentence = new Sentence('No moriré hoy', "I will not die today", 760, 75
 // spanish level 3
 let afraid = new Word('miedo', 'afraid', 860, 565, 70, 50, 'orange', true)
 let iHave = new Word('tengo', 'I have', 550, 370, 70, 50, 'orange', true)
-
 let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlos", 760, 75, 100, 170, 'green');
 
-
-
+// spanish level 1
+let hermano = new Word('hermano', 'brother', 860, 565, 70, 50, 'orange', true)
+let tener = new Word('tener', 'to have', 15, 150, 70, 50, 'orange', true);
+let solia = new Word('solia', 'used to', 550, 370, 70, 50, 'green', true);
+let brotherSentence = new Word('Solía tener un hermano', "I used to have a brother", 760, 75, 100, 170, 'green');
 
 /* Japanese level 1*/
  let iWord = new Word('私は', 'I', 860, 565, 70, 50, 'green', true);
@@ -72,9 +74,10 @@ let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu
 /* LEVELS */
 
 let languages = [French, Spanish, Japanese]
-let spanishLevel1 = [dog,hungry, food, needsFood];
+let spanishLevel1 = [hermano, solia, tener, brotherSentence]
 let spanishLevel2 = [die, today, dieSentence]
 let spanishLevel3 = [afraid, iHave, carlosSentence]
+let spanishLevel4 = [dog,hungry, food, needsFood];
 let japaneseLevel1 = [iWord, am, boy, IamABoy];
 let japaneseLevel2 = [iWord, like, eggs, ILikeEggs];
 let frenchLevel1 = [father, gone, FatherSentence];
@@ -83,9 +86,10 @@ let frenchLevel3 = [pas, abandon, abandonSentence];
 let frenchLevel4 = [school, ruined, forever, schoolSentence]
 let frenchLevel5 = [pere, disparu, PereSentence]
 
+
 export const allLevels = {
     demo: { 1: languages },
     French: { 1: frenchLevel1, 2: frenchLevel2, 3: frenchLevel3, 4: frenchLevel4, 5: frenchLevel5 },
-    Spanish: { 1: spanishLevel1, 2: spanishLevel2, 3: spanishLevel3 },
+    Spanish: { 1: spanishLevel1, 2: spanishLevel2, 3: spanishLevel3, 4: spanishLevel4 },
     Japanese: { 1: japaneseLevel1, 2: japaneseLevel2 }
 }
