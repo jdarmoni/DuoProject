@@ -72,8 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.handleSubmit = handleSubmit;
     
     function handleSubmit() {
-        event.preventDefault();
-        const guess = document.myform.wordGuess.value;
+        // event.preventDefault();
+        debugger
+        const guess = document.getElementById('translateSubmit').value;
         
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
@@ -85,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 badAnswer = setInterval(badJob, 15);
             }
         }
+        debugger
+        document.getElementById('translateSubmit').value = ""
+        debugger
     }
 
       
@@ -360,6 +364,8 @@ document.addEventListener('DOMContentLoaded', () => {
             letter = " "
         } else if (e.keyCode === 13) {
             letter ="";
+            debugger
+            handleSubmit();
         }
         log.value += letter.toLowerCase()
     }
