@@ -48,3 +48,31 @@
     border-radius: 40px;
     text-align: center;
 }
+
+.terraceBox {
+    float: left;
+    position: absolute;
+    top: 100;
+    top: 201px;
+    left: 160px;
+    height: 32px;
+    width: 199px;
+    /* background-color: white; */
+    /* text-align: center; */
+    padding-top: 16px;
+    vertical-align: center;
+    /* border-radius: 4px; */
+    /* background: url('https://softwareengineeringdaily.com/wp-content/uploads/2017/12/duolingo.png') */
+}
+
+.terraceBox img {
+    float: left;
+    position: absolute;
+    left: 160px;
+    height: 48px;
+    width: 199px;
+    left: 0px;
+    padding-top: 16px;
+    top: -16px;
+    border-radius: 3px;
+}

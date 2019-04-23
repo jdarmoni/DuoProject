@@ -10,8 +10,8 @@ export default class Obstacles {
 Obstacles.prototype.draw = function draw(ctx) {
     ctx.beginPath();
     ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.fillStyle = this.color; // comment this out if you want remove barriers
-    ctx.fill();
+    // ctx.fillStyle = this.color; // comment this out if you want remove barriers
+    // ctx.fill();
     ctx.closePath();
 
 }
