@@ -73,11 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function handleSubmit() {
         // event.preventDefault();
-        debugger
+        
         const guess = document.getElementById('translateSubmit').value;
         
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
+            debugger
             if (guess.toLowerCase() === DuoWords[DuoWords.length - 1].translation.toLowerCase()) {
                 delay = 3;
                 goodAnswer = setInterval(goodJob, 15);              
@@ -86,9 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 badAnswer = setInterval(badJob, 15);
             }
         }
-        debugger
+        
         document.getElementById('translateSubmit').value = ""
-        debugger
+        
     }
 
       
@@ -109,18 +110,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function wordCollisionDetection(object){
-        console.log(object)
         
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
+            
             if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
-                if (object.sentence === undefined) {
+                    
+              if (object.sentence === undefined) {
                     object.color='blue'; 
                     object.toggle = false
                     enterPressed = false;
+                    console.log('cherries')
                 }
             } else {
+                
                 object.color = 'red';
                 object.toggle=true;
+                console.log('eggs')
             }
         }
     }
@@ -167,9 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         for(var i = 0; i < allLevels[language][level].length; i++){
             let word = allLevels[language][level][i];
             
-            if (word.toggle === false){
-                word.y -= 2;
-                if (language === 'demo') {
+            if (language === 'demo') {
+                if (word.toggle === false){
+                    word.y -= 2;
                     
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
@@ -217,15 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
         hit = false;
 
-        // COLLISION
-        if (enterPressed) {
-            for (var i = 0; i < DuoWords.length; i++) {
-                if (wordCollisionDetection(DuoWords[i]) === true) {
-                    
-                }
-            }
-            DuoWords = allLevels[language][level]            
-        }
         // part of handle submit success animation
         if (delay <= 0) {
             
@@ -263,7 +259,19 @@ document.addEventListener('DOMContentLoaded', () => {
             downPressed = true;
         } 
         else if (e.keyCode == 16) {
-            enterPressed = true;
+            
+                enterPressed = true;
+                    if (enterPressed) {
+                        
+                        // hitting this loop twice - make a switch
+                        for (var i = 0; i < DuoWords.length; i++) {
+                            
+                            wordCollisionDetection(DuoWords[i])
+                        }
+                        DuoWords = allLevels[language][level]
+                        return
+                    }
+
         }
         else if (e.keyCode == 8) {
             const log = document.getElementById('translateSubmit');
@@ -291,25 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
             enterPressed = false;
         }
     }
-
-
-
-
-
-
-
-    
-    
-    
-
-
-
-
-
-
-
-
-
+    // COLLISION
 
 
     function spriteify() {
@@ -359,12 +349,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function logKey(e) {
         const log = document.getElementById('translateSubmit');
         let letter = e.code.slice(e.code.length - 1);
-        debugger
+        
         if (e.code ==="Space") {
             letter = " "
         } else if (e.keyCode === 13) {
             letter ="";
-            debugger
+            
             handleSubmit();
         }
         log.value += letter.toLowerCase()
