@@ -258,8 +258,14 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = true;
         } 
-        else if (e.keyCode == 32) {
+        else if (e.keyCode == 16) {
             enterPressed = true;
+        }
+        else if (e.keyCode == 8) {
+            const log = document.getElementById('translateSubmit');
+            if (log.value.length > 0) {
+                log.value = log.value.slice(0, log.value.length - 1)
+            }
         }
 
     }
@@ -277,11 +283,30 @@ document.addEventListener('DOMContentLoaded', () => {
             downPressed = false;
         }
         // QUESTION: why doesn't it return to false
-        else if (e.keyCode === 32) {
+        else if (e.keyCode === 16) {
             enterPressed = false;
-            
         }
     }
+
+
+
+
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
 
     function spriteify() {
         if (duo.sx === 15) {
@@ -326,9 +351,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
     }
+
+    function logKey(e) {
+        const log = document.getElementById('translateSubmit');
+        let letter = e.code.slice(e.code.length - 1);
+        debugger
+        if (e.code ==="Space") {
+            letter = " "
+        } else if (e.keyCode === 13) {
+            letter ="";
+        }
+        log.value += letter.toLowerCase()
+    }
     
     setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
     setInterval(nextLevel, 1000)
+    document.addEventListener('keypress', logKey);
 });
