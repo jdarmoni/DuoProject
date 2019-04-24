@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const guess = document.getElementById('translateSubmit').value;
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
-            debugger
             if (guess.toLowerCase() === DuoWords[DuoWords.length - 1].translation.toLowerCase()) {
                 delay = 3;
                 goodAnswer = setInterval(goodJob, 15);              
@@ -258,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         // hitting this loop twice - make a switch
                         for (var i = 0; i < DuoWords.length; i++) {
-                            debugger
+                            
                             wordCollisionDetection(DuoWords[i])
                         }
                         DuoWords = allLevels[language][level]
