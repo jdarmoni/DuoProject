@@ -29,20 +29,20 @@ let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlo
 
 // spanish level 1
 let hermano = new Word('hermano', 'brother', 860, 565, 70, 50, 'orange', true)
-let tener = new Word('tener', 'to have', 15, 150, 70, 50, 'orange', true);
-let solia = new Word('solia', 'used to', 550, 370, 70, 50, 'green', true);
+let tener = new Word('tener', ('to'+' '+'have'), 15, 150, 70, 50, 'orange', true);
+let solia = new Word('solia', 'used', 550, 370, 70, 50, 'green', true);
 let brotherSentence = new Sentence('Solía tener un hermano', "I used to have a brother", 760, 75, 100, 170, 'green');
 
 /* Japanese level 1*/
  let iWord = new Word('私は', 'I', 860, 565, 70, 50, 'green', true);
- let am = new Word('です', 'am!', 15, 150, 70, 50, 'green', true);
+ let am = new Word('です', 'am', 15, 150, 70, 50, 'green', true);
  let boy = new Word('男の子', 'boy', 550, 370, 70, 50, 'green', true);
  let IamABoy = new Sentence('私は男の子です', "I am a boy", 760, 75, 100, 170, 'green');
 
 // Japanese level 2
 let like = new Word('好きです', 'I like', 15, 150, 70, 50, 'green', true);
 let eggs = new Word('卵卵が', 'eggs', 550, 370, 70, 50, 'green', true);
-let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 200, 'green');
+let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 170, 'green');
 
 /* French Level 1*/
  let father = new Word('Ta pere', 'her father', 860, 565, 70, 50, '#b946b9', true);

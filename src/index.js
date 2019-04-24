@@ -73,9 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function handleSubmit() {
         // event.preventDefault();
-        
         const guess = document.getElementById('translateSubmit').value;
-        
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
             debugger
@@ -87,12 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 badAnswer = setInterval(badJob, 15);
             }
         }
-        
         document.getElementById('translateSubmit').value = ""
-        
-    }
-
-      
+    } 
 
     sprite.onload = function () {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
@@ -111,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function wordCollisionDetection(object){
         
+         
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
-            
             if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
                     
               if (object.sentence === undefined) {
@@ -136,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-
     function XcollisionDetection(object, pos) {
         // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
         if ((duo.dx + pos > object.x - duo.dWidth && (duo.dx + pos < object.x + object.width)) && (((duo.dy + duo.dHeight) >= object.y) && (duo.dy <= object.y + object.height))) {
@@ -186,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             word.draw(ctx);
         } 
     
+        //  THESE DO NOT NEED TO BE IN DRAW - MOVE TO KEY DOWN HANDLERS
         if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], speed) === true) {
@@ -224,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // part of handle submit success animation
         if (delay <= 0) {
-            
             clearInterval(goodAnswer)
             clearInterval(badAnswer)
             delay = undefined;
@@ -265,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         // hitting this loop twice - make a switch
                         for (var i = 0; i < DuoWords.length; i++) {
-                            
+                            debugger
                             wordCollisionDetection(DuoWords[i])
                         }
                         DuoWords = allLevels[language][level]
@@ -341,7 +334,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 continue
             } else {
                 //  if there are no words with y > 0 (loop through all the words)
-                level += 1
+                console.log('this is where I WOULD iterate the level')
+                // level += 1
             }
         } 
     }
