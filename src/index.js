@@ -187,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (word.sentence === undefined) {
                 ctx.clearRect(word.x, word.y, word.width, word.height)
                 word.draw(ctx);
-
             }
         } 
     
@@ -202,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (hit === false) { duo.dx += speed }
         }
+
         if (leftPressed && duo.dx > 0) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], -speed) === true) {
@@ -236,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (correct.dx < canvas.width - 100) {
                 // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
                 level += 1;
+                makeSentence(allLevels[language][level])
             }
             correct.dx = canvas.width - 100;
             incorrect.dx = canvas.width - 100;
@@ -353,8 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function makeSentence(DuoWords){
         debugger
-        let newSentence = DuoWords[3].translation.split(' ');
-        let newTranslation = DuoWords[3].sentence.split(' ');
+        let newSentence = DuoWords[DuoWords.length-1].translation.split(' ');
+        let newTranslation = DuoWords[DuoWords.length - 1].sentence.split(' ');
 
         for (let j = 0; j < newSentence.length; j++) {
             let word = newSentence[j]
@@ -398,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         log.value += letter.toLowerCase()
     }
     
-    setInterval(draw, 15)
+    setInterval(draw, 25)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
     setInterval(nextLevel, 1000)
