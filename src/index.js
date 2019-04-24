@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
-    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 300, 75, 100 )
-    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 300, 75, 100)
+    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 250, 75, 100 )
+    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 250, 75, 100)
     // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
     //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     
