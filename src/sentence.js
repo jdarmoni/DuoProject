@@ -49,3 +49,4 @@ Sentence.prototype.draw = function draw(ctx){
 
 // then maybe div.append(<p>newSentence.join(' ')</p>) 
 // the div being styled in the top right corner where the sentence used to be 
+

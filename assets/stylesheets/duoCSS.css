@@ -76,3 +76,51 @@
     top: -16px;
     border-radius: 3px;
 }
+
+.canvasSentence{
+    position: absolute;
+    height: 91px;
+    width: 178px;
+    background-color: beige;
+    /* background probably a duo image */
+    top: 90px;
+    right: 183px;
+    border-radius: 20px;
+}
+
+.canvasSentence p {
+    text-align: center;
+    margin-top: 20%;
+}
+/* document.getElementById('CS').appendChild(document.createElement('p').appendChild(document.createTextNode("This is new."))) */
+
+/* document.getElementById('CS').classList.add('canvasSentence') */
+
+/* 
+var element = document.getElementById("CS");
+var para = document.createElement("p");
+var wordNode = document.createTextNode(word);
+para.appendChild(nodeWord);
+
+element.appendChild(para); */
+
+/* var txt = "Hello bye";
+var dataArr = txt.split(' ');
+
+var paragraph = document.getElementById("pid");
+paragraph.innerHTML = dataArr[0]+ " <span>"+dataArr[1]+"</span>"; */
+
+/* document.getElementById('CS').innerHTML = "eggies" + "<span>" +"poopoo" + "</span>" */
+
+
+/* // let newSentence = DuoWords[3].translation.split(' ').forEach((word => {
+//     for (i = 0; i < DuoWords.length - 1; i++) {
+//         console.log(word)
+//         console.log(DuoWords[i].word2)
+//         if (word === DuoWords[i].word2) {
+//             word = `<span className=` + `word${i}` + '>' + word + '</span>'
+
+//         }
+//     }
+// })) */
+/* document.getElementById('').innerHTML = newSentence */
