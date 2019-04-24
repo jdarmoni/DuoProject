@@ -79,18 +79,23 @@
 
 .canvasSentence{
     position: absolute;
-    height: 91px;
+    height: auto;
     width: 178px;
-    background-color: beige;
-    /* background probably a duo image */
+    background-color: #78c800;
     top: 90px;
     right: 183px;
     border-radius: 20px;
+    border: solid 3px white;
 }
 
 .canvasSentence p {
     text-align: center;
-    margin-top: 20%;
+    padding-top: 13%;
+    padding-bottom: 13%;
+    font-size: 19px;
+    line-height: 22px;
+    font-family: din-round,sans-serif!important;
+    color: white;
 }
 /* document.getElementById('CS').appendChild(document.createElement('p').appendChild(document.createTextNode("This is new."))) */
 

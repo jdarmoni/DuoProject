@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
-    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 150, 75, 100 )
-    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 150, 75, 100)
+    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 300, 75, 100 )
+    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 300, 75, 100)
     // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
     //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     
@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         allLevels[language][level]
     ];
     var DuoObjects = [ platform, terrace ]
-    var speed = 5;
-    var jump = 5;
+    var speed = 7;
+    var jump = 7;
     var hit = false;
 
     window.handleSubmit = handleSubmit;
@@ -115,19 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     enterPressed = false;
                     // how do I know which object it is?
                     debugger
-                //   $(`span`).css({ color: "black" });
 
-                  $(`span#word${DuoWords.indexOf(object)}`).css({ color: "blue" });
-                    console.log('cherries')
+                  $(`span#word${DuoWords.indexOf(object)}`).css({ color: "hsl(46, 100%, 50%)" });
+                //   $(`span#word${DuoWords.indexOf(object)}`).css({ "text-shadow": "-1px 0 white, 0 1px white, 1px 0 white, 0 - 1px white" });
+                  
                 }
             } else {
                 
                 object.color = 'red';
                 object.toggle=true;
-                $(`span#word${DuoWords.indexOf(object)}`).css({ color: "black" });
+                $(`span#word${DuoWords.indexOf(object)}`).css({ color: "white" });
 
-
-                console.log('eggs')
             }
         }
     }
@@ -175,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (language === 'demo') {
                 if (word.toggle === false){
-                    word.y -= 2;
+                    word.y -= 3;
                     
                     currentLanguage = word
                     if (currentLanguage.y < 0) {

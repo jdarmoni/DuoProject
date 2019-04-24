@@ -45,13 +45,13 @@ let eggs = new Word('卵卵が', 'eggs', 550, 370, 70, 50, 'green', true);
 let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 170, 'green');
 
 /* French Level 1*/
- let father = new Word('Sa pere', 'her father', 860, 565, 70, 50, '#b946b9', true);
- let gone = new Word('a disparu', 'has disappeared', 15, 150, 70, 50, '#b946b9', true);
+ let father = new Word('pere', 'father', 860, 565, 70, 50, '#b946b9', true);
+ let gone = new Word('disparu', 'disappeared', 15, 150, 70, 50, '#b946b9', true);
 let FatherSentence = new Sentence('Sa pere a disparu', "Her father has disappeared", 760, 75, 100, 170, 'green');
 
 /* French Level 2*/
-let where = new Word(`ou est`, 'where is', 860, 565, 70, 50, '#b946b9', true );
-let herFamily = new Word('sa family', 'her family', 15, 150, 70, 50, '#b946b9', true);
+let where = new Word(`ou`, 'where', 860, 565, 70, 50, '#b946b9', true );
+let herFamily = new Word('family', 'family', 15, 150, 70, 50, '#b946b9', true);
 let familySentence = new Sentence(`ou est sa famille`, "Where is her family", 760, 75, 100, 170, 'green');
 
 /* French Level 3*/
