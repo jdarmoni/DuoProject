@@ -28,9 +28,10 @@ let iHave = new Word('tengo', 'I have', 550, 370, 70, 50, 'orange', true)
 let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlos", 760, 75, 100, 170, 'green');
 
 // spanish level 1
-let hermano = new Word('hermano', 'brother', 860, 565, 70, 50, 'orange', true)
-let tener = new Word('tener', ('to'+' '+'have'), 15, 150, 70, 50, 'orange', true);
-let solia = new Word('solia', 'used', 550, 370, 70, 50, 'green', true);
+let hermano = new Word('hermano', 'brother', 15, 150, 70, 50, 'orange', true)
+
+let tener = new Word('tener', ('to' + ' ' + 'have'), 860, 565, 70, 50, 'orange', true);
+let solia = new Word('solía', 'used', 550, 370, 70, 50, 'green', true);
 let brotherSentence = new Sentence('Solía tener un hermano', "I used to have a brother", 760, 75, 100, 170, 'green');
 
 /* Japanese level 1*/
@@ -45,29 +46,25 @@ let eggs = new Word('卵卵が', 'eggs', 550, 370, 70, 50, 'green', true);
 let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 170, 'green');
 
 /* French Level 1*/
- let father = new Word('Ta pere', 'her father', 860, 565, 70, 50, '#b946b9', true);
- let gone = new Word('a disparu', 'has disappeared', 15, 150, 70, 50, '#b946b9', true);
-let FatherSentence = new Sentence('Sa pere a disparu', "Her father has disappeared", 760, 75, 100, 170, 'green');
+let go = new Word('va', 'go', 860, 565, 70, 50, 'green', true);
+let room = new Word('chambre', 'room', 15, 150, 70, 50, 'green', true);
+let anymore = new Word('plus', 'anymore', 550, 370, 70, 50, 'green', true);
+let RoomSentence = new Sentence('on ne va plus dans cette chambre', "we do not go in that room anymore", 760, 75, 100, 170, 'green');
 
 /* French Level 2*/
-let where = new Word(`ou est`, 'where is', 860, 565, 70, 50, '#b946b9', true );
-let herFamily = new Word('sa family', 'her family', 15, 150, 70, 50, '#b946b9', true);
+let where = new Word(`ou`, 'where', 860, 565, 70, 50, '#b946b9', true );
+let herFamily = new Word('famille', 'family', 15, 150, 70, 50, '#b946b9', true);
 let familySentence = new Sentence(`ou est sa famille`, "Where is her family", 760, 75, 100, 170, 'green');
 
 /* French Level 3*/
-let pas = new Word(`pas`, 'do not', 860, 565, 70, 50, '#b946b9', true);
-let abandon = new Word('abandonner', 'abandon', 15, 150, 70, 50, '#b946b9', true);
-let abandonSentence = new Sentence(`ne m'abandonne pas`, "Don't abandon me", 760, 75, 100, 170, 'green');
-
-/* French Level 4*/
 let school = new Word(`l'ecole`, 'the school', 860, 565, 70, 50, '#b946b9', true);
-let ruined = new Word('est ruinee', 'is ruined', 15, 150, 70, 50, '#b946b9', true);
-let forever = new Word('pour toujours', 'forever', 550, 370, 70, 50, '#b946b9', true);
+let ruined = new Word('ruinee', 'ruined', 15, 150, 70, 50, '#b946b9', true);
+let forever = new Word('toujours', 'forever', 550, 370, 70, 50, '#b946b9', true);
 let schoolSentence = new Sentence( "l'ecole est ruinee pour toujours", `the school is ruined forever`, 760, 75, 100, 170, 'green');
 
-// French Level 5
-let pere = new Word('her father', 'Ta pere', 860, 565, 70, 50, '#b946b9', true);
-let disparu = new Word('has disappeared', 'a disparu', 15, 150, 70, 50, '#b946b9', true);
+// French Level 4
+let pere = new Word('father', 'pere', 860, 565, 70, 50, '#b946b9', true);
+let disparu = new Word('disappeared', 'disparu', 15, 150, 70, 50, '#b946b9', true);
 let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu', 760, 75, 100, 170, 'green');
 
 
@@ -80,16 +77,15 @@ let spanishLevel3 = [afraid, iHave, carlosSentence]
 let spanishLevel4 = [dog,hungry, food, needsFood];
 let japaneseLevel1 = [iWord, am, boy, IamABoy];
 let japaneseLevel2 = [iWord, like, eggs, ILikeEggs];
-let frenchLevel1 = [father, gone, FatherSentence];
+let frenchLevel1 = [go, room, anymore, RoomSentence];
 let frenchLevel2 = [where, herFamily, familySentence];
-let frenchLevel3 = [pas, abandon, abandonSentence];
-let frenchLevel4 = [school, ruined, forever, schoolSentence]
-let frenchLevel5 = [pere, disparu, PereSentence]
+let frenchLevel3 = [school, ruined, forever, schoolSentence]
+let frenchLevel4 = [pere, disparu, PereSentence]
 
 
 export const allLevels = {
     demo: { 1: languages },
-    French: { 1: frenchLevel1, 2: frenchLevel2, 3: frenchLevel3, 4: frenchLevel4, 5: frenchLevel5 },
+    French: { 1: frenchLevel1, 2: frenchLevel2, 3: frenchLevel3, 4: frenchLevel4 },
     Spanish: { 1: spanishLevel1, 2: spanishLevel2, 3: spanishLevel3, 4: spanishLevel4 },
     Japanese: { 1: japaneseLevel1, 2: japaneseLevel2 }
 }

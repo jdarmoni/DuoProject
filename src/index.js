@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     // DUOS
     var sprite = new Image();
-    sprite.src = "https://d7mj4aqfscim2.cloudfront.net/images/owl-sprite20.svg";
+    sprite.src = "/Users/AbbeyRoad/Desktop/DuoProject/assets/images/owl-sprite20.svg";
     var correctSprite = new Image();
     correctSprite.src = sprite.src
     var incorrectSprite = new Image();
@@ -22,22 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // DUOS
     
     var duoBlock = new Image();
-    duoBlock.src = "https://www.zco.com/blog/images/duolingo-language-learning-app-1.jpg"
+    duoBlock.src = "/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duoBlock.jpg"
 
     // BACKGROUNDS
     let japanBackground = new Image();
-    japanBackground.src ="https://i.kinja-img.com/gawker-media/image/upload/s--Pc8LKGVT--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/yksf7nnxgxwtxyyc5dzn.png"
+    japanBackground.src ="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duolingo-japan.png"
     let franceBackground = new Image();
-    franceBackground.src ="https://s3.amazonaws.com/tinycards/image/aa761c41c8668ad735c1e3b134956771";
+    franceBackground.src ="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duolingo-france.png";
     let spainBackground = new Image();
-    spainBackground.src ="https://s3.amazonaws.com/tinycards/image/8aaa075410df4c562bdd6c42659f02e2";
+    spainBackground.src ="assets/images/duolingo-spain.png";
     let defaultBackground = new Image();
-    defaultBackground.src ="https://www.desktopbackground.org/p/2015/07/14/979104_iphone-wallpapers-duolingo-globe-download_1080x1920_h.png";
+    defaultBackground.src ="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duo globe.png";
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
-    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 150, 75, 100 )
-    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 150, 75, 100)
+    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 250, 75, 100 )
+    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 250, 75, 100)
     // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
     //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     
@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         allLevels[language][level]
     ];
     var DuoObjects = [ platform, terrace ]
-    var speed = 5;
-    var jump = 5;
+    var speed = 7;
+    var jump = 7;
     var hit = false;
 
     window.handleSubmit = handleSubmit;
@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const guess = document.getElementById('translateSubmit').value;
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
+            
             if (guess.toLowerCase() === DuoWords[DuoWords.length - 1].translation.toLowerCase()) {
                 delay = 3;
                 goodAnswer = setInterval(goodJob, 15);              
@@ -112,13 +113,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     object.color='blue'; 
                     object.toggle = false
                     enterPressed = false;
-                    console.log('cherries')
+                    // how do I know which object it is?
+                    debugger
+
+                  $(`span#word${DuoWords.indexOf(object)}`).css({ color: "hsl(46, 100%, 50%)" });
+                //   $(`span#word${DuoWords.indexOf(object)}`).css({ "text-shadow": "-1px 0 white, 0 1px white, 1px 0 white, 0 - 1px white" });
+                  
                 }
             } else {
                 
                 object.color = 'red';
                 object.toggle=true;
-                console.log('eggs')
+                $(`span#word${DuoWords.indexOf(object)}`).css({ color: "white" });
+
             }
         }
     }
@@ -166,16 +173,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (language === 'demo') {
                 if (word.toggle === false){
-                    word.y -= 2;
+                    word.y -= 3;
                     
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
                         language = word.word2
+                        makeSentence(allLevels[language][level]);
                     }
                 }
             }
-            ctx.clearRect(word.x, word.y, word.width, word.height)
-            word.draw(ctx);
+            if (word.sentence === undefined) {
+                ctx.clearRect(word.x, word.y, word.width, word.height)
+                word.draw(ctx);
+            }
         } 
     
         //  THESE DO NOT NEED TO BE IN DRAW - MOVE TO KEY DOWN HANDLERS
@@ -189,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (hit === false) { duo.dx += speed }
         }
+
         if (leftPressed && duo.dx > 0) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], -speed) === true) {
@@ -223,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (correct.dx < canvas.width - 100) {
                 // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
                 level += 1;
+                makeSentence(allLevels[language][level])
             }
             correct.dx = canvas.width - 100;
             incorrect.dx = canvas.width - 100;
@@ -338,6 +350,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
     }
+    function makeSentence(DuoWords){
+        debugger
+        let newSentence = DuoWords[DuoWords.length-1].translation.split(' ');
+        let newTranslation = DuoWords[DuoWords.length - 1].sentence.split(' ');
+
+        for (let j = 0; j < newSentence.length; j++) {
+            let word = newSentence[j]
+            for (let i = 0; i < DuoWords.length - 1; i++) {
+                if (word.toLowerCase() === DuoWords[i].word2.toLowerCase()) {
+                    // Find the word block, then finid it's translation (word1); then find its translation in the foreign sentence
+                    // if this IS a match, then find the DuoWords[i].word1 in NewTranslation, and replace it with the span thing. 
+                    for (let k=0; k < newTranslation.length; k++) {
+                        let foreignWord = newTranslation[k]
+                        debugger
+                        if (foreignWord.toLowerCase() === DuoWords[i].word1.toLowerCase()) {
+                            // loop through all the words in newTranslation; if you find the one matching the word we JUST paused on in the above loop, swap it for a spanned foreign word
+                            debugger
+                            newTranslation[k] = `<span id=` + `word${i}` + '>' + foreignWord + '</span>'
+                            // i starts at 0, so 0 would be the firstword
+                        }
+
+                    }
+                }
+            }
+
+        }
+        debugger
+        console.log(newTranslation.join(' '))
+        document.getElementById('CS').innerHTML ="<p>" + newTranslation.join(' ') + "</p>"
+        document.getElementById('CS').classList.add('canvasSentence')
+
+    }
 
     function logKey(e) {
         const log = document.getElementById('translateSubmit');
@@ -353,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
         log.value += letter.toLowerCase()
     }
     
-    setInterval(draw, 15)
+    setInterval(draw, 25)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
     setInterval(nextLevel, 1000)
