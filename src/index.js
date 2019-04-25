@@ -19,7 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
     correctSprite.src = sprite.src
     var incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
-    // DUOS
+    // FLAGS
+    // var spanishFlag = new Image();
+    // var frenchFlag = new Image();
+    // var japaneseFlag = new Image();
+    // spanishFlag.src="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/juicy-flag-sprite-4.svg"
+    // japaneseFlag.src=spanishFlag.src;
+    // frenchFlag.src = spanishFlag.src;
+
+    // FLAGS
     
     var duoBlock = new Image();
     duoBlock.src = "/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duoBlock.jpg"
@@ -65,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         allLevels[language][level]
     ];
     var DuoObjects = [ platform, terrace ]
-    var speed = 7;
-    var jump = 7;
+    var speed = 5;
+    var jump = 5;
     var hit = false;
 
     window.handleSubmit = handleSubmit;
@@ -160,12 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.drawImage(defaultBackground, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
 
-        platform.draw(ctx);
+        // platform.draw(ctx);
         // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+        // terrace.draw(ctx); 
+        // timer(ctx);
 
         ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
-        terrace.draw(ctx); 
-        timer(ctx);
+        // ctx.drawImage(frenchFlag, 5, 5, 70, 58, 760, 565, 70, 50);
     
         // for languages
         for(var i = 0; i < allLevels[language][level].length; i++){
@@ -178,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
                         language = word.word2
+                        $('input#translateSubmit').css({ display: 'block' })
                         makeSentence(allLevels[language][level]);
                     }
                 }
@@ -243,11 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
     
-    // QUESTION: need to put these in separate files
-    // keyDownHandler(e);
-    // keyUpHandler(e);
+    // End of Draw
+    
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener('keypress', logKey);
     
     function keyDownHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
@@ -324,6 +334,18 @@ document.addEventListener('DOMContentLoaded', () => {
             
             delay -= 1;
         }
+        if ( language !=="demo" || (language === "demo" && (duo.dx > 350 || duo.dy < canvas.height - 100)) ){
+            $('img#arrow').css({display: "none"});
+            $('p#trans').css({ display: "none" });
+        } else {
+            $('img#arrow').css({ display: "block" });
+            $('p#trans').css({ display: "block" });
+        }
+        
+        //     $('p#instructions').css({display: "block"})
+        //     $('p#instructions').css({ display: "none" })
+
+        // }
     }
 
     function timer(ctx) {
@@ -397,9 +419,9 @@ document.addEventListener('DOMContentLoaded', () => {
         log.value += letter.toLowerCase()
     }
     
-    setInterval(draw, 25)
+    setInterval(draw, 15)
     setInterval(spriteify, 750) //duo class?
     setInterval(stopWatch, 1000)
-    setInterval(nextLevel, 1000)
-    document.addEventListener('keypress', logKey);
+    // setInterval(nextLevel, 1000)
+
 });

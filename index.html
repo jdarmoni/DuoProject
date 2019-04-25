@@ -29,15 +29,18 @@
         <canvas id="myCanvas" width="960" height="640"></canvas>
         
         <form name="myform" id="myform" onsubmit="handleSubmit()">
-            <input name= "wordGuess" id="translateSubmit" type="text" placeholder="Translate the phrase!" class="wordGuess" />
+            <input name= "wordGuess" id="translateSubmit" type="text" placeholder="Start Typing!" class="wordGuess" />
             <input type="button" style="display:none">
         </form>
     </div>
     <div id="CS">
 
     </div>
-        <!-- <p class="instructions">Hop on a word box and press Spacebar to interact!</p> -->
-        <!-- <p class="translate"> Translate here!</p> -->
+        <!-- <p class="instructions" id="instructions">Press Shift on a word box to get a hint!</p> -->
+        
+        <!-- <p class="translate" id="trans"> Go Pick A Language!</p> -->
+        <p class="moveDuo" id="trans">Go Pick A Language!</p>
+        <img src="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/arrow.png" class="arrow" id="arrow"/>
 
     <div class="consoleBox">
      <!-- <p class="consoleLanguage"> Choose Your Language </p>
