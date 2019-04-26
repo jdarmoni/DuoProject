@@ -18,9 +18,10 @@ let food = new Word('comida', 'food', 550, 370, 70, 50, 'green', true);
 let needsFood = new Sentence('El perro necesita comida', "The dog needs food", 760, 75, 100, 170, 'green');
                                                     // x, y, height, width, color
 // spanish level 2
-let die = new Word('moriré', 'die', 860, 565, 70, 50, 'orange', true);
-let today = new Word('hoy', 'today', 550, 370, 70, 50, 'orange', true);
-let dieSentence = new Sentence('No moriré hoy', "I will not die today", 760, 75, 100, 170, 'green');
+let bebi = new Word('bebí', 'drank', 860, 565, 70, 50, 'orange', true);
+let tu = new Word('tu', 'your', 15, 150, 70, 50, 'orange', true);
+let leche = new Word('leche', 'milk', 550, 370, 70, 50, 'orange', true);
+let dieSentence = new Sentence('Yo bebí tu leche', "I drank your milk", 760, 75, 100, 170, 'green');
 
 // spanish level 3
 let afraid = new Word('miedo', 'afraid', 860, 565, 70, 50, 'orange', true)
@@ -28,11 +29,10 @@ let iHave = new Word('tengo', 'I have', 550, 370, 70, 50, 'orange', true)
 let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlos", 760, 75, 100, 170, 'green');
 
 // spanish level 1
-let hermano = new Word('hermano', 'brother', 15, 150, 70, 50, 'orange', true)
-
-let tener = new Word('tener', ('to' + ' ' + 'have'), 860, 565, 70, 50, 'orange', true);
-let solia = new Word('solía', 'used', 550, 370, 70, 50, 'green', true);
-let brotherSentence = new Sentence('Solía tener un hermano', "I used to have a brother", 760, 75, 100, 170, 'green');
+let chico = new Word('chico', 'boy', 15, 150, 70, 50, 'orange', true)
+let perdido = new Word('perdido', 'lost', 860, 565, 70, 50, 'orange', true);
+let yo = new Word('yo', 'I', 550, 370, 70, 50, 'green', true);
+let brotherSentence = new Sentence('Yo soy un chico perdido', "I am a lost boy", 760, 75, 100, 170, 'green');
 
 /* Japanese level 1*/
  let iWord = new Word('私は', 'I', 860, 565, 70, 50, 'green', true);
@@ -46,10 +46,10 @@ let eggs = new Word('卵卵が', 'eggs', 550, 370, 70, 50, 'green', true);
 let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 170, 'green');
 
 /* French Level 1*/
-let go = new Word('va', 'go', 860, 565, 70, 50, 'green', true);
-let room = new Word('chambre', 'room', 15, 150, 70, 50, 'green', true);
-let anymore = new Word('plus', 'anymore', 550, 370, 70, 50, 'green', true);
-let RoomSentence = new Sentence('on ne va plus dans cette chambre', "we do not go in that room anymore", 760, 75, 100, 170, 'green');
+let go = new Word('Papa', 'father', 860, 565, 70, 50, 'green', true);
+let room = new Word('arrête', 'stop', 15, 150, 70, 50, 'green', true);
+let anymore = new Word('crier', 'yelling', 550, 370, 70, 50, 'green', true);
+let RoomSentence = new Sentence('Papa arrête de crier', "Father stop yelling", 760, 75, 100, 170, 'green');
 
 /* French Level 2*/
 let where = new Word(`ou`, 'where', 860, 565, 70, 50, '#b946b9', true );
@@ -57,10 +57,10 @@ let herFamily = new Word('famille', 'family', 15, 150, 70, 50, '#b946b9', true);
 let familySentence = new Sentence(`ou est sa famille`, "Where is her family", 760, 75, 100, 170, 'green');
 
 /* French Level 3*/
-let school = new Word(`l'ecole`, 'the school', 860, 565, 70, 50, '#b946b9', true);
+let school = new Word(`maison`, 'house', 860, 565, 70, 50, '#b946b9', true);
 let ruined = new Word('ruinee', 'ruined', 15, 150, 70, 50, '#b946b9', true);
 let forever = new Word('toujours', 'forever', 550, 370, 70, 50, '#b946b9', true);
-let schoolSentence = new Sentence( "l'ecole est ruinee pour toujours", `the school is ruined forever`, 760, 75, 100, 170, 'green');
+let schoolSentence = new Sentence( "le maison est ruinee pour toujours", `the house is ruined forever`, 760, 75, 100, 170, 'green');
 
 // French Level 4
 let pere = new Word('father', 'pere', 860, 565, 70, 50, '#b946b9', true);
@@ -71,8 +71,8 @@ let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu
 /* LEVELS */
 
 let languages = [French, Spanish, Japanese]
-let spanishLevel1 = [hermano, solia, tener, brotherSentence]
-let spanishLevel2 = [die, today, dieSentence]
+let spanishLevel1 = [yo, chico, perdido, brotherSentence]
+let spanishLevel2 = [bebi, tu, leche, dieSentence]
 let spanishLevel3 = [afraid, iHave, carlosSentence]
 let spanishLevel4 = [dog,hungry, food, needsFood];
 let japaneseLevel1 = [iWord, am, boy, IamABoy];

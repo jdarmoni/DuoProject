@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             delay -= 1;
         }
-        if ( language !=="demo" || (language === "demo" && (duo.dx > 350 || duo.dy < canvas.height - 100)) ){
+        if ( language !== "demo" || (language === "demo" && (duo.dx > 350 || duo.dy < canvas.height - 100)) ){
             $('img#arrow').css({display: "none"});
             $('p#trans').css({ display: "none" });
         } else {
