@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     // DUOS
     var sprite = new Image();
-    sprite.src = "/Users/AbbeyRoad/Desktop/DuoProject/assets/images/owl-sprite20.svg";
+    sprite.src = "./assets/images/owl-sprite20.svg";
     var correctSprite = new Image();
     correctSprite.src = sprite.src
     var incorrectSprite = new Image();
@@ -23,24 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // var spanishFlag = new Image();
     // var frenchFlag = new Image();
     // var japaneseFlag = new Image();
-    // spanishFlag.src="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/juicy-flag-sprite-4.svg"
+    // spanishFlag.src="./assets/images/juicy-flag-sprite-4.svg"
     // japaneseFlag.src=spanishFlag.src;
     // frenchFlag.src = spanishFlag.src;
 
     // FLAGS
     
     var duoBlock = new Image();
-    duoBlock.src = "/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duoBlock.jpg"
+    duoBlock.src = "./assets/images/duoBlock.jpg"
 
     // BACKGROUNDS
     let japanBackground = new Image();
-    japanBackground.src ="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duolingo-japan.png"
+    japanBackground.src ="./assets/images/duolingo-japan.png"
     let franceBackground = new Image();
-    franceBackground.src ="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duolingo-france.png";
+    franceBackground.src ="./assets/images/duolingo-france.png";
     let spainBackground = new Image();
     spainBackground.src ="assets/images/duolingo-spain.png";
     let defaultBackground = new Image();
-    defaultBackground.src ="/Users/AbbeyRoad/Desktop/DuoProject/assets/images/duo globe.png";
+    defaultBackground.src ="./assets/images/duo globe.png";
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
