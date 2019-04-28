@@ -20,16 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
    
-    // FLAGS
-    // var spanishFlag = new Image();
-    // var frenchFlag = new Image();
-    // var japaneseFlag = new Image();
-    // spanishFlag.src="./assets/images/juicy-flag-sprite-4.svg"
-    // japaneseFlag.src=spanishFlag.src;
-    // frenchFlag.src = spanishFlag.src;
 
-    // FLAGS
-    
     let duoBlock = new Image();
     duoBlock.src = "./assets/images/duoBlock.jpg"
 

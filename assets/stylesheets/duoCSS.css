@@ -1,8 +1,9 @@
 .wordGuess {
     display: none;
     position: absolute;
-    right: 180px;
-    top: 36px;
+    right: 14%;
+    top: 5%;
+    /* width="960" height="640" */
     width: 190px;
     height: 50px;
     text-align: center;
@@ -91,8 +92,8 @@
     height: auto;
     width: 178px;
     background-color: #78c800;
-    top: 90px;
-    right: 183px;
+    top: 13.5%;
+    right: 14%;
     border-radius: 20px;
     border: solid 3px white;
 }
