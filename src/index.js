@@ -13,12 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
     // DUOS
-    var sprite = new Image();
+    let sprite = new Image();
     sprite.src = "./assets/images/owl-sprite20.svg";
-    var correctSprite = new Image();
+    let correctSprite = new Image();
     correctSprite.src = sprite.src
-    var incorrectSprite = new Image();
+    let incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
+   
     // FLAGS
     // var spanishFlag = new Image();
     // var frenchFlag = new Image();
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // FLAGS
     
-    var duoBlock = new Image();
+    let duoBlock = new Image();
     duoBlock.src = "./assets/images/duoBlock.jpg"
 
     // BACKGROUNDS
@@ -58,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
-    var currentLanguage = null;
-    var language = 'demo';
-    var level = 1;
-    var time = 30;
-    var animationTime = 0;
+    let currentLanguage = null;
+    let language = 'demo';
+    let level = 1;
+    let time = 30;
+    let animationTime = 0;
     let rightPressed = false
     let leftPressed = false;
     let upPressed = false;
@@ -72,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let DuoWords = [
         allLevels[language][level]
     ];
-    var DuoObjects = [ platform, terrace ]
-    var speed = 5;
-    var jump = 5;
-    var hit = false;
+    let DuoObjects = [ platform, terrace ]
+    let speed = 5;
+    let jump = 5;
+    let hit = false;
 
     window.handleSubmit = handleSubmit;
     
