@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
-    let correct = new Duo (1220, 15, 250, 300, canvas.width - 100, 250, 75, 100 )
+    let correct = false;
     let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 250, 75, 100)
     // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
     //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.handleSubmit = handleSubmit;
     
     function handleSubmit() {
-        debugger
+        
         event.preventDefault();
         const guess = document.getElementById('translateSubmit').value;
         if (language !== 'demo') {
@@ -102,10 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (guess.toLowerCase() === DuoWords[DuoWords.length - 1].translation.toLowerCase()) {
                 delay = 3;
-                goodAnswer = setInterval(goodJob, 15);              
+                goodAnswer = setInterval(goodJob, 15); 
+                $(document.body).css({ backgroundColor: '#BFF199' })  
+                correct = true           
             } else {
                 delay = 3;
                 badAnswer = setInterval(badJob, 15);
+                $(document.body).css({ backgroundColor: '#FF9797' })
             }
         }
         document.getElementById('translateSubmit').value = ""
@@ -116,13 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function goodJob(){
-        ctx.drawImage(correctSprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
-        correct.dx -= 1;
+        
+        // ctx.drawImage(correctSprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
+        // correct.dx -= 1;
 
     }
     function badJob(){
-        ctx.drawImage(incorrectSprite, incorrect.sx, incorrect.sy, incorrect.sWidth, incorrect.sHeight, incorrect.dx, incorrect.dy, incorrect.dWidth, incorrect.dHeight);
-        incorrect.dx -=1;
+        // ctx.drawImage(incorrectSprite, incorrect.sx, incorrect.sy, incorrect.sWidth, incorrect.sHeight, incorrect.dx, incorrect.dy, incorrect.dWidth, incorrect.dHeight);
+        // incorrect.dx -=1;
 
     }
 
@@ -136,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     object.toggle = false
                     enterPressed = false;
                     // how do I know which object it is?
-                    debugger
+                    
 
                   $(`span#word${DuoWords.indexOf(object)}`).css({ color: "hsl(46, 100%, 50%)" });
                 //   $(`span#word${DuoWords.indexOf(object)}`).css({ "text-shadow": "-1px 0 white, 0 1px white, 1px 0 white, 0 - 1px white" });
@@ -255,10 +259,13 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(goodAnswer)
             clearInterval(badAnswer)
             delay = undefined;
-            if (correct.dx < canvas.width - 100) {
+            $(document.body).css({ backgroundColor: 'white' })
+            debugger
+            if (correct) {
                 // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
                 level += 1;
                 makeSentence(allLevels[language][level])
+                correct = false;
             }
             correct.dx = canvas.width - 100;
             incorrect.dx = canvas.width - 100;
@@ -294,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         // hitting this loop twice - make a switch
                         for (var i = 0; i < DuoWords.length; i++) {
-                            debugger
+                            
                             wordCollisionDetection(DuoWords[i])
                         }
                         DuoWords = allLevels[language][level]
@@ -388,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     }
     function makeSentence(DuoWords){
-        debugger
+        
         let newSentence = DuoWords[DuoWords.length-1].translation.split(' ');
         let newTranslation = DuoWords[DuoWords.length - 1].sentence.split(' ');
 
@@ -400,10 +407,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // if this IS a match, then find the DuoWords[i].word1 in NewTranslation, and replace it with the span thing. 
                     for (let k=0; k < newTranslation.length; k++) {
                         let foreignWord = newTranslation[k]
-                        debugger
+                        
                         if (foreignWord.toLowerCase() === DuoWords[i].word1.toLowerCase()) {
                             // loop through all the words in newTranslation; if you find the one matching the word we JUST paused on in the above loop, swap it for a spanned foreign word
-                            debugger
+                            
                             newTranslation[k] = `<span id=` + `word${i}` + '>' + foreignWord + '</span>'
                             // i starts at 0, so 0 would be the firstword
                         }
@@ -413,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         }
-        debugger
+        
         console.log(newTranslation.join(' '))
         document.getElementById('CS').innerHTML ="<p>" + newTranslation.join(' ') + "</p>"
         document.getElementById('CS').classList.add('canvasSentence')
@@ -421,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function logKey(e) {
-        debugger
+        
         if (e.target.id !== "translateSubmit") {
 
             const log = document.getElementById('translateSubmit');
