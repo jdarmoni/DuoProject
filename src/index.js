@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
     document.addEventListener('keypress', logKey);
-    
+
     function keyDownHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
             rightPressed = true;
@@ -398,17 +398,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function logKey(e) {
         debugger
-        const log = document.getElementById('translateSubmit');
-        let letter = e.code.slice(e.code.length - 1);
-        
-        if (e.code ==="Space") {
-            letter = " "
-        } else if (e.keyCode === 13) {
-            letter ="";
+        if (e.target.id !== "translateSubmit") {
+
+            const log = document.getElementById('translateSubmit');
+            let letter = e.code.slice(e.code.length - 1);
             
-            handleSubmit();
+            if (e.code ==="Space") {
+                letter = " "
+            } else if (e.keyCode === 13) {
+                letter ="";
+                
+                handleSubmit();
+            }
+            log.value += letter.toLowerCase()
         }
-        log.value += letter.toLowerCase()
     }
     
     setInterval(draw, 15)
