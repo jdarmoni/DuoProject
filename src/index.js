@@ -5,6 +5,7 @@ import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 import {allLevels} from './wordCollections'
 import handleSubmit from './handle_submit'
+import Flag from './flag.js';
 
 // import {level} from './word_guess';
 // import Clock from './clock.js';
@@ -20,10 +21,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
    
+    let spanishFlag = new Image();
+    spanishFlag.src = "./assets/images/juicy-flag-sprite-4.svg"
+    let spanishFlagSprite = new Flag('Español', 'Spanish', canvas.width - 550, canvas.height - 250, 70, 50, 'orange', true)
+    let drawSpanishFlag = ()=>{
+        return ctx.drawImage(spanishFlag, 15, 75, 100, 75, canvas.width - 550, canvas.height - 250, 120, 70);}
+    
+    
+    let drawDuo = ()=>{
+        return ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+    }
 
     let duoBlock = new Image();
     duoBlock.src = "./assets/images/duoBlock.jpg"
+    let drawBlock = ()=>{
+        return ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
+    }
+    // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
+
+
+
+
+
+
+
+    
     // BACKGROUNDS
     let japanBackground = new Image();
     japanBackground.src ="./assets/images/duolingo-japan.png"
@@ -144,8 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function draw() {
-        // 
-        // mainConsole
+
         ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
         
         if(language ===  'Japanese'){
@@ -158,13 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             ctx.drawImage(defaultBackground, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
-
+        
         // platform.draw(ctx);
-        // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
         // terrace.draw(ctx); 
         // timer(ctx);
-
-        ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
+        
+        drawBlock();
         // ctx.drawImage(frenchFlag, 5, 5, 70, 58, 760, 565, 70, 50);
     
         // for languages
@@ -224,7 +245,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (hit === false) { duo.dy += jump; }
         }
-        ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+        // drawSpanishFlag()
+
+        drawDuo();
         hit = false;
 
         // part of handle submit success animation

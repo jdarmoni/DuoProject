@@ -13,21 +13,59 @@ export default class Word {
 // Word('Weebu', canvas.width - 100, canvas.height-75, 150, 75)
 
 Word.prototype.draw = function draw(ctx) {
-    // ctx.clearRect(this.x, this.y, this.width, this.height);
+    // function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    //     if (typeof stroke == "undefined") {
+    //         stroke = true;
+    //     }
+    //     if (typeof radius === "undefined") {
+    //         radius = 5;
+    //     }
+    //     ctx.beginPath();
+    //     ctx.moveTo(x + radius, y);
+    //     ctx.lineTo(x + width - radius, y);
+    //     ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    //     ctx.lineTo(x + width, y + height - radius);
+    //     ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    //     ctx.lineTo(x + radius, y + height);
+    //     ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    //     ctx.lineTo(x, y + radius);
+    //     ctx.quadraticCurveTo(x, y, x + radius, y);
+    //     ctx.closePath();
+    //     if (stroke) {
+    //         ctx.stroke();
+    //     }
+    //     if (fill) {
+    //         ctx.fill();
+    //     }
+    // }
+
+    // ctx.lineWidth = 4;
+    // ctx.strokeStyle = "#000000";
+    // ctx.fillStyle = "#abc";
+    // roundRect(ctx, 10, 10, 100, 50, 10, true);
+    // ctx.font = "20px Georgia";
+    // ctx.textAlign = "center";
+    // ctx.textBaseline = "middle";
+    // ctx.fillStyle = "#000000";
+    // var rectHeight = 50;
+    // var rectWidth = 100;
+    // var rectX = 10;
+    // var rectY = 10;
+    // ctx.fillText("Attack!", rectX + (rectWidth / 2), rectY + (rectHeight / 2))
 
     ctx.beginPath();
-    // changed
     ctx.rect(this.x, this.y, this.width, this.height)
-    // ctx.arc(this.x, this.y, 40, 0, 3 * Math.PI)
-    ctx.font = '17px serif'
+    ctx.font = '17px Museo Sans Rounded'
     ctx.textBaseline ="middle"
-    // ctx.lineWidth = this.width
+    ctx.textAlign = "center"; 
+    
     if (this.toggle) {
-        ctx.fillText(this.word1, this.x + this.width/8, this.y + this.height / 2 )
+        ctx.fillText(this.word1, this.x + this.width/2, this.y + this.height / 2 )
     } else {
-        ctx.fillText(this.word2, this.x + this.width/8, this.y + this.height / 2)
+        ctx.fillText(this.word2, this.x + this.width/2, this.y + this.height / 2)
 
     }
+    
     ctx.strokeStyle =this.color;
     ctx.stroke();
     

@@ -1,6 +1,5 @@
 import Word from './word';
 import Sentence from './sentence';
-// constructor(word1, word2, x, y, width, height, color, toggle){
     const canvas = { width: 960, height: 640 };
 // languages!
     let French = new Word('Francais', 'French', canvas.width / 4, canvas.height - 450, 70, 50, 'red', true);
@@ -25,7 +24,7 @@ import Sentence from './sentence';
 
 
 /* spanish level 4 */
-let dog = new Word('el perro', 'the dog', 860, 565, 70, 50, 'orange', true);
+let dog = new Word('perro', 'the dog', 860, 565, 70, 50, 'orange', true);
 let hungry = new Word('necesita', 'needs', 15, 150, 70, 50, 'orange', true);
 let food = new Word('comida', 'food', 550, 370, 70, 50, 'green', true);
 let needsFood = new Sentence('El perro necesita comida', "The dog needs food", 760, 75, 100, 170, 'green');
@@ -54,7 +53,7 @@ let brotherSentence = new Sentence('Yo soy un chico perdido', "I am a lost boy",
  let IamABoy = new Sentence('私は男の子です', "I am a boy", 760, 75, 100, 170, 'green');
 
 // Japanese level 2
-let like = new Word('好きです', 'I like', 15, 150, 70, 50, 'green', true);
+let like = new Word('好きです', 'I like', 15, 150, 80, 50, 'green', true);
 let eggs = new Word('卵卵が', 'eggs', 550, 370, 70, 50, 'green', true);
 let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 170, 'green');
 
@@ -77,7 +76,7 @@ let schoolSentence = new Sentence( "le maison est ruinee pour toujours", `the ho
 
 // French Level 4
 let pere = new Word('father', 'pere', 860, 565, 70, 50, '#b946b9', true);
-let disparu = new Word('disappeared', 'disparu', 15, 150, 70, 50, '#b946b9', true);
+let disparu = new Word('disappeared', 'disparu', 15, 150, "disappeared".length*8, 50, '#b946b9', true);
 let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu', 760, 75, 100, 170, 'green');
 
 
