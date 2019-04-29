@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.handleSubmit = handleSubmit;
     
     function handleSubmit() {
-        // event.preventDefault();
+        debugger
+        event.preventDefault();
         const guess = document.getElementById('translateSubmit').value;
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
