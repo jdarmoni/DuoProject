@@ -99,8 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const guess = document.getElementById('translateSubmit').value;
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
+            let translation = DuoWords[DuoWords.length - 1].translation
+            debugger
             
-            if (guess.toLowerCase() === DuoWords[DuoWords.length - 1].translation.toLowerCase()) {
+            if (guess.toLowerCase() === translation.toLowerCase()) {
                 delay = 3;
                 goodAnswer = setInterval(goodJob, 15); 
                 $(document.body).css({ backgroundColor: '#BFF199' })  
@@ -109,6 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 delay = 3;
                 badAnswer = setInterval(badJob, 15);
                 $(document.body).css({ backgroundColor: '#FF9797' })
+                let correctGuess = translation.split(' ');
+                let badGuess = guess.split(' ');
+                let closeGuess = "";
+                for (let i = 0; i < correctGuess.length; i++) {
+                    if (correctGuess[i].toLowerCase() === badGuess[i].toLowerCase()) {
+                        closeGuess += correctGuess[i] + ' ';
+                    } else {
+                        closeGuess += "_ "
+                    }
+                }
+                console.log(closeGuess)
+                debugger
             }
         }
         document.getElementById('translateSubmit').value = ""
@@ -267,8 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 makeSentence(allLevels[language][level])
                 correct = false;
             }
-            correct.dx = canvas.width - 100;
-            incorrect.dx = canvas.width - 100;
+            // correct.dx = canvas.width - 100;
+            // incorrect.dx = canvas.width - 100;
         }
         // part of handle submit success animation      
 
