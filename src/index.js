@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     defaultBackground.src ="./assets/images/duo globe.png";
     // BACKGROUNDS
 
-    let duo = new Duo( 15, 15, 250, 300, 0, canvas.height - 90,  75, 100);
+    let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
     let correct = false;
     let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 250, 75, 100)
     // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
