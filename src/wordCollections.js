@@ -1,7 +1,7 @@
 import Word from './word';
 import Sentence from './sentence';
 // constructor(word1, word2, x, y, width, height, color, toggle){
-const canvas = { width: 960, height: 640 };
+    const canvas = { width: 960, height: 640 };
 // languages!
     let French = new Word('Francais', 'French', canvas.width / 4, canvas.height - 450, 70, 50, 'red', true);
     let Spanish = new Word('Español', 'Spanish', canvas.width - 550, canvas.height - 250, 70, 50, 'orange', true);

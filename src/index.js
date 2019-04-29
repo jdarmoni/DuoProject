@@ -3,9 +3,9 @@ import Duo from './Duo.js'
 import Obstacles from './Obstacles'
 import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
-// import Sentence from './sentence.js';
 import {allLevels} from './wordCollections'
 import handleSubmit from './handle_submit'
+
 // import {level} from './word_guess';
 // import Clock from './clock.js';
 
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let goodAnswer;
     let badAnswer;
     // handleSubmit success Animation 
-
 
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function wordCollisionDetection(object){
-        
          
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
             if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
@@ -265,13 +263,14 @@ document.addEventListener('DOMContentLoaded', () => {
             downPressed = true;
         } 
         else if (e.keyCode == 16) {
-            
+                
                 enterPressed = true;
                     if (enterPressed) {
-                        
+                        DuoWords = allLevels[language][level]
+
                         // hitting this loop twice - make a switch
                         for (var i = 0; i < DuoWords.length; i++) {
-                            
+                            debugger
                             wordCollisionDetection(DuoWords[i])
                         }
                         DuoWords = allLevels[language][level]
@@ -398,6 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function logKey(e) {
+        debugger
         const log = document.getElementById('translateSubmit');
         let letter = e.code.slice(e.code.length - 1);
         
