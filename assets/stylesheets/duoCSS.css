@@ -143,6 +143,7 @@
 }
 
 .close {
+    padding-top: 5px;
     font-weight: bold;
     font-family: Museo Sans Rounded;
     color: #d33131; 
