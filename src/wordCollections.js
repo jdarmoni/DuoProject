@@ -53,10 +53,9 @@ let boy = new Word('おとこのこ', 'boy', 550, 370, 95, 50, 'green', true);
 let IamABoy = new Sentence('ぼく は おとこのこ です', "I am a boy", 760, 75, 100, 170, 'green');
 
 // Japanese level 2
-
-let like = new Word('好きです', 'I like', 15, 150, 80, 50, 'green', true);
+let like = new Word('好き', 'like', 15, 150, 80, 50, 'green', true);
 let eggs = new Word('たまご', 'eggs', 550, 370, 70, 50, 'green', true);
-let ILikeEggs = new Sentence('私は たまご 好きです', "I like eggs", 760, 75, 100, 170, 'green');
+let ILikeEggs = new Sentence('私は たまご 好き です', "I like eggs", 760, 75, 100, 170, 'green');
 
 /* French Level 1*/
 let go = new Word('Papa', 'father', 860, 565, 70, 50, 'green', true);
