@@ -43,19 +43,20 @@ let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlo
 // spanish level 1
 let chico = new Word('chico', 'boy', 15, 150, 70, 50, 'orange', true)
 let perdido = new Word('perdido', 'lost', 860, 565, 70, 50, 'orange', true);
-let yo = new Word('yo', 'I', 550, 370, 70, 50, 'green', true);
+let yo = new Word('yo', 'I', 550, 370, 70, 50, 'orange', true);
 let brotherSentence = new Sentence('Yo soy un chico perdido', "I am a lost boy", 760, 75, 100, 170, 'green');
 
 /* Japanese level 1*/
- let iWord = new Word('私は', 'I', 860, 565, 70, 50, 'green', true);
+let iWord = new Word('ぼく', 'I', 860, 565, 70, 50, 'green', true);
  let am = new Word('です', 'am', 15, 150, 70, 50, 'green', true);
- let boy = new Word('男の子', 'boy', 550, 370, 70, 50, 'green', true);
- let IamABoy = new Sentence('私は男の子です', "I am a boy", 760, 75, 100, 170, 'green');
+let boy = new Word('おとこのこ', 'boy', 550, 370, 95, 50, 'green', true);
+let IamABoy = new Sentence('ぼく は おとこのこ です', "I am a boy", 760, 75, 100, 170, 'green');
 
 // Japanese level 2
+
 let like = new Word('好きです', 'I like', 15, 150, 80, 50, 'green', true);
-let eggs = new Word('卵卵が', 'eggs', 550, 370, 70, 50, 'green', true);
-let ILikeEggs = new Sentence('私は卵が好きです', "I like eggs", 760, 75, 100, 170, 'green');
+let eggs = new Word('たまご', 'eggs', 550, 370, 70, 50, 'green', true);
+let ILikeEggs = new Sentence('私は たまご 好きです', "I like eggs", 760, 75, 100, 170, 'green');
 
 /* French Level 1*/
 let go = new Word('Papa', 'father', 860, 565, 70, 50, 'green', true);
@@ -88,7 +89,7 @@ let spanishLevel2 = [bebi, tu, leche, dieSentence]
 let spanishLevel3 = [afraid, iHave, carlosSentence]
 let spanishLevel4 = [dog,hungry, food, needsFood];
 let japaneseLevel1 = [iWord, am, boy, IamABoy];
-let japaneseLevel2 = [iWord, like, eggs, ILikeEggs];
+let japaneseLevel2 = [like, eggs, ILikeEggs];
 let frenchLevel1 = [go, room, anymore, RoomSentence];
 let frenchLevel2 = [where, herFamily, familySentence];
 let frenchLevel3 = [school, ruined, forever, schoolSentence]
