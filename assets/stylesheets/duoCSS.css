@@ -129,35 +129,25 @@
     left: 3%;
 }
 
-/* document.getElementById('CS').appendChild(document.createElement('p').appendChild(document.createTextNode("This is new."))) */
+.word-hint {
+    display: none;
+    position: absolute;
+    height: auto;
+    width: 178px;
+    background-color: #FF9797;
+    top: 29.5%;
+    right: 14%;
+    border-radius: 20px;
+    border: solid 3px white;
+    text-align: center;
+}
 
-/* document.getElementById('CS').classList.add('canvasSentence') */
-
-/* 
-var element = document.getElementById("CS");
-var para = document.createElement("p");
-var wordNode = document.createTextNode(word);
-para.appendChild(nodeWord);
-
-element.appendChild(para); */
-
-/* var txt = "Hello bye";
-var dataArr = txt.split(' ');
-
-var paragraph = document.getElementById("pid");
-paragraph.innerHTML = dataArr[0]+ " <span>"+dataArr[1]+"</span>"; */
-
-/* document.getElementById('CS').innerHTML = "eggies" + "<span>" +"poopoo" + "</span>" */
-
-
-/* // let newSentence = DuoWords[3].translation.split(' ').forEach((word => {
-//     for (i = 0; i < DuoWords.length - 1; i++) {
-//         console.log(word)
-//         console.log(DuoWords[i].word2)
-//         if (word === DuoWords[i].word2) {
-//             word = `<span className=` + `word${i}` + '>' + word + '</span>'
-
-//         }
-//     }
-// })) */
-/* document.getElementById('').innerHTML = newSentence */
+.close {
+    font-weight: bold;
+    font-family: Museo Sans Rounded;
+    color: #d33131; 
+}
+.closeGuess {
+    font-family: Museo Sans Rounded;
+    color: #d33131;    
+}

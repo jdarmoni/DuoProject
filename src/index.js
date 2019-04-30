@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         event.preventDefault();
         const guess = document.getElementById('translateSubmit').value;
+        let hints =0;
         if (language !== 'demo') {
             DuoWords = allLevels[language][level]
             let translation = DuoWords[DuoWords.length - 1].translation
@@ -111,15 +112,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 delay = 3;
                 badAnswer = setInterval(badJob, 15);
                 $(document.body).css({ backgroundColor: '#FF9797' })
+                // logic for giving a hint
                 let correctGuess = translation.split(' ');
                 let badGuess = guess.split(' ');
                 let closeGuess = "";
                 for (let i = 0; i < correctGuess.length; i++) {
-                    if (correctGuess[i].toLowerCase() === badGuess[i].toLowerCase()) {
+                    if (badGuess[i] !== undefined && badGuess.includes(correctGuess[i].toLowerCase())) {
                         closeGuess += correctGuess[i] + ' ';
                     } else {
-                        closeGuess += "_ "
+                        closeGuess += "_ ";
+                        hints += 1;
                     }
+                }
+                document.getElementById('hint').style="display: block";
+                if (hints <= 1) { document.getElementById('hint').innerHTML = "<p class='close'>Close!!</p>" + '<span class="closeGuess">' + closeGuess + '</span>' + '<br></br>';} else {
+                    document.getElementById('hint').innerHTML = "<p class='close'>Hint:</p>" + closeGuess + '<br></br>';
                 }
                 console.log(closeGuess)
                 debugger
@@ -274,6 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(badAnswer)
             delay = undefined;
             $(document.body).css({ backgroundColor: 'white' })
+            document.getElementById('hint').innerHTML = "";
+            document.getElementById('hint').style="display: none"
+
             debugger
             if (correct) {
                 // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
@@ -417,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let word = newSentence[j]
             for (let i = 0; i < DuoWords.length - 1; i++) {
                 if (word.toLowerCase() === DuoWords[i].word2.toLowerCase()) {
-                    // Find the word block, then finid it's translation (word1); then find its translation in the foreign sentence
+                    // Find the word block, then find it's translation (word1); then find its translation in the foreign sentence
                     // if this IS a match, then find the DuoWords[i].word1 in NewTranslation, and replace it with the span thing. 
                     for (let k=0; k < newTranslation.length; k++) {
                         let foreignWord = newTranslation[k]
