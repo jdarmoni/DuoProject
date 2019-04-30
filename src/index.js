@@ -99,9 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const guess = document.getElementById('translateSubmit').value;
         let hints =0;
         if (language !== 'demo') {
-            DuoWords = allLevels[language][level]
-            let translation = DuoWords[DuoWords.length - 1].translation
-            debugger
+            DuoWords = allLevels[language][level];
+            let translation = DuoWords[DuoWords.length - 1].translation;
             
             if (guess.toLowerCase() === translation.toLowerCase()) {
                 delay = 3;
@@ -117,11 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let badGuess = guess.split(' ');
                 let closeGuess = "";
                 for (let i = 0; i < correctGuess.length; i++) {
-                    if (badGuess[i] !== undefined && badGuess.includes(correctGuess[i].toLowerCase())) {
+                    if (badGuess.includes(correctGuess[i].toLowerCase())) {
                         closeGuess += correctGuess[i] + ' ';
                     } else {
                         closeGuess += "_ ";
                         hints += 1;
+                        
                     }
                 }
                 document.getElementById('hint').style="display: block";
