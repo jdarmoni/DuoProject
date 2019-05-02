@@ -49,9 +49,15 @@
      <p class = "consoleLevel"> Level</p>
      <p class ="consoleTime"> ∞ </p> -->
      </div>
-     <div class="terraceBox">
-        <img src="./assets/images/DuoLogo.png" alt="">
-     </div>
+     <div class="terraceBox" id="terraceBox">
+         <img src="./assets/images/DuoLogo.png" alt="">
+    </div>
+    <script>
+            document.getElementById('terraceBox').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().left}px`;
+        $(window).resize(function () {
+            document.getElementById('terraceBox').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().left}px`;});
+    </script> 
+
 </body>
 
 </html>

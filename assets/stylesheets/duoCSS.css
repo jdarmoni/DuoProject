@@ -64,7 +64,6 @@
     position: absolute;
     top: 100;
     top: 201px;
-    left: 160px;
     height: 32px;
     width: 199px;
     /* background-color: white; */
@@ -78,7 +77,7 @@
 .terraceBox img {
     float: left;
     position: absolute;
-    left: 160px;
+    /* left: 160px; */
     height: 58px;
     width: 199px;
     left: 0px;
