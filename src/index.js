@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 goodAnswer = setInterval(goodJob, 15); 
                 $(document.body).css({ backgroundColor: '#BFF199' })  
                 correct = true           
-                document.getElementById('crop').style = "display: block";
+                // document.getElementById('crop').style = "display: block";
             } else {
                 delay = 3;
                 badAnswer = setInterval(badJob, 15);
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $(document.body).css({ backgroundColor: 'white' })
             document.getElementById('hint').innerHTML = "";
             document.getElementById('hint').style="display: none"
-            document.getElementById('crop').style = "display: none"
+            // document.getElementById('crop').style = "display: none"
             debugger
             if (correct) {
                 // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
