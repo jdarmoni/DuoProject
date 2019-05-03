@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 document.getElementById('hint').style="display: block";
-                if (hints <= 1) { document.getElementById('hint').innerHTML = "<p class='close'>Close!!</p>" + '<span class="closeGuess">' + closeGuess + '</span>' + '<br></br>';} else {
-                    document.getElementById('hint').innerHTML = "<p class='close'>Hint:</p>" + closeGuess + '<br></br>';
+                if (hints <= 1) { document.getElementById('hint').innerHTML = "<p class='close-hint'>Close!!</p>" + '<span class="closeGuess">' + closeGuess + '</span>' + '<br></br>';} else {
+                    document.getElementById('hint').innerHTML = "<p class='close-hint'>Hint:</p>" + closeGuess + '<br></br>';
                 }
                 console.log(closeGuess)
                 debugger

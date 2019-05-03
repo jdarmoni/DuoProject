@@ -27,5 +27,3 @@ window.onclick = function(event) {
 
 module.exports = Modal;
 
-
-// for when you're ready to implement
