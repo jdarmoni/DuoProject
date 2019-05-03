@@ -238,6 +238,8 @@
     background-repeat: no-repeat;
     border: white;
     background-color: transparent;
+    margin-left: 1%;
+    margin-top: 1%;
 }
 
 .instructions {
