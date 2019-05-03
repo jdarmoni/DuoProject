@@ -184,11 +184,12 @@
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
     font-size: 15px;
     font-family: "museo-sans-rounded",sans-serif;
     height: 40%;
@@ -197,12 +198,19 @@
 .modal-content p:nth-child(3) {
     width: 35%;
     margin-bottom: 3%;
-    margin-top: 3%;
+    margin-top: 4%;
+    margin-left: 2%;
     float: left;
 }
 
 .modal-content p:nth-child(5) {
-        width: 35%;
+    position: absolute;
+    bottom: 0;
+    clear: both;
+    width: 35%;
+    float: left;
+    margin-left: 2%;
+    margin-bottom: 5%;
 }
 
 /* The Close Button */
@@ -211,6 +219,7 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  padding-right: 1%;
 }
 
 .close:hover,
@@ -221,8 +230,8 @@
 }
 
 .myBtn {
-    width: 50px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     background-image: url(https://d7mj4aqfscim2.cloudfront.net/images/design-guidelines/iconography/glyphs/glyph-5.svg);
     background-repeat: no-repeat;
     border: white;
@@ -240,8 +249,21 @@
 }
 
 .duo-instructions {
+    position: absolute;
+    right: 0;
     width: 9%;
-    float: right;
     padding-right: 20%;
     padding-top: 1%;
+}
+
+.shift-image {
+    width: 9%;
+    /* float: right; */
+    padding-right: 20%;
+    padding-top: 1%;
+    clear: both;
+    position: absolute;
+    right: 0;
+    bottom: 3%;
+
 }
