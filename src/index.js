@@ -7,6 +7,7 @@ import {allLevels} from './wordCollections'
 import handleSubmit from './handle_submit'
 import Flag from './flag.js';
 
+const Modal = require('./modal.js')
 // import {level} from './word_guess';
 // import Clock from './clock.js';
 

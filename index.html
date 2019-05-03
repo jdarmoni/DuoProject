@@ -45,19 +45,53 @@
     </div>
 
     <div class="consoleBox">
-     <!-- <p class="consoleLanguage"> Choose Your Language </p>
-     <p class = "consoleLevel"> Level</p>
-     <p class ="consoleTime"> ∞ </p> -->
      </div>
+
      <div class="terraceBox" id="terraceBox">
          <img src="./assets/images/DuoLogo.png" alt="">
     </div>
+
+
+     
+            <!--Trigger / Open The Modal-->
+        
+                <button id="myBtn">Instructions</button>
+        
+                <!-- The Modal -->
+                    <div id="myModal" class="modal">
+        
+                        <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Instructions!</p>
+                <p>Move Duo around with the directional keys!</p>
+                <p>Press 'Shift' on a box to choose a language!</p>
+            </div>
+        
+            </div>
+
+    <!-- <div class="p-links" id="p-links" >
+        <a href="https://github.com/jdarmoni"><img class="github" id="github" src="./assets/images/github.png"></a>
+
+    </div>     -->
+    
+
     <script>
-            document.getElementById('terraceBox').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().left}px`;
+        let myCanvas = document.getElementById('myCanvas').getBoundingClientRect()
+        // set location inside of canvas initially
+        document.getElementById('terraceBox').style.left = `${myCanvas.left}px`;
+        // github
+        // document.getElementById('p-links').style.left = `${myCanvas.right}px`
+        // detect window resize and reposition inside the canvas
         $(window).resize(function () {
-            document.getElementById('terraceBox').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().left}px`;});
+            document.getElementById('terraceBox').style.left = `${myCanvas.left}px`;
+            // p-links
+            // document.getElementById('p-links').style.left = `${myCanvas.right}px`
+        });
     </script> 
 
+
+    
 </body>
 
 </html>
