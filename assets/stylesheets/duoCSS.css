@@ -235,6 +235,7 @@
     background-image: url(https://d7mj4aqfscim2.cloudfront.net/images/design-guidelines/iconography/glyphs/glyph-5.svg);
     background-repeat: no-repeat;
     border: white;
+    background-color: transparent;
 }
 
 .instructions {
