@@ -201,9 +201,10 @@
     margin-top: 4%;
     margin-left: 2%;
     float: left;
+    font-size: 25px;
 }
 
-.modal-content p:nth-child(5) {
+.modal-content p:nth-child(6) {
     position: absolute;
     bottom: 0;
     clear: both;
@@ -211,6 +212,7 @@
     float: left;
     margin-left: 2%;
     margin-bottom: 5%;
+    font-size: 25px;
 }
 
 /* The Close Button */
@@ -266,5 +268,12 @@
     position: absolute;
     right: 0;
     bottom: 3%;
+}
 
+.direction-buttons{
+    position: absolute;
+    right: 5%;
+    width: 7%;
+    /* top: 34%; */
+    padding-top: 2%;
 }
