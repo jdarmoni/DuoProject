@@ -264,12 +264,22 @@
 .shift-image {
     width: 9%;
     /* float: right; */
+    /* padding-right: 20%; */
+    padding-top: 1%;
+    clear: both;
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+}
+.shift-image2 {
+    width: 9%;
+    /* float: right; */
     padding-right: 20%;
     padding-top: 1%;
     clear: both;
     position: absolute;
-    right: 0;
-    bottom: 3%;
+    right: 0%;
+    bottom: 10%;
 }
 
 .direction-buttons{

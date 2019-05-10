@@ -67,12 +67,14 @@
                 <p class="instructions">Instructions!</p>
 
                 <p>Move Duo around with the directional keys! </p> 
-                <img class="duo-instructions" src ="./assets//images/DuoImage.png" /> 
+                <img class="duo-instructions" src ="./assets/images/DuoImage.png" /> 
                 <img class="direction-buttons" src="./assets/images/direction-keys.png"/>
                
-                <p>Press 'Shift' on a box to choose a language!</p>
+                <p>Press 'Shift' on a box to choose a language or toggle a word!</p>
               
-                <img class="shift-image" src="https://image.flaticon.com/icons/svg/2/2081.svg" alt="">
+                <img class="shift-image" src="./assets/images/papa.png" alt="">
+                <img class="shift-image2" src="./assets/images/father.png" alt="">
+
             </div>
         
             </div>
@@ -91,7 +93,7 @@
         // document.getElementById('p-links').style.left = `${myCanvas.right}px`
         // detect window resize and reposition inside the canvas
         $(window).resize(function () {
-            document.getElementById('terraceBox').style.left = `${myCanvas.left}px`;
+            document.getElementById('terraceBox').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().x}px`;
             // p-links
             // document.getElementById('p-links').style.left = `${myCanvas.right}px`
         });
