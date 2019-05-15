@@ -236,16 +236,20 @@
 }
 
 .myBtn {
+    
     position: absolute;
     top: 0;
-    width: 25px;
-    height: 25px;
-    background-image: url(https://d7mj4aqfscim2.cloudfront.net/images/design-guidelines/iconography/glyphs/glyph-5.svg);
+    width: 65px;
+    height: 28px;
+    /* background-image: url(https://d7mj4aqfscim2.cloudfront.net/images/design-guidelines/iconography/glyphs/glyph-5.svg); */
     background-repeat: no-repeat;
-    border: white;
-    background-color: transparent;
+    border: solid 2px white;
+    background-color: #7AC70C;
     margin-left: 1%;
     margin-top: 1%;
+    color: white;
+    border-radius: 24px;
+    font-family: "museo-sans-rounded",sans-serif;
 }
 
 .instructions {
