@@ -1,3 +1,7 @@
+#myCanvas {
+    border-radius: 25px;
+}
+
 .wordGuess {
     display: none;
     position: absolute;
