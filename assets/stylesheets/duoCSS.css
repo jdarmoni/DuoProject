@@ -236,6 +236,8 @@
 }
 
 .myBtn {
+    position: absolute;
+    top: 0;
     width: 25px;
     height: 25px;
     background-image: url(https://d7mj4aqfscim2.cloudfront.net/images/design-guidelines/iconography/glyphs/glyph-5.svg);
