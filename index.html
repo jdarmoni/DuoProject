@@ -90,12 +90,20 @@
         // set location inside of canvas initially
         document.getElementById('terraceBox').style.left = `${myCanvas.left}px`;
         document.getElementById('myBtn').style.left = `${myCanvas.left + 20}px`;
+        document.getElementById('translateSubmit').style.right = document.getElementById('myCanvas').getBoundingClientRect().x + 30 + 'px'
+        document.getElementById('CS').style.right = document.getElementById('myCanvas').getBoundingClientRect().x + 35 + 'px'
+        
+
         // github
         // document.getElementById('p-links').style.left = `${myCanvas.right}px`
         // detect window resize and reposition inside the canvas
         $(window).resize(function () {
             document.getElementById('terraceBox').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().x}px`;
             document.getElementById('myBtn').style.left = `${document.getElementById('myCanvas').getBoundingClientRect().x + 20}px`;
+            document.getElementById('translateSubmit').style.right = document.getElementById('myCanvas').getBoundingClientRect().x + 30 + 'px'
+            document.getElementById('CS').style.right = document.getElementById('myCanvas').getBoundingClientRect().x + 35 + 'px'
+            
+
             // p-links
             // document.getElementById('p-links').style.left = `${myCanvas.right}px`
         });
