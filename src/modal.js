@@ -1,4 +1,5 @@
 const Modal = document.addEventListener('DOMContentLoaded', () => {
+
 let myModal = document.getElementById('myModal');
 
 // Get the button that opens the modal
@@ -23,6 +24,9 @@ window.onclick = function(event) {
     myModal.style.display = "none";
   }
 }
+
+
+
 });
 
 module.exports = Modal;

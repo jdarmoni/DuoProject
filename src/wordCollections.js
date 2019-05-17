@@ -79,6 +79,8 @@ let pere = new Word('father', 'pere', 860, 565, 70, 50, '#b946b9', true);
 let disparu = new Word('disappeared', 'disparu', 15, 150, "disappeared".length*8, 50, '#b946b9', true);
 let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu', 760, 75, 100, 170, 'green');
 
+// cleared!
+// let completed = new Sentence("Congratulations!", 'Felicitations!', 760, 75, 100, 170, 'green');
 
 /* LEVELS */
 
@@ -99,5 +101,6 @@ export const allLevels = {
     demo: { 1: languages },
     French: { 1: frenchLevel1, 2: frenchLevel2, 3: frenchLevel3, 4: frenchLevel4 },
     Spanish: { 1: spanishLevel1, 2: spanishLevel2, 3: spanishLevel3, 4: spanishLevel4 },
-    Japanese: { 1: japaneseLevel1, 2: japaneseLevel2 }
+    Japanese: { 1: japaneseLevel1, 2: japaneseLevel2 },
+    // eggs: [completed]
 }

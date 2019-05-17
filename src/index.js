@@ -4,7 +4,7 @@ import Obstacles from './Obstacles'
 import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 import {allLevels} from './wordCollections'
-import Flag from './flag.js';
+// import Flag from './flag.js';
 
 const Modal = require('./modal.js');
 // const handleSubmit = require('./handle_submit.js')
@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
    
-    let spanishFlag = new Image();
-    spanishFlag.src = "./assets/images/juicy-flag-sprite-4.svg"
-    let spanishFlagSprite = new Flag('Español', 'Spanish', canvas.width - 550, canvas.height - 250, 70, 50, 'orange', true)
-    let drawSpanishFlag = ()=>{
-        return ctx.drawImage(spanishFlag, 15, 75, 100, 75, canvas.width - 550, canvas.height - 250, 120, 70);}
+    // let spanishFlag = new Image();
+    // spanishFlag.src = "./assets/images/juicy-flag-sprite-4.svg"
+    // let spanishFlagSprite = new Flag('Español', 'Spanish', canvas.width - 550, canvas.height - 250, 70, 50, 'orange', true)
+    // let drawSpanishFlag = ()=>{
+    //     return ctx.drawImage(spanishFlag, 15, 75, 100, 75, canvas.width - 550, canvas.height - 250, 120, 70);}
     
     
     let drawDuo = ()=>{
@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (hints <= 1) { document.getElementById('hint').innerHTML = "<p class='close-hint'>Close!!</p>" + '<span class="closeGuess">' + closeGuess + '</span>' + '<br></br>';} else {
                     document.getElementById('hint').innerHTML = "<p class='close-hint'>Hint:</p>" + closeGuess + '<br></br>';
                 }
-                console.log(closeGuess)
                 debugger
             }
         }
@@ -196,14 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
         
-        if(language ===  'Japanese'){
+        if(language === 'Japanese'){
             ctx.drawImage(japanBackground, 400, 0, 1000, 900, 0, 0, canvas.width, canvas.height)
         } else if (language === 'French') {
             ctx.drawImage(franceBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         }
-        else if (language ==="Spanish") {
+        else if (language === "Spanish") {
             ctx.drawImage(spainBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         } else {
+            // level = 1;
             ctx.drawImage(defaultBackground, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
         
@@ -285,17 +285,21 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('hint').innerHTML = "";
             document.getElementById('hint').style="display: none"
             // document.getElementById('crop').style = "display: none"
-            debugger
             if (correct) {
-                // the correct dx animation requires his dx to move - if it's moved, you know it was a correct answer, i.e., handleSubmit === true. 
-                level += 1;
-                makeSentence(allLevels[language][level])
+                debugger
+                
+                if (allLevels[language][level + 1] !== undefined) {
+                    level += 1;
+                    makeSentence(allLevels[language][level])
+                } else {
+                    language = 'demo'; 
+                    level = 1;
+                    $('div#CS').css({ display: 'none' })
+                   
+                }
                 correct = false;
             }
-            // correct.dx = canvas.width - 100;
-            // incorrect.dx = canvas.width - 100;
         }
-        // part of handle submit success animation      
 
     }
     
@@ -446,7 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
         
-        console.log(newTranslation.join(' '))
         document.getElementById('CS').innerHTML ="<p>" + newTranslation.join(' ') + "</p>"
         document.getElementById('CS').classList.add('canvasSentence')
 
