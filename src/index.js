@@ -286,14 +286,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('hint').style="display: none"
             // document.getElementById('crop').style = "display: none"
             if (correct) {
-                debugger
                 
                 if (allLevels[language][level + 1] !== undefined) {
                     level += 1;
                     makeSentence(allLevels[language][level])
                 } else {
                     language = 'demo'; 
-                    level = 1;
+                    level = 1; 
+                    currentLanguage = null;
                     $('div#CS').css({ display: 'none' })
                    
                 }
