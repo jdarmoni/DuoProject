@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
+    let langResetSwitch = false;
     let currentLanguage = null;
     let language = 'demo';
     let level = 1;
@@ -220,11 +221,20 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (language === 'demo') {
                 if (word.toggle === false){
+                    if (langResetSwitch === false) {
+                        var originalYCord = word.y; // var so that it has scope for block in 235,6
+                        langResetSwitch = true;
+
+                    }
+                    // console.log(originalYCord)
                     word.y -= 3;
                     
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
-                        language = word.word2
+                        debugger
+                        currentLanguage.y = originalYCord;
+                        word.y = originalYCord;
+                        language = word.word2;
                         $('input#translateSubmit').css({ display: 'block' })
                         makeSentence(allLevels[language][level]);
                     }
@@ -294,6 +304,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     language = 'demo'; 
                     level = 1; 
                     currentLanguage = null;
+                    // DuoWords = [
+                    //     allLevels[language][level] 
+                    // ]
                     $('div#CS').css({ display: 'none' })
                    
                 }
@@ -427,7 +440,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let newSentence = DuoWords[DuoWords.length-1].translation.split(' ');
         let newTranslation = DuoWords[DuoWords.length - 1].sentence.split(' ');
-
+        if (document.getElementById('CS')) {
+            $('div#CS').css({ display: 'block' })}
         for (let j = 0; j < newSentence.length; j++) {
             let word = newSentence[j]
             for (let i = 0; i < DuoWords.length - 1; i++) {
