@@ -1,7 +1,6 @@
 import {game} from './game.js';
 
 export const wordCollisionDetection = (object) => {
-    console.log(object)
     if (((game.duo.dx > object.x - game.duo.dWidth) && (game.duo.dx < object.x + object.width)) && (((game.duo.dy + game.duo.dHeight) >= object.y) && (game.duo.dy <= object.y + object.height))) {
         if (game.enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
 

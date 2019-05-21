@@ -8,7 +8,7 @@ import {handleSubmit} from './handle_submit'
 const Modal = require('./modal.js');
 import { keyDownHandler, keyUpHandler, logKey} from './keys'
 import { wordCollisionDetection, YcollisionDetection, XcollisionDetection} from './collision'
-
+import {makeSentence} from './makeSentence'
 // const Word = require('./word.js')
 // const platforms = require('./platforms.js')
 // const handleSubmit = require('./handle_submit.js')
@@ -197,65 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
     }
-
-    function timer(ctx) {
-        ctx.beginPath();
-        ctx.rect(canvas.width - 100, 100, 50, 50);
-        ctx.font = '14px serif'
-        ctx.fillText(game.time.toString(), 50, 50)
-        ctx.closePath();
-    } 
-    
-    function nextLevel (){ //if all hints are toggled, next level
-        for (var i = 0; i < allLevels[game.language][game.level].length; i++) {
-             
-            let word = allLevels[game.language][game.level][i];
-            if (word.toggle === true ) {
-                return false
-            } else if (i < allLevels[game.language][game.level].length-1){
-                 
-                continue
-            } else {
-                //  if there are no words with y > 0 (loop through all the words)
-                console.log('this is where I WOULD iterate the level')
-                // level += 1
-            }
-        } 
-    }
-
-    function makeSentence(DuoWords) {
-
-        let newSentence = DuoWords[DuoWords.length - 1].translation.split(' ');
-        let newTranslation = DuoWords[DuoWords.length - 1].sentence.split(' ');
-        if (document.getElementById('CS')) {
-            $('div#CS').css({ display: 'block' })
-        }
-        for (let j = 0; j < newSentence.length; j++) {
-            let word = newSentence[j]
-            for (let i = 0; i < DuoWords.length - 1; i++) {
-                if (word.toLowerCase() === DuoWords[i].word2.toLowerCase()) {
-                    // Find the word block, then find it's translation (word1); then find its translation in the foreign sentence
-                    // if this IS a match, then find the DuoWords[i].word1 in NewTranslation, and replace it with the span thing. 
-                    for (let k = 0; k < newTranslation.length; k++) {
-                        let foreignWord = newTranslation[k]
-
-                        if (foreignWord.toLowerCase() === DuoWords[i].word1.toLowerCase()) {
-                            // loop through all the words in newTranslation; if you find the one matching the word we JUST paused on in the above loop, swap it for a spanned foreign word
-
-                            newTranslation[k] = `<span id=` + `word${i}` + '>' + foreignWord + '</span>'
-                            // i starts at 0, so 0 would be the firstword
-                        }
-                    }
-                }
-            }
-        }
-        document.getElementById('CS').innerHTML = "<p>" + newTranslation.join(' ') + "</p>"
-        document.getElementById('CS').classList.add('canvasSentence')
-    }
     
     setInterval(draw, 15)
-    setInterval(spriteify, 750) //duo class?
+    setInterval(spriteify, 750) 
     setInterval(stopWatch, 1000)
-    // setInterval(nextLevel, 1000)
 
 });
