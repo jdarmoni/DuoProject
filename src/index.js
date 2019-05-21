@@ -21,13 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     correctSprite.src = sprite.src
     let incorrectSprite = new Image();
     incorrectSprite.src = sprite.src;
-   
-    // let spanishFlag = new Image();
-    // spanishFlag.src = "./assets/images/juicy-flag-sprite-4.svg"
-    // let spanishFlagSprite = new Flag('Español', 'Spanish', canvas.width - 550, canvas.height - 250, 70, 50, 'orange', true)
-    // let drawSpanishFlag = ()=>{
-    //     return ctx.drawImage(spanishFlag, 15, 75, 100, 75, canvas.width - 550, canvas.height - 250, 120, 70);}
-    
+       
     
     let drawDuo = ()=>{
         return ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
@@ -38,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let drawBlock = ()=>{
         return ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
     }
-    // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
 
 
@@ -106,13 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (guess.toLowerCase() === translation.toLowerCase()) {
                 delay = 3;
-                goodAnswer = setInterval(goodJob, 15); 
                 $(document.body).css({ backgroundColor: '#BFF199' })  
                 correct = true           
                 // document.getElementById('crop').style = "display: block";
             } else {
                 delay = 3;
-                badAnswer = setInterval(badJob, 15);
                 $(document.body).css({ backgroundColor: '#FF9797' })
                 // logic for giving a hint
                 let correctGuess = translation.split(' ');
@@ -138,18 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sprite.onload = function () {
         ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
-    }
-    
-    function goodJob(){
-        
-        // ctx.drawImage(correctSprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
-        // correct.dx -= 1;
-
-    }
-    function badJob(){
-        // ctx.drawImage(incorrectSprite, incorrect.sx, incorrect.sy, incorrect.sWidth, incorrect.sHeight, incorrect.dx, incorrect.dy, incorrect.dWidth, incorrect.dHeight);
-        // incorrect.dx -=1;
-
     }
 
     function wordCollisionDetection(object){
