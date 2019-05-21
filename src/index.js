@@ -7,7 +7,7 @@ import {game} from './game.js'
 import {handleSubmit} from './handle_submit'
 const Modal = require('./modal.js');
 import { keyDownHandler, keyUpHandler, logKey} from './keys'
-import { wordCollisionDetection} from './collision'
+import { wordCollisionDetection, YcollisionDetection, XcollisionDetection} from './collision'
 
 // const Word = require('./word.js')
 // const platforms = require('./platforms.js')
@@ -44,20 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     sprite.onload = function () {
         ctx.drawImage(sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
-    }
-
-    function YcollisionDetection(object, pos) {
-        if (((game.duo.dx > object.x - game.duo.dWidth) && (game.duo.dx < object.x + object.width)) && (((game.duo.dy + game.duo.dHeight) + pos >= object.y) && (game.duo.dy + pos <= object.y + object.height))) {
-            return true
-        }
-    }
-    
-    function XcollisionDetection(object, pos) {
-        // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
-        if ((game.duo.dx + pos > object.x - game.duo.dWidth && (game.duo.dx + pos < object.x + object.width)) && (((game.duo.dy + game.duo.dHeight) >= object.y) && (game.duo.dy <= object.y + object.height))) {
-            // if it would enter him into between y (start) AND y + height (end) range of the object
-            return true
-        }
     }
 
     function draw() {
