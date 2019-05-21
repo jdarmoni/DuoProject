@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (hints <= 1) { document.getElementById('hint').innerHTML = "<p class='close-hint'>Close!!</p>" + '<span class="closeGuess">' + closeGuess + '</span>' + '<br></br>';} else {
                     document.getElementById('hint').innerHTML = "<p class='close-hint'>Hint:</p>" + closeGuess + '<br></br>';
                 }
-                debugger
+                
             }
         }
         document.getElementById('translateSubmit').value = ""
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     currentLanguage = word
                     if (currentLanguage.y < 0) {
-                        debugger
+                        
                         currentLanguage.y = originalYCord;
                         word.y = originalYCord;
                         language = word.word2;
