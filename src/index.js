@@ -6,6 +6,8 @@ import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 import {allLevels} from './wordCollections'
 
 const Modal = require('./modal.js');
+const backgrounds = require('./backgrounds.js')
+
 // const handleSubmit = require('./handle_submit.js')
 // let language = require('./language.js')
 
@@ -32,23 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-
-
-
-
-
-
-    
-    // BACKGROUNDS
-    let japanBackground = new Image();
-    japanBackground.src ="./assets/images/duolingo-japan.png"
-    let franceBackground = new Image();
-    franceBackground.src ="./assets/images/duolingo-france.png";
-    let spainBackground = new Image();
-    spainBackground.src ="assets/images/duolingo-spain.png";
-    let defaultBackground = new Image();
-    defaultBackground.src ="./assets/images/duo globe.png";
-    // BACKGROUNDS
 
     let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
     let correct = false;
@@ -175,15 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
         
         if(language === 'Japanese'){
-            ctx.drawImage(japanBackground, 400, 0, 1000, 900, 0, 0, canvas.width, canvas.height)
+            ctx.drawImage(backgrounds.japan, 400, 0, 1000, 900, 0, 0, canvas.width, canvas.height)
         } else if (language === 'French') {
-            ctx.drawImage(franceBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
+            ctx.drawImage(backgrounds.france, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         }
         else if (language === "Spanish") {
-            ctx.drawImage(spainBackground, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
+            ctx.drawImage(backgrounds.spain, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         } else {
             // level = 1;
-            ctx.drawImage(defaultBackground, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
+            ctx.drawImage(backgrounds.default, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
         
         // platform.draw(ctx);
