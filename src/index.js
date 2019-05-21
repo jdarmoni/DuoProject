@@ -1,10 +1,9 @@
-// IN THE PROCESS OF REFACTORING, PREFERRING NODE MODULES TO IMPORTS  
 import Duo from './Duo.js'
 import Obstacles from './Obstacles'
 import Word from './word'
-
 import {allLevels} from './wordCollections'
 import {backgrounds} from './backgrounds.js'
+import {game} from './game.js'
 const Modal = require('./modal.js');
 // import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 // const Word = require('./word.js')
@@ -15,7 +14,7 @@ const Modal = require('./modal.js');
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
-    // DUOS
+
     let sprite = new Image();
     sprite.src = "./assets/images/owl-sprite20.svg";
            
@@ -44,10 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let terrace = new Obstacles(0, 200, 50, 200, "color");
     let langResetSwitch = false;
     let currentLanguage = null;
-    let language = 'demo';
+    let language = game.js;
     let level = 1;
     let time = 30;
-    let animationTime = 0;
 
 
     let rightPressed = false
@@ -59,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    allLevels;
-    let DuoWords = [
-        allLevels[language][level]
-    ];
+    // allLevels;
+    // let DuoWords = [
+    //     allLevels[language][level]
+    // ];
     let DuoObjects = [ platform, terrace ]
     let speed = 5;
     let jump = 5;
