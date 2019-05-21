@@ -29,6 +29,12 @@ let hungry = new Word('necesita', 'needs', 15, 150, 70, 50, 'orange', true);
 let food = new Word('comida', 'food', 550, 370, 70, 50, 'green', true);
 let needsFood = new Sentence('El perro necesita comida', "The dog needs food", 760, 75, 100, 170, 'green');
                                                     // x, y, height, width, color
+// spanish level 1
+let chico = new Word('chico', 'boy', 15, 150, 70, 50, 'orange', true)
+let perdido = new Word('perdido', 'lost', 860, 565, 70, 50, 'orange', true);
+let yo = new Word('yo', 'I', 550, 370, 70, 50, 'orange', true);
+let brotherSentence = new Sentence('Yo soy un chico perdido', "I am a lost boy", 760, 75, 100, 170, 'green');
+
 // spanish level 2
 let bebi = new Word('bebí', 'drank', 860, 565, 70, 50, 'orange', true);
 let tu = new Word('tu', 'your', 15, 150, 70, 50, 'orange', true);
@@ -40,11 +46,6 @@ let afraid = new Word('miedo', 'afraid', 860, 565, 70, 50, 'orange', true)
 let iHave = new Word('tengo', 'I have', 550, 370, 70, 50, 'orange', true)
 let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlos", 760, 75, 100, 170, 'green');
 
-// spanish level 1
-let chico = new Word('chico', 'boy', 15, 150, 70, 50, 'orange', true)
-let perdido = new Word('perdido', 'lost', 860, 565, 70, 50, 'orange', true);
-let yo = new Word('yo', 'I', 550, 370, 70, 50, 'orange', true);
-let brotherSentence = new Sentence('Yo soy un chico perdido', "I am a lost boy", 760, 75, 100, 170, 'green');
 
 /* Japanese level 1*/
 let iWord = new Word('ぼく', 'I', 860, 565, 70, 50, 'green', true);
