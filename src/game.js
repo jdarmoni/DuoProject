@@ -1,4 +1,5 @@
 // import Obstacles from './Obstacles'
+import { allLevels } from './wordCollections'
 
 
 // let platform = new Obstacles(490, canvas.height - 200, 200, 200);
@@ -14,14 +15,15 @@ export let game = {
     speed: 5,
     jump: 5,
     hit: false,
-    langResetSwitch: false
+    langResetSwitch: false,
+    rightPressed: false,
+    leftPressed: false,
+    upPressed: false,
+    enterPressed: false,
+    DuoWords: [
+        allLevels['demo'][1]
+    ]
 
-    // duoWords: [allLevels[language][level]],
-    // correct: false,
-    // delay: undefined,
-    // goodAnswer,
-    // badAnswer,
-    // time: 30,
-    // DuoObjects: [platform, terrace]
 
 }
+

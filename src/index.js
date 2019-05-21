@@ -38,19 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
 
-    let rightPressed = false
-    let leftPressed = false;
-    let upPressed = false;
-    let enterPressed = false;
     // let downPressed = false;
 
 
 
 
-    allLevels;
-    let DuoWords = [
-        allLevels[game.language][game.level]
-    ];
+
+  
     let DuoObjects = [ platform, terrace ]
 
 
@@ -64,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const guess = document.getElementById('translateSubmit').value;
         let hints =0;
         if (game.language !== 'demo') {
-            DuoWords = allLevels[game.language][game.level];
-            let translation = DuoWords[DuoWords.length - 1].translation;
+            game.DuoWords = allLevels[game.language][game.level];
+            let translation = game.DuoWords[game.DuoWords.length - 1].translation;
             
             if (guess.toLowerCase() === translation.toLowerCase()) {
                 game.delay = 3;
@@ -104,24 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function wordCollisionDetection(object){
          
         if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
-            if (enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
+            if (game.enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
                     
               if (object.sentence === undefined) {
                     object.color='blue'; 
                     object.toggle = false
-                    enterPressed = false;
+                    game.enterPressed = false;
                     // how do I know which object it is?
                     
 
-                  $(`span#word${DuoWords.indexOf(object)}`).css({ color: "hsl(46, 100%, 50%)" });
-                //   $(`span#word${DuoWords.indexOf(object)}`).css({ "text-shadow": "-1px 0 white, 0 1px white, 1px 0 white, 0 - 1px white" });
+                  $(`span#word${game.DuoWords.indexOf(object)}`).css({ color: "hsl(46, 100%, 50%)" });
+                //   $(`span#word${game.DuoWords.indexOf(object)}`).css({ "text-shadow": "-1px 0 white, 0 1px white, 1px 0 white, 0 - 1px white" });
                   
                 }
             } else {
                 
                 object.color = 'red';
                 object.toggle=true;
-                $(`span#word${DuoWords.indexOf(object)}`).css({ color: "white" });
+                $(`span#word${game.DuoWords.indexOf(object)}`).css({ color: "white" });
 
             }
         }
@@ -195,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     
         //  THESE DO NOT NEED TO BE IN DRAW - MOVE TO KEY DOWN HANDLERS
-        if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
+        if (game.rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], game.speed) === true) {
                     duo.dx += 0
@@ -206,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (game.hit === false) { duo.dx += game.speed }
         }
 
-        if (leftPressed && duo.dx > 0) {
+        if (game.leftPressed && duo.dx > 0) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], -game.speed) === true) {
                     duo.dx += 0;
@@ -216,11 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (game.hit === false) { duo.dx -= game.speed }
         }
 
-        if (upPressed && duo.dy > 0) {
+        if (game.upPressed && duo.dy > 0) {
 
             duo.dy -= game.jump;
         }
-        if ((upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height)) {
+        if ((game.upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height)) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (YcollisionDetection(DuoObjects[i], game.jump) === true) {
                     duo.dy += 0;
@@ -252,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     game.language = 'demo'; 
                     game.level = 1; 
                     game.currentLanguage = null;
-                    // DuoWords = [
+                    // game.DuoWords = [
                     //     allLevels[language][level] 
                     // ]
                     $('div#CS').css({ display: 'none' })
@@ -272,29 +266,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function keyDownHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
-            rightPressed = true;
+            game.rightPressed = true;
         }
         else if (e.key == "Left" || e.key == "ArrowLeft") {
-            leftPressed = true;
+            game.leftPressed = true;
         }
         else if (e.key == "Up" || e.key == "ArrowUp") {
-            upPressed = true;
+            game.upPressed = true;
         }
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = true;
         } 
         else if (e.keyCode == 16) {
                 
-                enterPressed = true;
-                    if (enterPressed) {
-                        DuoWords = allLevels[game.language][game.level]
+                game.enterPressed = true;
+                    if (game.enterPressed) {
+                        game.DuoWords = allLevels[game.language][game.level]
 
                         // hitting this loop twice - make a switch
-                        for (var i = 0; i < DuoWords.length; i++) {
+                        for (var i = 0; i < game.DuoWords.length; i++) {
                             
-                            wordCollisionDetection(DuoWords[i])
+                            wordCollisionDetection(game.DuoWords[i])
                         }
-                        DuoWords = allLevels[game.language][game.level]
+                        game.DuoWords = allLevels[game.language][game.level]
                         return
                     }
 
@@ -309,20 +303,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function keyUpHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
-            rightPressed = false;
+            game.rightPressed = false;
         }
         else if (e.key == "Left" || e.key == "ArrowLeft") {
-            leftPressed = false;
+            game.leftPressed = false;
         }
         else if (e.key == "Up" || e.key == "ArrowUp") {
-            upPressed = false;
+            game.upPressed = false;
         }
         else if (e.key == "Down" || e.key == "ArrowDown") {
             downPressed = false;
         }
         // QUESTION: why doesn't it return to false
         else if (e.keyCode === 16) {
-            enterPressed = false;
+            game.enterPressed = false;
         }
     }
     // COLLISION
@@ -384,24 +378,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
     }
-    function makeSentence(DuoWords){
-        
-        let newSentence = DuoWords[DuoWords.length-1].translation.split(' ');
+    
+    function makeSentence(DuoWords) {
+
+        let newSentence = DuoWords[DuoWords.length - 1].translation.split(' ');
         let newTranslation = DuoWords[DuoWords.length - 1].sentence.split(' ');
         if (document.getElementById('CS')) {
-            $('div#CS').css({ display: 'block' })}
+            $('div#CS').css({ display: 'block' })
+        }
         for (let j = 0; j < newSentence.length; j++) {
             let word = newSentence[j]
             for (let i = 0; i < DuoWords.length - 1; i++) {
                 if (word.toLowerCase() === DuoWords[i].word2.toLowerCase()) {
                     // Find the word block, then find it's translation (word1); then find its translation in the foreign sentence
                     // if this IS a match, then find the DuoWords[i].word1 in NewTranslation, and replace it with the span thing. 
-                    for (let k=0; k < newTranslation.length; k++) {
+                    for (let k = 0; k < newTranslation.length; k++) {
                         let foreignWord = newTranslation[k]
-                        
+
                         if (foreignWord.toLowerCase() === DuoWords[i].word1.toLowerCase()) {
                             // loop through all the words in newTranslation; if you find the one matching the word we JUST paused on in the above loop, swap it for a spanned foreign word
-                            
+
                             newTranslation[k] = `<span id=` + `word${i}` + '>' + foreignWord + '</span>'
                             // i starts at 0, so 0 would be the firstword
                         }
@@ -411,12 +407,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         }
-        
-        document.getElementById('CS').innerHTML ="<p>" + newTranslation.join(' ') + "</p>"
+
+        document.getElementById('CS').innerHTML = "<p>" + newTranslation.join(' ') + "</p>"
         document.getElementById('CS').classList.add('canvasSentence')
 
     }
-
     function logKey(e) {
         
         if (e.target.id !== "translateSubmit") {
