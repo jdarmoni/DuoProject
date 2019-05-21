@@ -4,12 +4,10 @@ import Obstacles from './Obstacles'
 import Word from './word'
 import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 import {allLevels} from './wordCollections'
-// import Flag from './flag.js';
 
 const Modal = require('./modal.js');
 // const handleSubmit = require('./handle_submit.js')
 // let language = require('./language.js')
-// language 
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
@@ -88,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.handleSubmit = handleSubmit;
     
+
     function handleSubmit() {
         
         event.preventDefault();

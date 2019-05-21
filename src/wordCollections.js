@@ -1,5 +1,6 @@
 import Word from './word';
 import Sentence from './sentence';
+
     const canvas = { width: 960, height: 640 };
 // languages!
     let French = new Word('Francais', 'French', canvas.width / 4, canvas.height - 450, 70, 50, 'red', true);

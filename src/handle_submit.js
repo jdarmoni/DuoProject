@@ -12,13 +12,11 @@ const handleSubmit = ()=> {
 
         if (guess.toLowerCase() === translation.toLowerCase()) {
             delay = 3;
-            goodAnswer = setInterval(goodJob, 15);
             $(document.body).css({ backgroundColor: '#BFF199' })
             correct = true
             // document.getElementById('crop').style = "display: block";
         } else {
             delay = 3;
-            badAnswer = setInterval(badJob, 15);
             $(document.body).css({ backgroundColor: '#FF9797' })
             // logic for giving a hint
             let correctGuess = translation.split(' ');
