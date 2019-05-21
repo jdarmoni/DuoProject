@@ -1,13 +1,13 @@
-let language = require('./language.js')
-// import { allLevels } from './wordCollections'
+import { allLevels } from './wordCollections'
+import { game } from './game.js'
 
-const handleSubmit = ()=> {
+export const handleSubmit =()=> {
 
     event.preventDefault();
     const guess = document.getElementById('translateSubmit').value;
     let hints = 0;
-    if (language !== 'demo') {
-        DuoWords = allLevels[language][level];
+    if (game.language !== 'demo') {
+        DuoWords = allLevels[game.language][game.level];
         let translation = DuoWords[DuoWords.length - 1].translation;
 
         if (guess.toLowerCase() === translation.toLowerCase()) {
@@ -34,11 +34,8 @@ const handleSubmit = ()=> {
             if (hints <= 1) { document.getElementById('hint').innerHTML = "<p class='close-hint'>Close!!</p>" + '<span class="closeGuess">' + closeGuess + '</span>' + '<br></br>'; } else {
                 document.getElementById('hint').innerHTML = "<p class='close-hint'>Hint:</p>" + closeGuess + '<br></br>';
             }
-            
-            debugger
+
         }
     }
     document.getElementById('translateSubmit').value = ""
 } 
-
-module.exports = handleSubmit;

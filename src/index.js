@@ -31,10 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
-    let correct = false;
     
     // handleSubmit success Animation 
-    let delay = undefined
     let goodAnswer;
     let badAnswer;
     // handleSubmit success Animation 
@@ -42,11 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
     let langResetSwitch = false;
-    let currentLanguage = null;
-    let language = 'demo';
-    let level = 1;
-    let time = 30;
-
 
     let rightPressed = false
     let leftPressed = false;
@@ -59,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     allLevels;
     let DuoWords = [
-        allLevels[language][level]
+        allLevels[game.language][game.level]
     ];
     let DuoObjects = [ platform, terrace ]
     let speed = 5;
@@ -74,17 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const guess = document.getElementById('translateSubmit').value;
         let hints =0;
-        if (language !== 'demo') {
-            DuoWords = allLevels[language][level];
+        if (game.language !== 'demo') {
+            DuoWords = allLevels[game.language][game.level];
             let translation = DuoWords[DuoWords.length - 1].translation;
             
             if (guess.toLowerCase() === translation.toLowerCase()) {
-                delay = 3;
+                game.delay = 3;
                 $(document.body).css({ backgroundColor: '#BFF199' })  
-                correct = true           
+                game.correct = true           
                 // document.getElementById('crop').style = "display: block";
             } else {
-                delay = 3;
+                game.delay = 3;
                 $(document.body).css({ backgroundColor: '#FF9797' })
                 // logic for giving a hint
                 let correctGuess = translation.split(' ');
@@ -156,12 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
         
-        if(language === 'Japanese'){
+        if(game.language === 'Japanese'){
             ctx.drawImage(backgrounds.japan, 400, 0, 1000, 900, 0, 0, canvas.width, canvas.height)
-        } else if (language === 'French') {
+        } else if (game.language === 'French') {
             ctx.drawImage(backgrounds.france, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         }
-        else if (language === "Spanish") {
+        else if (game.language === "Spanish") {
             ctx.drawImage(backgrounds.spain, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         } else {
             // level = 1;
@@ -170,16 +163,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // platform.draw(ctx);
         // terrace.draw(ctx); 
-        // timer(ctx);
         
         drawBlock();
         // ctx.drawImage(frenchFlag, 5, 5, 70, 58, 760, 565, 70, 50);
     
         // for languages
-        for(var i = 0; i < allLevels[language][level].length; i++){
-            let word = allLevels[language][level][i];
+        for(var i = 0; i < allLevels[game.language][game.level].length; i++){
+            let word = allLevels[game.language][game.level][i];
             
-            if (language === 'demo') {
+            if (game.language === 'demo') {
                 if (word.toggle === false){
                     if (langResetSwitch === false) {
                         var originalYCord = word.y; // var so that it has scope for block in 235,6
@@ -189,14 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     // console.log(originalYCord)
                     word.y -= 3;
                     
-                    currentLanguage = word
-                    if (currentLanguage.y < 0) {
+                    game.currentLanguage = word
+                    if (game.currentLanguage.y < 0) {
                         
-                        currentLanguage.y = originalYCord;
+                        game.currentLanguage.y = originalYCord;
                         word.y = originalYCord;
-                        language = word.word2;
+                        game.language = word.word2;
                         $('input#translateSubmit').css({ display: 'block' })
-                        makeSentence(allLevels[language][level]);
+                        makeSentence(allLevels[game.language][game.level]);
                     }
                 }
             }
@@ -247,30 +239,30 @@ document.addEventListener('DOMContentLoaded', () => {
         hit = false;
 
         // part of handle submit success animation
-        if (delay <= 0) {
+        if (game.delay <= 0) {
             clearInterval(goodAnswer)
             clearInterval(badAnswer)
-            delay = undefined;
+            game.delay = undefined;
             $(document.body).css({ backgroundColor: 'white' })
             document.getElementById('hint').innerHTML = "";
             document.getElementById('hint').style="display: none"
             // document.getElementById('crop').style = "display: none"
-            if (correct) {
+            if (game.correct) {
                 
-                if (allLevels[language][level + 1] !== undefined) {
-                    level += 1;
-                    makeSentence(allLevels[language][level])
+                if (allLevels[game.language][game.level + 1] !== undefined) {
+                    game.level += 1;
+                    makeSentence(allLevels[game.language][game.level])
                 } else {
-                    language = 'demo'; 
-                    level = 1; 
-                    currentLanguage = null;
+                    game.language = 'demo'; 
+                    game.level = 1; 
+                    game.currentLanguage = null;
                     // DuoWords = [
                     //     allLevels[language][level] 
                     // ]
                     $('div#CS').css({ display: 'none' })
                    
                 }
-                correct = false;
+                game.correct = false;
             }
         }
 
@@ -299,14 +291,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 enterPressed = true;
                     if (enterPressed) {
-                        DuoWords = allLevels[language][level]
+                        DuoWords = allLevels[game.language][game.level]
 
                         // hitting this loop twice - make a switch
                         for (var i = 0; i < DuoWords.length; i++) {
                             
                             wordCollisionDetection(DuoWords[i])
                         }
-                        DuoWords = allLevels[language][level]
+                        DuoWords = allLevels[game.language][game.level]
                         return
                     }
 
@@ -349,16 +341,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function stopWatch (){
-        time -= 1;
-        if (time <= 0 && level >= 3 === false) {    
+        game.time -= 1;
+        if (game.time <= 0 && game.level >= 3 === false) {    
             // level += 1; 
-            time += 120;
+            game.time += 120;
         }
-        if (delay !== undefined) {
+        if (game.delay !== undefined) {
             
-            delay -= 1;
+            game.delay -= 1;
         }
-        if ( language !== "demo" || (language === "demo" && (duo.dx > 350 || duo.dy < canvas.height - 100)) ){
+        if ( game.language !== "demo" || (game.language === "demo" && (duo.dx > 350 || duo.dy < canvas.height - 100)) ){
             $('img#arrow').css({display: "none"});
             $('p#trans').css({ display: "none" });
         } else {
@@ -376,17 +368,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         ctx.rect(canvas.width - 100, 100, 50, 50);
         ctx.font = '14px serif'
-        ctx.fillText(time.toString(), 50, 50)
+        ctx.fillText(game.time.toString(), 50, 50)
         ctx.closePath();
     } 
     
     function nextLevel (){ //if all hints are toggled, next level
-        for (var i = 0; i < allLevels[language][level].length; i++) {
+        for (var i = 0; i < allLevels[game.language][game.level].length; i++) {
              
-            let word = allLevels[language][level][i];
+            let word = allLevels[game.language][game.level][i];
             if (word.toggle === true ) {
                 return false
-            } else if (i < allLevels[language][level].length-1){
+            } else if (i < allLevels[game.language][game.level].length-1){
                  
                 continue
             } else {
