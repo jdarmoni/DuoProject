@@ -7,16 +7,16 @@ export const handleSubmit =()=> {
     const guess = document.getElementById('translateSubmit').value;
     let hints = 0;
     if (game.language !== 'demo') {
-        DuoWords = allLevels[game.language][game.level];
-        let translation = DuoWords[DuoWords.length - 1].translation;
+        game.DuoWords = allLevels[game.language][game.level];
+        let translation = game.DuoWords[game.DuoWords.length - 1].translation;
 
         if (guess.toLowerCase() === translation.toLowerCase()) {
-            delay = 3;
+            game.delay = 3;
             $(document.body).css({ backgroundColor: '#BFF199' })
-            correct = true
+            game.correct = true
             // document.getElementById('crop').style = "display: block";
         } else {
-            delay = 3;
+            game.delay = 3;
             $(document.body).css({ backgroundColor: '#FF9797' })
             // logic for giving a hint
             let correctGuess = translation.split(' ');

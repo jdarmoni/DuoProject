@@ -1,37 +1,34 @@
-import { allLevels } from './wordCollections'
+import { game } from './game.js'
+import {handleSubmit} from './handle_submit'
+import {allLevels} from './wordCollections'
+// NEEDS COLLISIONDETECTION BEFORE YOU CAN IMPORT
+// DUO NEEDS TO BE GLOBAL
 
-let rightPressed = false
-let leftPressed = false;
-let upPressed = false;
-let enterPressed = false;
-
-// needs Duowords
-
-function keyDownHandler(e) {
+export const keyDownHandler =(e)=> {
     if (e.key == "Right" || e.key == "ArrowRight") {
-        rightPressed = true;
+        game.rightPressed = true;
     }
     else if (e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = true;
+        game.leftPressed = true;
     }
     else if (e.key == "Up" || e.key == "ArrowUp") {
-        upPressed = true;
+        game.upPressed = true;
     }
-    else if (e.key == "Down" || e.key == "ArrowDown") {
-        downPressed = true;
-    }
+    // else if (e.key == "Down" || e.key == "ArrowDown") {
+    //     downPressed = true;
+    // }
     else if (e.keyCode == 16) {
 
-        enterPressed = true;
-        if (enterPressed) {
-            DuoWords = allLevels[language][level]
+        game.enterPressed = true;
+        if (game.enterPressed) {
+            game.DuoWords = allLevels[game.language][game.level]
 
             // hitting this loop twice - make a switch
-            for (var i = 0; i < DuoWords.length; i++) {
+            for (var i = 0; i < game.DuoWords.length; i++) {
 
-                wordCollisionDetection(DuoWords[i])
+                wordCollisionDetection(game.DuoWords[i])
             }
-            DuoWords = allLevels[language][level]
+            game.DuoWords = allLevels[game.language][game.level]
             return
         }
 
@@ -44,21 +41,39 @@ function keyDownHandler(e) {
     }
 
 }
-function keyUpHandler(e) {
+export const keyUpHandler =(e) =>{
     if (e.key == "Right" || e.key == "ArrowRight") {
-        rightPressed = false;
+        game.rightPressed = false;
     }
     else if (e.key == "Left" || e.key == "ArrowLeft") {
-        leftPressed = false;
+        game.leftPressed = false;
     }
     else if (e.key == "Up" || e.key == "ArrowUp") {
-        upPressed = false;
+        game.upPressed = false;
     }
-    else if (e.key == "Down" || e.key == "ArrowDown") {
-        downPressed = false;
-    }
+    // else if (e.key == "Down" || e.key == "ArrowDown") {
+    //     downPressed = false;
+    // }
     // QUESTION: why doesn't it return to false
     else if (e.keyCode === 16) {
-        enterPressed = false;
+        game.enterPressed = false;
+    }
+}
+
+export const logKey=(e)=> {
+
+    if (e.target.id !== "translateSubmit") {
+
+        const log = document.getElementById('translateSubmit');
+        let letter = e.code.slice(e.code.length - 1);
+
+        if (e.code === "Space") {
+            letter = " "
+        } else if (e.keyCode === 13) {
+            letter = "";
+
+            handleSubmit();
+        }
+        log.value += letter.toLowerCase()
     }
 }

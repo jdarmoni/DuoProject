@@ -1,4 +1,4 @@
-// import Obstacles from './Obstacles'
+import Obstacles from './Obstacles'
 import { allLevels } from './wordCollections'
 
 
@@ -22,7 +22,8 @@ export let game = {
     enterPressed: false,
     DuoWords: [
         allLevels['demo'][1]
-    ]
+    ],
+
 
 
 }
