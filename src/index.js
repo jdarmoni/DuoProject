@@ -1,13 +1,14 @@
-
+// IN THE PROCESS OF REFACTORING, PREFERRING NODE MODULES TO IMPORTS  
 import Duo from './Duo.js'
 import Obstacles from './Obstacles'
 import Word from './word'
-import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
+
 import {allLevels} from './wordCollections'
-
+import {backgrounds} from './backgrounds.js'
 const Modal = require('./modal.js');
-const backgrounds = require('./backgrounds.js')
-
+// import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
+// const Word = require('./word.js')
+// const platforms = require('./platforms.js')
 // const handleSubmit = require('./handle_submit.js')
 // let language = require('./language.js')
 
@@ -17,12 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // DUOS
     let sprite = new Image();
     sprite.src = "./assets/images/owl-sprite20.svg";
-    let correctSprite = new Image();
-    correctSprite.src = sprite.src
-    let incorrectSprite = new Image();
-    incorrectSprite.src = sprite.src;
-       
-    
+           
     let drawDuo = ()=>{
         return ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     }
@@ -37,9 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
     let correct = false;
-    let incorrect = new Duo(1500, 15, 250, 300, canvas.width - 100, 250, 75, 100)
-    // ctx.drawImage(sprite, correct.sx, correct.sy, correct.sWidth, correct.sHeight, correct.dx, correct.dy, correct.dWidth, correct.dHeight);
-    //  (sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
     
     // handleSubmit success Animation 
     let delay = undefined
@@ -55,11 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let level = 1;
     let time = 30;
     let animationTime = 0;
+
+
     let rightPressed = false
     let leftPressed = false;
     let upPressed = false;
-    // let downPressed = false;
     let enterPressed = false;
+    // let downPressed = false;
+
+
+
+
     allLevels;
     let DuoWords = [
         allLevels[language][level]

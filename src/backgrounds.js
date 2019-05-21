@@ -7,14 +7,12 @@ spainBackground.src = "assets/images/duolingo-spain.png";
 let defaultBackground = new Image();
 defaultBackground.src = "./assets/images/duo globe.png";
 
-let backgrounds = {
+export const backgrounds = {
     japan: japanBackground,
     france: franceBackground,
     spain: spainBackground,
     default: defaultBackground
-}
-
-module.exports = backgrounds
+};
 
     // From index.js!
     // BACKGROUNDS

@@ -1,3 +1,5 @@
+// module.exports = class Word {
+
 export default class Word {
     constructor(word1, word2, x, y, width, height, color, toggle){
         this.x = x;

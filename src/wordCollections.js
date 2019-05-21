@@ -10,20 +10,6 @@ import Sentence from './sentence';
     // let sentence = new Sentence("Translate this sentence!", 710, 25, 50, 230, 'yellow')
      let Demo = new Sentence('Choose a language!', 760, 75, 100, 200, 'green');
 
-     // FLAGS
-// let spanishFlag = new Image();
-// let frenchFlag = new Image();
-// let japaneseFlag = new Image();
-// spanishFlag.src = "./assets/images/juicy-flag-sprite-4.svg"
-// japaneseFlag.src = spanishFlag.src;
-// frenchFlag.src = spanishFlag.src;
-
-    // FLAGS
-
-
-
-
-
 /* spanish level 4 */
 let dog = new Word('perro', 'the dog', 860, 565, 70, 50, 'orange', true);
 let hungry = new Word('necesita', 'needs', 15, 150, 70, 50, 'orange', true);
