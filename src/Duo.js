@@ -10,8 +10,3 @@ export default class Duo {
         this.dHeight = dHeight;
     }  
 }
-
-
-// Duo.prototype.draw = function draw(ctx) {
-
-// }

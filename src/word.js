@@ -25,13 +25,10 @@ Word.prototype.draw = function draw(ctx) {
         ctx.fillText(this.word1, this.x + this.width/2, this.y + this.height / 2 )
     } else {
         ctx.fillText(this.word2, this.x + this.width/2, this.y + this.height / 2)
-
     }
     
     ctx.strokeStyle =this.color;
     ctx.stroke();
-    
-
     ctx.closePath();
 }
 

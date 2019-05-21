@@ -68,7 +68,6 @@ let disparu = new Word('disappeared', 'disparu', 15, 150, "disappeared".length*8
 let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu', 760, 75, 100, 170, 'green');
 
 // cleared!
-// let completed = new Sentence("Congratulations!", 'Felicitations!', 760, 75, 100, 170, 'green');
 
 /* LEVELS */
 

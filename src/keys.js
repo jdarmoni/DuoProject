@@ -1,9 +1,7 @@
 import { game } from './game.js'
 import {handleSubmit} from './handle_submit'
 import {allLevels} from './wordCollections'
-import {wordCollisionDetection} from './collision'
-// NEEDS COLLISIONDETECTION BEFORE YOU CAN IMPORT
-// DUO NEEDS TO BE GLOBAL
+import { wordCollisionDetection} from './collision'
 
 export const keyDownHandler =(e)=> {
     if (e.key == "Right" || e.key == "ArrowRight") {
@@ -24,7 +22,6 @@ export const keyDownHandler =(e)=> {
         if (game.enterPressed) {
             game.DuoWords = allLevels[game.language][game.level]
 
-            // hitting this loop twice - make a switch
             for (var i = 0; i < game.DuoWords.length; i++) {
 
                 wordCollisionDetection(game.DuoWords[i])
@@ -55,7 +52,6 @@ export const keyUpHandler =(e) =>{
     // else if (e.key == "Down" || e.key == "ArrowDown") {
     //     downPressed = false;
     // }
-    // QUESTION: why doesn't it return to false
     else if (e.keyCode === 16) {
         game.enterPressed = false;
     }

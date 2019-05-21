@@ -14,7 +14,6 @@ export const handleSubmit =()=> {
             game.delay = 3;
             $(document.body).css({ backgroundColor: '#BFF199' })
             game.correct = true
-            // document.getElementById('crop').style = "display: block";
         } else {
             game.delay = 3;
             $(document.body).css({ backgroundColor: '#FF9797' })

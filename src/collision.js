@@ -1,6 +1,8 @@
-export const wordCollisionDetection = (object) =>{
+import {game} from './game.js';
 
-    if (((game.dx > object.x - game.dWidth) && (game.dx < object.x + object.width)) && (((game.dy + game.dHeight) >= object.y) && (game.dy <= object.y + object.height))) {
+export const wordCollisionDetection = (object) => {
+    console.log(object)
+    if (((game.duo.dx > object.x - game.duo.dWidth) && (game.duo.dx < object.x + object.width)) && (((game.duo.dy + game.duo.dHeight) >= object.y) && (game.duo.dy <= object.y + object.height))) {
         if (game.enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
 
             if (object.sentence === undefined) {
