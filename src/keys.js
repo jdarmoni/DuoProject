@@ -1,6 +1,7 @@
 import { game } from './game.js'
 import {handleSubmit} from './handle_submit'
 import {allLevels} from './wordCollections'
+import {wordCollisionDetection} from './collision'
 // NEEDS COLLISIONDETECTION BEFORE YOU CAN IMPORT
 // DUO NEEDS TO BE GLOBAL
 

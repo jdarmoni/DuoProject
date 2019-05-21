@@ -6,6 +6,7 @@ import {backgrounds} from './backgrounds.js'
 import {game} from './game.js'
 import {handleSubmit} from './handle_submit'
 
+
 const Modal = require('./modal.js');
 // import {keyDownHandler, keyUpHandler} from '../vendor/keymaster'
 // const Word = require('./word.js')
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sprite.src = "./assets/images/owl-sprite20.svg";
            
     let drawDuo = ()=>{
-        return ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+        return ctx.drawImage(sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
     }
 
     let duoBlock = new Image();
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
     }
 
-    let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
+    // let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
     
     // handleSubmit success Animation 
     let goodAnswer;
@@ -48,12 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.handleSubmit = handleSubmit;
     
     sprite.onload = function () {
-        ctx.drawImage(sprite, duo.sx, duo.sy, duo.sWidth, duo.sHeight, duo.dx, duo.dy, duo.dWidth, duo.dHeight);
+        ctx.drawImage(sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
     }
 
     function wordCollisionDetection(object){
          
-        if ( ((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && ( ( (duo.dy + duo.dHeight) >= object.y) && (duo.dy  <= object.y + object.height)) ) {
+        if ( ((game.duo.dx > object.x - game.duo.dWidth) && (game.duo.dx < object.x + object.width)) && ( ( (game.duo.dy + game.duo.dHeight) >= object.y) && (game.duo.dy  <= object.y + object.height)) ) {
             if (game.enterPressed && object.toggle) { // if enter is pressed and the word hasn't been toggled
                     
               if (object.sentence === undefined) {
@@ -78,14 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function YcollisionDetection(object, pos) {
-        if (((duo.dx > object.x - duo.dWidth) && (duo.dx < object.x + object.width)) && (((duo.dy + duo.dHeight) + pos >= object.y) && (duo.dy + pos <= object.y + object.height))) {
+        if (((game.duo.dx > object.x - game.duo.dWidth) && (game.duo.dx < object.x + object.width)) && (((game.duo.dy + game.duo.dHeight) + pos >= object.y) && (game.duo.dy + pos <= object.y + object.height))) {
             return true
         }
     }
     
     function XcollisionDetection(object, pos) {
         // if a movement would enter him into between x (start) AND the x+width (MAX LENGTH) of object
-        if ((duo.dx + pos > object.x - duo.dWidth && (duo.dx + pos < object.x + object.width)) && (((duo.dy + duo.dHeight) >= object.y) && (duo.dy <= object.y + object.height))) {
+        if ((game.duo.dx + pos > object.x - game.duo.dWidth && (game.duo.dx + pos < object.x + object.width)) && (((game.duo.dy + game.duo.dHeight) >= object.y) && (game.duo.dy <= object.y + object.height))) {
             // if it would enter him into between y (start) AND y + height (end) range of the object
             return true
         }
@@ -145,39 +146,39 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     
         //  THESE DO NOT NEED TO BE IN DRAW - MOVE TO KEY DOWN HANDLERS
-        if (game.rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
+        if (game.rightPressed && (game.duo.dx + game.duo.dWidth < canvas.width)) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], game.speed) === true) {
-                    duo.dx += 0
+                    game.duo.dx += 0
                     game.hit = true;
                 } 
                 // for every button press, for each object duo doesn't collide with, dou.dx += game.speed
             }
-            if (game.hit === false) { duo.dx += game.speed }
+            if (game.hit === false) { game.duo.dx += game.speed }
         }
 
-        if (game.leftPressed && duo.dx > 0) {
+        if (game.leftPressed && game.duo.dx > 0) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (XcollisionDetection(DuoObjects[i], -game.speed) === true) {
-                    duo.dx += 0;
+                    game.duo.dx += 0;
                     game.hit = true;
                 }
             }
-            if (game.hit === false) { duo.dx -= game.speed }
+            if (game.hit === false) { game.duo.dx -= game.speed }
         }
 
-        if (game.upPressed && duo.dy > 0) {
+        if (game.upPressed && game.duo.dy > 0) {
 
-            duo.dy -= game.jump;
+            game.duo.dy -= game.jump;
         }
-        if ((game.upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height)) {
+        if ((game.upPressed === false && game.duo.dy < canvas.height) && (game.duo.dy + game.duo.dHeight < canvas.height)) {
             for (var i = 0; i < DuoObjects.length; i++) {
                 if (YcollisionDetection(DuoObjects[i], game.jump) === true) {
-                    duo.dy += 0;
+                    game.duo.dy += 0;
                     game.hit = true;
                 }
             }
-            if (game.hit === false) { duo.dy += game.jump; }
+            if (game.hit === false) { game.duo.dy += game.jump; }
         }
         // drawSpanishFlag()
 
@@ -279,10 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function spriteify() {
-        if (duo.sx === 15) {
-            duo.sx = 340;
-        } else if (duo.sx === 340) {
-            duo.sx = 15;
+        if (game.duo.sx === 15) {
+            game.duo.sx = 340;
+        } else if (game.duo.sx === 340) {
+            game.duo.sx = 15;
         }
     }
     
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             game.delay -= 1;
         }
-        if ( game.language !== "demo" || (game.language === "demo" && (duo.dx > 350 || duo.dy < canvas.height - 100)) ){
+        if ( game.language !== "demo" || (game.language === "demo" && (game.duo.dx > 350 || game.duo.dy < canvas.height - 100)) ){
             $('img#arrow').css({display: "none"});
             $('p#trans').css({ display: "none" });
         } else {
