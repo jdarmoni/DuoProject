@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let terrace = new Obstacles(0, 200, 50, 200, "color");
     let langResetSwitch = false;
     let currentLanguage = null;
-    let language = game.js;
+    let language = 'demo';
     let level = 1;
     let time = 30;
 
@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // allLevels;
-    // let DuoWords = [
-    //     allLevels[language][level]
-    // ];
+    allLevels;
+    let DuoWords = [
+        allLevels[language][level]
+    ];
     let DuoObjects = [ platform, terrace ]
     let speed = 5;
     let jump = 5;
