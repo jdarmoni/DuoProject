@@ -10,7 +10,11 @@ export let game = {
     delay: undefined,
     currentLanguage: null,
     time: 30,
-    correct: false
+    correct: false,
+    speed: 5,
+    jump: 5,
+    hit: false,
+    langResetSwitch: false
 
     // duoWords: [allLevels[language][level]],
     // correct: false,

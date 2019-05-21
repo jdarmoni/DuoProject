@@ -28,8 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
     }
 
-
-
     let duo = new Duo( 15, 15, 250, 300, canvas.width/2, 15,  75, 100);
     
     // handleSubmit success Animation 
@@ -39,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
     let terrace = new Obstacles(0, 200, 50, 200, "color");
-    let langResetSwitch = false;
 
     let rightPressed = false
     let leftPressed = false;
@@ -55,9 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         allLevels[game.language][game.level]
     ];
     let DuoObjects = [ platform, terrace ]
-    let speed = 5;
-    let jump = 5;
-    let hit = false;
+
+
 
     window.handleSubmit = handleSubmit;
     
@@ -173,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (game.language === 'demo') {
                 if (word.toggle === false){
-                    if (langResetSwitch === false) {
+                    if (game.langResetSwitch === false) {
                         var originalYCord = word.y; // var so that it has scope for block in 235,6
-                        langResetSwitch = true;
+                        game.langResetSwitch = true;
 
                     }
                     // console.log(originalYCord)
@@ -201,42 +197,42 @@ document.addEventListener('DOMContentLoaded', () => {
         //  THESE DO NOT NEED TO BE IN DRAW - MOVE TO KEY DOWN HANDLERS
         if (rightPressed && (duo.dx + duo.dWidth < canvas.width)) {
             for (var i = 0; i < DuoObjects.length; i++) {
-                if (XcollisionDetection(DuoObjects[i], speed) === true) {
+                if (XcollisionDetection(DuoObjects[i], game.speed) === true) {
                     duo.dx += 0
-                    hit = true;
+                    game.hit = true;
                 } 
-                // for every button press, for each object duo doesn't collide with, dou.dx += speed
+                // for every button press, for each object duo doesn't collide with, dou.dx += game.speed
             }
-            if (hit === false) { duo.dx += speed }
+            if (game.hit === false) { duo.dx += game.speed }
         }
 
         if (leftPressed && duo.dx > 0) {
             for (var i = 0; i < DuoObjects.length; i++) {
-                if (XcollisionDetection(DuoObjects[i], -speed) === true) {
+                if (XcollisionDetection(DuoObjects[i], -game.speed) === true) {
                     duo.dx += 0;
-                    hit = true;
+                    game.hit = true;
                 }
             }
-            if (hit === false) { duo.dx -= speed }
+            if (game.hit === false) { duo.dx -= game.speed }
         }
 
         if (upPressed && duo.dy > 0) {
 
-            duo.dy -= jump;
+            duo.dy -= game.jump;
         }
         if ((upPressed === false && duo.dy < canvas.height) && (duo.dy + duo.dHeight < canvas.height)) {
             for (var i = 0; i < DuoObjects.length; i++) {
-                if (YcollisionDetection(DuoObjects[i], jump) === true) {
+                if (YcollisionDetection(DuoObjects[i], game.jump) === true) {
                     duo.dy += 0;
-                    hit = true;
+                    game.hit = true;
                 }
             }
-            if (hit === false) { duo.dy += jump; }
+            if (game.hit === false) { duo.dy += game.jump; }
         }
         // drawSpanishFlag()
 
         drawDuo();
-        hit = false;
+        game.hit = false;
 
         // part of handle submit success animation
         if (game.delay <= 0) {
