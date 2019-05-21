@@ -42,9 +42,9 @@ let leche = new Word('leche', 'milk', 550, 370, 70, 50, 'orange', true);
 let dieSentence = new Sentence('Yo bebí tu leche', "I drank your milk", 760, 75, 100, 170, 'green');
 
 // spanish level 3
-let afraid = new Word('miedo', 'afraid', 860, 565, 70, 50, 'orange', true)
-let iHave = new Word('tengo', 'I have', 550, 370, 70, 50, 'orange', true)
-let carlosSentence = new Sentence('Tengo miedo de Carlos', "I am afraid of Carlos", 760, 75, 100, 170, 'green');
+let fear = new Word('temo', 'fear', 860, 565, 70, 50, 'orange', true)
+let me = new Word('me', 'I', 550, 370, 70, 50, 'orange', true)
+let carlosSentence = new Sentence('Me temo Carlos', "I fear Carlos", 760, 75, 100, 170, 'green');
 
 
 /* Japanese level 1*/
@@ -88,7 +88,7 @@ let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu
 let languages = [French, Spanish, Japanese]
 let spanishLevel1 = [yo, chico, perdido, brotherSentence]
 let spanishLevel2 = [bebi, tu, leche, dieSentence]
-let spanishLevel3 = [afraid, iHave, carlosSentence]
+let spanishLevel3 = [fear, me, carlosSentence]
 let spanishLevel4 = [dog,hungry, food, needsFood];
 let japaneseLevel1 = [iWord, am, boy, IamABoy];
 let japaneseLevel2 = [like, eggs, ILikeEggs];
