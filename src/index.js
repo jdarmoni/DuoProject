@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let drawBlock = ()=>{
         return ctx.drawImage(game.duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
     }
-
-    // window.handleSubmit = handleSubmit;
     
     game.sprite.onload = function () {
         ctx.drawImage(game.sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
