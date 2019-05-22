@@ -10,12 +10,7 @@ import { keyDownHandler, keyUpHandler, logKey} from './keys'
 import { wordCollisionDetection, YcollisionDetection, XcollisionDetection} from './collision'
 import {makeSentence} from './makeSentence'
 import {spriteify, stopWatch} from './msc'
-// import {draw} from './draw';
-
-// const Word = require('./word.js')
-// const platforms = require('./platforms.js')
-// const handleSubmit = require('./handle_submit.js')
-// let language = require('./language.js')
+// import {draw} from './draw'
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
@@ -27,12 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let drawBlock = ()=>{
         return ctx.drawImage(game.duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
     }
-    
-    // let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
-    // let terrace = new Obstacles(0, 200, 50, 200, "color");
-    // let DuoObjects = [ platform, terrace ]
 
-    window.handleSubmit = handleSubmit;
+    // window.handleSubmit = handleSubmit;
     
     game.sprite.onload = function () {
         ctx.drawImage(game.sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
@@ -66,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         game.langResetSwitch = true;
 
                     }
-                    // console.log(originalYCord)
                     word.y -= 3;
                     
                     game.currentLanguage = word
@@ -133,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
             $(document.body).css({ backgroundColor: 'white' })
             document.getElementById('hint').innerHTML = "";
             document.getElementById('hint').style="display: none"
-            // document.getElementById('crop').style = "display: none"
             if (game.correct) {
                 
                 if (allLevels[game.language][game.level + 1] !== undefined) {
@@ -147,12 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     //     allLevels[language][level] 
                     // ]
                     $('div#CS').css({ display: 'none' })
-                   
                 }
                 game.correct = false;
             }
         }
-
     } // End of Draw
     
     document.addEventListener("keydown", keyDownHandler, false);

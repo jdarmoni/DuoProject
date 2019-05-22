@@ -10,10 +10,11 @@ let duoBlock = new Image();
 duoBlock.src = "./assets/images/duoBlock.jpg"
 let platform = new Obstacles(490, canvas.height - 200, 200, 200);
 let terrace = new Obstacles(0, 200, 50, 200, "color");
-// let DuoObjects = [platform, terrace]
+
 
 
 export let game = {
+    
     language: 'demo',
     level: 1,
     delay: undefined,
