@@ -1,9 +1,13 @@
 import {game} from './game.js'
+import { backgrounds } from './backgrounds.js'
+import { allLevels } from './wordCollections'
+import { wordCollisionDetection, YcollisionDetection, XcollisionDetection } from './collision'
+import { makeSentence } from './makeSentence'
+import { spriteify, stopWatch } from './msc'
 
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
 
-export const draw=()=> {
+    
+export const draw=(canvas, ctx)=> {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the entire canvas and redraw relevant stuff!
 
@@ -18,7 +22,9 @@ export const draw=()=> {
         // level = 1;
         ctx.drawImage(backgrounds.default, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
     }
-    drawBlock();
+
+    // draw Block!
+    ctx.drawImage(game.duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200)
 
     // for languages
     for (var i = 0; i < allLevels[game.language][game.level].length; i++) {
@@ -85,8 +91,8 @@ export const draw=()=> {
         }
         if (game.hit === false) { game.duo.dy += game.jump; }
     }
-
-    drawDuo();
+    // draw Duo
+    ctx.drawImage(game.sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight)
     game.hit = false;
 
     // part of handle submit success animation

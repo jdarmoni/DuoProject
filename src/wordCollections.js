@@ -6,9 +6,9 @@ import Sentence from './sentence';
     let French = new Word('Francais', 'French', canvas.width / 4, canvas.height - 450, 70, 50, 'red', true);
     let Spanish = new Word('Español', 'Spanish', canvas.width - 550, canvas.height - 250, 70, 50, 'orange', true);
     let Japanese = new Word('日本語', 'Japanese', 650, 220, 70, 50, 'green', true);
-    
+    let Tamil = new Word('தமிழ்', 'Tamil', 650, 220, 70, 50, 'purple', true)
     // let sentence = new Sentence("Translate this sentence!", 710, 25, 50, 230, 'yellow')
-     let Demo = new Sentence('Choose a language!', 760, 75, 100, 200, 'green');
+    let Demo = new Sentence('Choose a language!', 760, 75, 100, 200, 'green');
 
 /* spanish level 4 */
 let dog = new Word('perro', 'the dog', 860, 565, 70, 50, 'orange', true);
@@ -67,6 +67,11 @@ let pere = new Word('father', 'pere', 860, 565, 70, 50, '#b946b9', true);
 let disparu = new Word('disappeared', 'disparu', 15, 150, "disappeared".length*8, 50, '#b946b9', true);
 let PereSentence = new Sentence("Her father has disappeared", 'Sa pere a disparu', 760, 75, 100, 170, 'green');
 
+
+// Tamil Level 1
+let bear = new Word('bear', 'கரடி', 860, 565, 70, 50, '#b946b9', true);
+let near = new Word('near', 'அருகில்', 860, 565, 70, 50, '#b946b9', true);
+let bearSentence = new Sentence("the bear is near", "கரடி அருகில் இருக்கிறது")
 // cleared!
 
 /* LEVELS */
