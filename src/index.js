@@ -9,6 +9,7 @@ const Modal = require('./modal.js');
 import { keyDownHandler, keyUpHandler, logKey} from './keys'
 import { wordCollisionDetection, YcollisionDetection, XcollisionDetection} from './collision'
 import {makeSentence} from './makeSentence'
+import {spriteify, stopWatch} from './msc'
 // const Word = require('./word.js')
 // const platforms = require('./platforms.js')
 // const handleSubmit = require('./handle_submit.js')
@@ -162,42 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-    }
-    
-    // End of Draw
+    } // End of Draw
     
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
     document.addEventListener('keypress', logKey);
 
-    function spriteify() {
-        if (game.duo.sx === 15) {
-            game.duo.sx = 340;
-        } else if (game.duo.sx === 340) {
-            game.duo.sx = 15;
-        }
-    }
-    
-    function stopWatch (){
-        game.time -= 1;
-        if (game.time <= 0 && game.level >= 3 === false) {    
-            // level += 1; 
-            game.time += 120;
-        }
-        if (game.delay !== undefined) {
-            
-            game.delay -= 1;
-        }
-        if ( game.language !== "demo" || (game.language === "demo" && (game.duo.dx > 350 || game.duo.dy < canvas.height - 100)) ){
-            $('img#arrow').css({display: "none"});
-            $('p#trans').css({ display: "none" });
-        } else {
-            $('img#arrow').css({ display: "block" });
-            $('p#trans').css({ display: "block" });
-        }
-        
-    }
-    
     setInterval(draw, 15)
     setInterval(spriteify, 750) 
     setInterval(stopWatch, 1000)

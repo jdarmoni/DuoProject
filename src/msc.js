@@ -22,3 +22,32 @@ function nextLevel() { //if all hints are toggled, next level
         }
     }
 }
+
+
+export const spriteify=()=> {
+    if (game.duo.sx === 15) {
+        game.duo.sx = 340;
+    } else if (game.duo.sx === 340) {
+        game.duo.sx = 15;
+    }
+}
+
+export const stopWatch=()=> {
+    game.time -= 1;
+    if (game.time <= 0 && game.level >= 3 === false) {
+        // level += 1; 
+        game.time += 120;
+    }
+    if (game.delay !== undefined) {
+
+        game.delay -= 1;
+    }
+    if (game.language !== "demo" || (game.language === "demo" && (game.duo.dx > 350 || game.duo.dy < canvas.height - 100))) {
+        $('img#arrow').css({ display: "none" });
+        $('p#trans').css({ display: "none" });
+    } else {
+        $('img#arrow').css({ display: "block" });
+        $('p#trans').css({ display: "block" });
+    }
+
+}
