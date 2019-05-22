@@ -10,6 +10,8 @@ import { keyDownHandler, keyUpHandler, logKey} from './keys'
 import { wordCollisionDetection, YcollisionDetection, XcollisionDetection} from './collision'
 import {makeSentence} from './makeSentence'
 import {spriteify, stopWatch} from './msc'
+// import {draw} from './draw';
+
 // const Word = require('./word.js')
 // const platforms = require('./platforms.js')
 // const handleSubmit = require('./handle_submit.js')
@@ -18,33 +20,22 @@ import {spriteify, stopWatch} from './msc'
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
-
-    let sprite = new Image();
-    sprite.src = "./assets/images/owl-sprite20.svg";
            
     let drawDuo = ()=>{
-        return ctx.drawImage(sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
+        return ctx.drawImage(game.sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
     }
-
-    let duoBlock = new Image();
-    duoBlock.src = "./assets/images/duoBlock.jpg"
     let drawBlock = ()=>{
-        return ctx.drawImage(duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
+        return ctx.drawImage(game.duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200) 
     }
     
-    // handleSubmit success Animation 
-    let goodAnswer;
-    let badAnswer;
-    // handleSubmit success Animation 
-
-    let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
-    let terrace = new Obstacles(0, 200, 50, 200, "color");
-    let DuoObjects = [ platform, terrace ]
+    // let platform = new Obstacles(490, canvas.height - 200, 200, 200 );
+    // let terrace = new Obstacles(0, 200, 50, 200, "color");
+    // let DuoObjects = [ platform, terrace ]
 
     window.handleSubmit = handleSubmit;
     
-    sprite.onload = function () {
-        ctx.drawImage(sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
+    game.sprite.onload = function () {
+        ctx.drawImage(game.sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight);
     }
 
     function draw() {
@@ -62,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // level = 1;
             ctx.drawImage(backgrounds.default, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
-        
         drawBlock();
     
         // for languages
@@ -98,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
         //  THESE DO NOT NEED TO BE IN DRAW - MOVE TO KEY DOWN HANDLERS
         if (game.rightPressed && (game.duo.dx + game.duo.dWidth < canvas.width)) {
-            for (var i = 0; i < DuoObjects.length; i++) {
-                if (XcollisionDetection(DuoObjects[i], game.speed) === true) {
+            for (var i = 0; i < game.DuoObjects.length; i++) {
+                if (XcollisionDetection(game.DuoObjects[i], game.speed) === true) {
                     game.duo.dx += 0
                     game.hit = true;
                 } 
@@ -109,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (game.leftPressed && game.duo.dx > 0) {
-            for (var i = 0; i < DuoObjects.length; i++) {
-                if (XcollisionDetection(DuoObjects[i], -game.speed) === true) {
+            for (var i = 0; i < game.DuoObjects.length; i++) {
+                if (XcollisionDetection(game.DuoObjects[i], -game.speed) === true) {
                     game.duo.dx += 0;
                     game.hit = true;
                 }
@@ -123,8 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
             game.duo.dy -= game.jump;
         }
         if ((game.upPressed === false && game.duo.dy < canvas.height) && (game.duo.dy + game.duo.dHeight < canvas.height)) {
-            for (var i = 0; i < DuoObjects.length; i++) {
-                if (YcollisionDetection(DuoObjects[i], game.jump) === true) {
+            for (var i = 0; i < game.DuoObjects.length; i++) {
+                if (YcollisionDetection(game.DuoObjects[i], game.jump) === true) {
                     game.duo.dy += 0;
                     game.hit = true;
                 }
@@ -137,8 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // part of handle submit success animation
         if (game.delay <= 0) {
-            clearInterval(goodAnswer)
-            clearInterval(badAnswer)
+            clearInterval(game.goodAnswer)
+            clearInterval(game.badAnswer)
             game.delay = undefined;
             $(document.body).css({ backgroundColor: 'white' })
             document.getElementById('hint').innerHTML = "";

@@ -1,3 +1,5 @@
+import { game } from './game.js'
+
 function timer(ctx) {
     ctx.beginPath();
     ctx.rect(canvas.width - 100, 100, 50, 50);
