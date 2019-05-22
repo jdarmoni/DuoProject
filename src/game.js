@@ -15,7 +15,7 @@ let terrace = new Obstacles(0, 200, 50, 200, "color");
 
 export let game = {
     
-    language: 'French',
+    language: 'demo',
     level: 1,
     delay: undefined,
     currentLanguage: null,
