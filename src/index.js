@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (game.language === "Spanish") {
             ctx.drawImage(backgrounds.spain, 0, 0, 1600, 1800, 0, 0, canvas.width, canvas.height)
         } else {
-            // level = 1;
             ctx.drawImage(backgrounds.default, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
         }
         drawBlock();
