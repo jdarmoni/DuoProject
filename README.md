@@ -51,6 +51,7 @@ The point of 'JuoDuo' is to translate sentences! When you correctly submit a gue
 When you guess incorrectly, the background flashes raspberry red and provides you a hint message based on how close you were, plus a reconstruction of the sentence with the missing words replaced with underscores:
 
 ![Incorrect Image](readmeResources/closeGuess.png)
+(the guess was: "I drink your milkshake")
 
 We handle this in the HandleSubmit function. 
 
