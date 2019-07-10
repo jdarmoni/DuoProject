@@ -1,7 +1,7 @@
-# JuoDuo
+# JuoLingo
 livelink: https://jdarmoni.github.io/DuoProject/
 
-JuoDuo is a translation platformmer, inspired by (and boldly infringing upon) Duolingo. Move the owl around the board! Toggle words! Translate sentences! 
+JuoLingo is a translation platformmer, inspired by (and boldly infringing upon) Duolingo. Move the owl around the board! Toggle words! Translate sentences! 
 
 # Key Features 
 
@@ -45,7 +45,7 @@ To get the toggle feature, we go through each letter in the sentence, and loop t
 
 ## Submitting a Guess 
 
-The point of 'JuoDuo' is to translate sentences! When you correctly submit a guess, the background lights up green:
+The point of 'JuoLingo' is to translate sentences! When you correctly submit a guess, the background lights up green:
 
 ![Correct Image](readmeResources/correctGuess.png)
 
@@ -71,7 +71,7 @@ Language support for French, Spanish and Japanese!
 
 ## UPCOMING BONUS PLANS: 
 
-This June I made a comprehensive fullstack clone of Duolingo, which I reverse-engineered using the publically available Duolingo User & LanguageData JSON. In July, I'll be incorporating JuoDuo into 'DuoJuo' (Duolingo) as a feature!
+This June I made a comprehensive fullstack clone of Duolingo, which I reverse-engineered using the publically available Duolingo User & LanguageData JSON. In July, I'll be incorporating JuoLingo into 'DuoJuo' (Duolingo) as a feature!
 
 Do you work for Duolingo? Hire this guy!
 ![Feed Page Image](readmeResources/headshot.png)
