@@ -25,15 +25,21 @@ allLevels is an object containing keys for each language:
 
 ![All Levels_Logic](readmeResources/allLevels.png)
 
-Since the default starts at 'Demo', we key into demo; but when we choose a language, we key into the allLevels object at the respective key. Once we're in a language, we key into the level. Each level points to a variable containing an array of up to three word objects and sentence object - each of which is a Canvas object:
+Since the default starts at 'Demo', we initially key into demo on the homepage:
+![Homepage Image](readmeResources/homepage.png)
+
+Once when we choose a language, we key into the allLevels object at the respective key. Then, we key into the level. Each level points to a variable containing an array of up to three word objects and sentence object - each of which is a Canvas object:
 
 ![All Levels_Logic](readmeResources/level.png)
+
+becomes....
+
+![Japan Level 1 Image](readmeResources/japan.png)
 
 
 To get the toggle feature, we go through each letter in the sentence, and loop through each of the three word objects. If there's a match, we replace the word in the sentence with a 'span' wrapped version, so that we can target it with CSS each time we interact with a word.
  
 ![Make Sentence Logic](readmeResources/makeSentence.png)
-
 
 
 ## Submitting a Guess 
