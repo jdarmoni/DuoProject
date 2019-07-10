@@ -9,12 +9,13 @@ JuoDuo is a translation platformmer, inspired by (and boldly infringing upon) Du
 
 Users choose one of three languages by 'flying' over to the language and clicking 'Shift'. 
 
-
-## Toggle Words 
+![Country Image](readmeResources/france_landing.png)
 
 Once a level has been chosen, Duo will travel to that country. There, there will be a sentence for Duo to translate in the top right, plus several associated word 'hint boxes'.
 
-![Country Image](readmeResources/homepage.png)
+
+## Toggle Words 
+
 
 Duo 'toggles' words by colliding with them and pressing 'Shift'. They will flip between their foreign translation and their English translation. Notice that in the top right, the word in the Sentence string will turn yellow when the word has been 'toggled'.
 
