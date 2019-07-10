@@ -64,7 +64,10 @@ Next, we split up the user submitted guess and check each word against the actua
 
 Language support for French, Spanish and Japanese! 
 
+UPCOMING BONUS PLANS: 
+
+This June I made a comprehensive fullstack clone of Duolingo, which I reverse-engineered using the publically available Duolingo User & LanguageData JSON. In July, I'll be incorporating JuoDuo into 'DuoJuo' (Duolingo) as a feature!
+
 Do you work for Duolingo? Hire this guy!
 ![Feed Page Image](readmeResources/headshot.png)
 
-jgdarmoni@gmail.com //// https://www.linkedin.com/in/julien-darmoni-941a09154/
