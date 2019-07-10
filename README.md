@@ -64,5 +64,7 @@ Next, we split up the user submitted guess and check each word against the actua
 
 Language support for French, Spanish and Japanese! 
 
-![Feed Page Image](readmeResources/japan.png)
+Do you work for Duolingo? Hire this guy!
+![Feed Page Image](readmeResources/headshot.png)
 
+jgdarmoni@gmail.com //// https://www.linkedin.com/in/julien-darmoni-941a09154/
