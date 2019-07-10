@@ -53,7 +53,10 @@ When you guess incorrectly, the background flashes raspberry red and provides yo
 ![Incorrect Image](readmeResources/closeGuess.png)
 (the guess was: "I drink your milkshake")
 
+
 We handle this in the HandleSubmit function. 
+
+## HandleSubmit 
 
 ![HandleSubmit Image](readmeResources/handleSubmit.png)
 
