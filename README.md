@@ -2,14 +2,12 @@
 
 JuoDuo is a translation platformmer, inspired by (and boldly infringing upon) Duolingo. Move the owl around the board! Toggle words! Translate sentences! 
 
-![Splash Image](readmeResources/splash.png)
-
 # Key Features 
 
 ## Choose a Language 
 ![Homepage Image](readmeResources/homepage.png)
 
-Users choose one of three languages by 'flying' over to the language and clicking Shift. 
+Users choose one of three languages by 'flying' over to the language and clicking 'Shift'. 
 
 
 ## Toggle Words 
