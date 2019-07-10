@@ -23,7 +23,7 @@ export const draw=(canvas, ctx)=> {
         ctx.drawImage(backgrounds.default, 0, 600, 1000, 600, 0, 0, canvas.width, canvas.height)
     }
 
-    // draw Block!
+    // draw duoBlock!
     ctx.drawImage(game.duoBlock, 425, 150, 350, 350, 490, canvas.height - 200, 200, 200)
 
     // for languages
@@ -91,7 +91,7 @@ export const draw=(canvas, ctx)=> {
         }
         if (game.hit === false) { game.duo.dy += game.jump; }
     }
-    // draw Duo
+    // draw Duo!
     ctx.drawImage(game.sprite, game.duo.sx, game.duo.sy, game.duo.sWidth, game.duo.sHeight, game.duo.dx, game.duo.dy, game.duo.dWidth, game.duo.dHeight)
     game.hit = false;
 
