@@ -19,7 +19,18 @@ Duo 'toggles' words by colliding with them and pressing 'Shift'. Words will flip
 
 ![Toggled Image](readmeResources/toggled.png)
 
-We achieve this by going through each letter in the sentence, and looping through each of the three word hints on the board. If there's a match, we replace the word in the sentence with a 'span' wrapped version, so that we can target it with CSS each time we interact with a word.
+Here's how it works: 
+
+allLevels is an object containing keys for each language:
+
+![All Levels_Logic](readmeResources/allLevels.png)
+
+Since the default starts at 'Demo', we key into demo; but when we choose a language, we key into the allLevels object at the respective key. Once we're in a language, we key into the level. Each level points to a variable containing an array of up to three word objects and sentence object - each of which is a Canvas object:
+
+![All Levels_Logic](readmeResources/level.png)
+
+
+To get the toggle feature, we go through each letter in the sentence, and loop through each of the three word objects. If there's a match, we replace the word in the sentence with a 'span' wrapped version, so that we can target it with CSS each time we interact with a word.
  
 ![Make Sentence Logic](readmeResources/makeSentence.png)
 
@@ -39,7 +50,7 @@ We handle this in the HandleSubmit function.
 
 ![HandleSubmit Image](readmeResources/handleSubmit.png)
 
-After flashing the background red, we create an empty string variable, closeGuess. We're going to start builidng out a reconstructed sentence, with underscores in place of words we guessed incorrectly. Of course, we don't care about capitilization too much, so I convert each word to its lowerCase version before comparing.
+After flashing the background red, we create an empty string variable, closeGuess. We're going to start builidng out a reconstructed sentence, with underscores in place of words we guessed incorrectly. Of course, we don't care about capitilization too much, so we convert each word to its lowerCase version before comparing.
 
 Next, we split up the user submitted guess and check each word against the actual sentence. If it's Correct, we += its string value to the closeGuess variable. If it's InCorrect, we += an 'underscore' to show that the word at that position in the sentence was incorrect. We also keep track each time we add an 'undescore' with a counter, to know *how* close a guess it was.
 
