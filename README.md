@@ -31,7 +31,7 @@ The point of 'JuoDuo' is to translate sentences! When you correctly submit a gue
 
 ![Correct Image](readmeResources/correctGuess.png)
 
-When you guess incorrectly, the background flashes raspberry red and provides you a hint message based on how close you were and a reconstruction of the sentence with the missing words replaced with underscores:
+When you guess incorrectly, the background flashes raspberry red and provides you a hint message based on how close you were, plus a reconstruction of the sentence with the missing words replaced with underscores:
 
 ![Incorrect Image](readmeResources/closeGuess.png)
 
