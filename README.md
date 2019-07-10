@@ -1,4 +1,5 @@
 # JuoDuo
+livelink: https://jdarmoni.github.io/DuoProject/
 
 JuoDuo is a translation platformmer, inspired by (and boldly infringing upon) Duolingo. Move the owl around the board! Toggle words! Translate sentences! 
 
