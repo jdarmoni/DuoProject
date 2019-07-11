@@ -27,11 +27,9 @@
 
     <div>
         <canvas id="myCanvas" width="960" height="640"></canvas>
+    
+        <input name= "wordGuess" onfocus="this.blur()" id="translateSubmit" type="text" placeholder="Start Typing!" class="wordGuess" onsubmit="handleSubmit()"/>
         
-        <form name="myform" id="myform" onsubmit="handleSubmit()">
-            <input name= "wordGuess" id="translateSubmit" type="text" placeholder="Start Typing!" class="wordGuess" />
-            <input type="button" style="display:none">
-        </form>
     </div>
     <div id="CS">
 
@@ -96,6 +94,7 @@
             document.getElementById('CS').style.right = document.getElementById('myCanvas').getBoundingClientRect().x + 35 + 'px';
             
         });
+
     </script> 
 
 
