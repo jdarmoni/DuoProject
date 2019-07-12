@@ -37,12 +37,6 @@ becomes....
 
 ![Japan Level 1 Image](readmeResources/japan.png)
 
-
-To get the toggle feature, we go through each letter in the sentence, and loop through each of the three word objects. If there's a match, we replace the word in the sentence with a 'span' wrapped version, so that we can target it with CSS each time we interact with a word.
- 
-![Make Sentence Logic](readmeResources/makeSentence.png)
-
-
 ## Submitting a Guess 
 
 The point of 'JuoLingo' is to translate sentences! When you correctly submit a guess, the background lights up green:
@@ -54,12 +48,9 @@ When you guess incorrectly, the background flashes raspberry red and provides yo
 ![Incorrect Image](readmeResources/closeGuess.png)
 (the guess was: "I drink your milkshake")
 
-
 We handle this in the HandleSubmit function. 
 
 ## HandleSubmit 
-
-![HandleSubmit Image](readmeResources/handleSubmit.png)
 
 After flashing the background red, we create an empty string variable, closeGuess. We're going to start builidng out a reconstructed sentence, with underscores in place of words we guessed incorrectly. Of course, we don't care about capitilization too much, so we convert each word to its lowerCase version before comparing.
 
@@ -73,6 +64,5 @@ Language support for French, Spanish and Japanese!
 
 This June I made a comprehensive fullstack clone of Duolingo, which I reverse-engineered using the publically available Duolingo User & LanguageData JSON. In July, I'll be incorporating JuoLingo into 'DuoJuo' (Duolingo) as a feature!
 
-Do you work for Duolingo? Hire this guy!
 ![Feed Page Image](readmeResources/headshot.png)
 
